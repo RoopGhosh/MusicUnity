@@ -1024,4 +1024,6 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: #fed136;
 }
-
+.incSize{
+    height: 56px;
+}
