@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("MusicUnity")
-        .controller("HomeController",HomeController);
+        .controller("HomeController",HomeController)
 
-    function HomeController($http) {
+    function HomeController() {
         var vm = this;
         vm.search = search2;
         function intiliazeAPI() {

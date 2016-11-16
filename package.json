@@ -4,10 +4,8 @@
   "description": "Web Dev at Northeastern University",
   "main": "server.js",
   "dependencies": {
-    "body-parser": "^1.15.2",
+    "body-parser": "^1.15.1",
     "express": "^4.14.0",
-    "json": "^9.0.4",
-    "mime": "^1.3.4",
     "mongoose": "^4.4.15",
     "multer": "^1.2.0"
   },
@@ -17,5 +15,16 @@
     "start": "node server.js"
   },
   "author": "Jose G. Annunziato",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoopGhosh/ghosh-roop-web-dev.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RoopGhosh/ghosh-roop-web-dev/issues"
+  },
+  "homepage": "https://github.com/RoopGhosh/ghosh-roop-web-dev#readme"
 }

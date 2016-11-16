@@ -7,7 +7,7 @@
 (function () {
     angular
         .module("MusicUnity")
-        .controller("MainPageController",MainPageController );
+        .controller("MainPageController",MainPageController )
 
     function MainPageController($location) {
         var vm=this;
