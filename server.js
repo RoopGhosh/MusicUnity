@@ -15,6 +15,6 @@ require("./project/app")(app);
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
-app.listen(port, ipaddress);
+//app.listen(port, ipaddress);
 //console.log(process.env);
-//app.listen(5000);
+app.listen(5000);
