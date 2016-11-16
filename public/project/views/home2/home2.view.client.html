@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "MusicUnity">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME PAGE</title>
+</head>
+<body>
+<div class="container">
+    <h1>Register</h1>
+    <input ng-model = model.searchText type="text"
+           class="form-control"
+           placeholder="youtube search text"/>
+    <br>
+    <a class="btn btn-primary btn-block"
+       ng-click= "model.search(model.searchText)">SEARCH</a>
+</div>
+</body>
+</html>

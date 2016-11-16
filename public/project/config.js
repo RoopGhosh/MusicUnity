@@ -14,6 +14,11 @@
                 controller:"MainPageController",
                 controllerAs :"model"
             })
+            .when("/youtube", {
+                templateUrl: "/project/views/home2/home2.view.client.html",
+                controller:"HomeController",
+                controllerAs :"model"
+            })
             .when("/signup", {
                 templateUrl: "/project/views/signup.view.client.html"
                 //    controller:"LoginController",
