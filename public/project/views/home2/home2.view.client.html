@@ -6,13 +6,16 @@
 </head>
 <body>
 <div class="container">
-    <h1>Register</h1>
+    <h1>HOME</h1>
     <input ng-model = model.searchText type="text"
            class="form-control"
            placeholder="youtube search text"/>
     <br>
     <a class="btn btn-primary btn-block"
        ng-click= "model.search(model.searchText)">SEARCH</a>
+</div>
+<div ng-repeat="item in model.youtubeResults">
+    <a target="_blank" href='https://www.youtube.com/watch?v={{item.id.videoId}}'>{{item.snippet.title}}</a>
 </div>
 </body>
 </html>
