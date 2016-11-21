@@ -3,30 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>HOME PAGE</title>
-<script>
-    var clipboard = new Clipboard('.btn');
-    clipboard.on('success', function(e) {
-        console.log(e);
-    });
-    clipboard.on('error', function(e) {
-        console.log(e);
-    });
-</script>
+    <script>
+        var clipboard = new Clipboard('.btn');
+        clipboard.on('success', function(e) {
+            console.log(e);
+        });
+        clipboard.on('error', function(e) {
+            console.log(e);
+        });
+    </script>
 </head>
 <body>
-<div>
 
-</div>
 <div class="container">
     <h1>HOME</h1>
     <input ng-model = model.searchText type="text"
            class="form-control"
            placeholder="youtube search text"/>
     <br>
-    <a class="btn btn-primary btn-block"
+    <a id = "search" class="btn btn-primary btn-block"
        ng-click= "model.search(model.searchText)">SEARCH</a>
 </div>
-
+</body>
 
 <div class = "container" ng-repeat="item in model.youtubeResults">
     <!--ng-repeat start-->
@@ -52,7 +50,9 @@
 
         </div>
     </div>
-    <!--ng-repeat end-->
 </div>
-</body>
+
+<div ifrm id="tabs2">
+    <iframe id = "ifrm" width="640"height="390"frameborder="0" title="YouTube video player"type="text/html"
+            src="http://www.youtube.com/embed/u1zgFlCw8Aw?enablejsapi=1"></iframe></div>
 </html>
