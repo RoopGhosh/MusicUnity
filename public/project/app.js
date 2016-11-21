@@ -1,3 +1,3 @@
 (function () {
-    angular.module("MusicUnity",["ngRoute"])
+    angular.module("MusicUnity",["ngRoute","utility"])
 })();

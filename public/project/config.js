@@ -24,6 +24,11 @@
                 //    controller:"LoginController",
                 //  controllerAs :"model"
             })
+            .when("/test", {
+                templateUrl: "/project/views/playback.html"
+                //    controller:"LoginController",
+                //  controllerAs :"model"
+            })
             .otherwise({
                 redirectTo: "/home"
             })
