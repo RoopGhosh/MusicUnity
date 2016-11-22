@@ -29,6 +29,11 @@
                 //    controller:"LoginController",
                 //  controllerAs :"model"
             })
+            .when("/profile", {
+                templateUrl: "/project/views/profile/index.html"
+                //    controller:"LoginController",
+                //  controllerAs :"model"
+            })
             .otherwise({
                 redirectTo: "/home"
             })
