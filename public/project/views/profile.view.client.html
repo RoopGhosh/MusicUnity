@@ -1,9 +1,16 @@
-
 <body>
 <div class="coverImage">
 <div class=" container  ">
     <script src="js/main.js"></script>
-
+    <script>
+        var clipboard = new Clipboard('.abc');
+        clipboard.on('success', function(e) {
+            //console.log(e);
+        });
+        clipboard.on('error', function(e) {
+           // console.log(e);
+        });
+    </script>
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
@@ -38,7 +45,53 @@
         </li>
         <li><a href="#"><i class="fa fa-facebook"></i></a>
         </li>
-        <li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+        <li>
+            <a href=""><i class=" abc fa fa-pencil" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i></a>
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Update Profile</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text "
+                                   ng-model="model.user.name"
+                                   class="form-control incSize "
+                                   placeholder="Name"/>
+                            <br>
+                            <input type="email "
+                                   ng-model="model.user.username"
+                                   class="form-control incSize "
+                                   placeholder="Email"/>
+                            <br>
+                            <input type="password "
+                                   ng-model="model.user.currentPassword"
+                                   class="form-control incSize "
+                                   placeholder="Current Passowrd"/>
+                            <br>
+                            <input type="password "
+                                   ng-model="model.user.newPassword"
+                                   class="form-control incSize "
+                                   placeholder="New Password"/>
+                            <br>
+                            <form  action="/api/upload"  method="post" enctype="multipart/form-data">
+                                <input  name="myFile"   type="file" class="incSize form-control"/>
+                                <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+                                <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+                                <!--<button type="submit"   class="btn btn-block btn-primary">Upload Image</button>-->
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal"
+                                    data-clipboard-action="copy" data-clipboard-target='#text-{{$index}}'>Update</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </li>
     </ul>
 
