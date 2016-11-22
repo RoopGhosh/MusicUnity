@@ -30,7 +30,7 @@
                 //  controllerAs :"model"
             })
             .when("/profile", {
-                templateUrl: "/project/views/profile/index.html"
+                templateUrl: "/project/views/profile.view.client.html"
                 //    controller:"LoginController",
                 //  controllerAs :"model"
             })
