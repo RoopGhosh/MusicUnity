@@ -5,22 +5,22 @@
     <ul class="sidebar-nav">
         <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
         <li class="sidebar-brand">
-            <a href="#top" onclick=$("#menu-close").click();>Start Bootstrap</a>
+            <a href="#top" onclick=$("#menu-close").click();>Music Unity</a>
         </li>
         <li>
             <a href="#top" onclick=$("#menu-close").click();>Home</a>
         </li>
         <li>
-            <a href="#about" onclick=$("#menu-close").click();>About</a>
+            <a href="#about" onclick=$("#menu-close").click();>Whats Music Unity</a>
         </li>
         <li>
             <a href="#services" onclick=$("#menu-close").click();>Services</a>
         </li>
         <li>
-            <a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
+            <a href="#portfolio" onclick=$("#menu-close").click();>Sign in/Sign Up</a>
         </li>
         <li>
-            <a href="#contact" onclick=$("#menu-close").click();>Contact</a>
+            <a href="#contact" onclick=$("#menu-close").click();>Our Awesome Team</a>
         </li>
     </ul>
 </nav>
@@ -125,6 +125,77 @@
         <!-- /.container -->
 </section>
 
+<!-- Signin/Signup -->
+<section id="portfolio" class="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h2>Join The Fun</h2>
+                <hr class="small">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="container-fluid ">
+                            <h4 class="text-muted">Already a Member? Welcome Back !!!! </h4>
+                            <br>
+                            <br>
+                            <br>
+                            <input type="text "
+                                   ng-model="model.user.username"
+                                   class="form-control  "
+                                   placeholder="username"/>
+                            <br>
+
+                            <input type="password "
+                                   ng-model="model.user.password"
+                                   class="form-control  "
+                                   placeholder="password"/>
+                            <br>
+
+
+                            <a class="btn btn-success btn-block"
+                               href="#/register">Login</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="container-fluid ">
+                            <h4 class="text-muted">Never Too Late to Start !!!</h4>
+                            <input type="text "
+                                   ng-model="model.user.username"
+                                   class="form-control  "
+                                   placeholder="username"/>
+                            <br>
+                            <input type="email "
+                                   ng-model="model.user.email"
+                                   class="form-control  "
+                                   placeholder="Email"/>
+                            <br>
+                            <input type="password "
+                                   ng-model="model.user.password"
+                                   class="form-control  "
+                                   placeholder="password"/>
+                            <br>
+                            <input type="password "
+                                   ng-model="model.user.verifyPassword"
+                                   class="form-control  "
+                                   placeholder="Verify Password"/>
+                            <br>
+
+                            <a class="btn btn-success btn-block "
+                               href="#/register">Register</a>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row (nested) -->
+
+            </div>
+            <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+
 <!-- Callout
  <aside class="callout">
      <div class="text-vertical-center">
@@ -181,52 +252,6 @@
 </section>
 
 
-<!-- Portfolio -->
-<section id="portfolio" class="portfolio">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 text-center">
-                <h2>Our Work</h2>
-                <hr class="small">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row (nested) -->
-                <a href="#" class="btn btn-dark">View More Items</a>
-            </div>
-            <!-- /.col-lg-10 -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</section>
 
 <!-- Call to Action -->
 <aside class="call-to-action bg-primary">
