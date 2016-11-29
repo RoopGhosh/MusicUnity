@@ -8,8 +8,22 @@
         vm.search = search;
         vm.getSongName=getSongName;
         vm.selectedSong="Please Select a Song"
-        function getSongName (songName) {
+        vm.clear=clear;
+        vm.setArtWork="";
+
+        // function setArtWork(artwork) {
+        //     vm.setArtWork=artwork;
+        // }
+        function clear() {
+            // var element= document.getElementById('searchResults')
+            // element.style.visibility="hidden";
+            $('#searchResults').hide();
+            $('#searchtext').val(null);
+        }
+        function getSongName (songName,artWork) {
             vm.selectedSong=songName
+            vm.setArtWork=artWork;
+            console.log(artWork);
         }
         function init() {
             //YouTubeService.initService();
@@ -19,6 +33,7 @@
         function search(searchText) {
             YouTubeService.searchResult(searchText)
                 .success(function (response){
+                    $('#searchResults').show();
                     vm.youtubeResults = response.items;
                     vm.song = "https://www.youtube.com/watch?v=fuYR5rPADrA";
                     vm.songsObj = {'skin':'skins/tunes/skin.css','volume':50,'autoplay':false,

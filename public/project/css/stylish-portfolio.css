@@ -1091,4 +1091,16 @@ li.active a, li.active a:hover {
 .noBackGround{
     background: white;
 }
+.searchBarPadding{
+    padding-top: 103px;
+}
+.searchbarcolor{
+    background-color: black;
+    font-size: 31px;
+    height: 71px;
+}
+.searchbar{
+    font-size: 31px;
+    height: 71px;
+}
 
