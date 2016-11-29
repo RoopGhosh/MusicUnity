@@ -10,7 +10,12 @@ module.exports = function () {
         firstName: String,
         lastName: String,
         email: String,
-        dateCreated: {type: Date, default: Date.now},
+        phone:String,
+        city:String,
+        services:[{type:String, enum:['Youtube','Soundcloud']}],
+        gender:{type:String,enum:['Male,Female, Do Not Share']},
+        queue:[String],
+        dateCreated: {type: Date, default: Date.now}
     }, {collection: "user"});
 
     return UserSchema;
