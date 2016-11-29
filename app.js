@@ -5,4 +5,3 @@ module.exports = function (app) {
     require("./services/like.service.server.js")(app,model)
     require("./services/playlist.service.server.js")(app,model)
 };
-
