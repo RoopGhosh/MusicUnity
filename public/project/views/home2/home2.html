@@ -45,6 +45,7 @@
             <!--ng-repeat start-->
             <a target="_blank" href='https://www.youtube.com/watch?v={{item.id.videoId}}'>{{item.snippet.title}}</a>
             <button type="button" class="btn pull-right" data-toggle="modal" data-target="#myModal">Share</button>
+            <button type="button" class="btn pull-right"  ng-click="model.getSongName(item.snippet.title)">Play</button>
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
 
@@ -358,8 +359,8 @@
                 <h1> <i class="fa fa-backward" aria-hidden="true"></i></h1>
             </div>
             <div class="col-xs-4 team-member">
+                <marquee behavior="scroll" direction="left"> <h2>{{model.selectedSong}}</h2></marquee>
 
-                  <h2>Song Name</h2>
                 <h1> <i class="fa fa-play-circle-o" aria-hidden="true"></i></h1>
 
                 </ul>
