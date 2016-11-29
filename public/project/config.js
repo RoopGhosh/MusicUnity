@@ -34,6 +34,11 @@
                 //    controller:"LoginController",
                 //  controllerAs :"model"
             })
+            .when("/home2", {
+                templateUrl: "/project/views/home2/home2.html",
+                    controller:"HomeController",
+                  controllerAs :"model"
+            })
             .otherwise({
                 redirectTo: "/home"
             })
