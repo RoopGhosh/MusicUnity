@@ -6,6 +6,11 @@
     function HomeController(YouTubeService) {
         var vm = this;
         vm.search = search;
+        vm.getSongName=getSongName;
+        vm.selectedSong="Please Select a Song"
+        function getSongName (songName) {
+            vm.selectedSong=songName
+        }
         function init() {
             //YouTubeService.initService();
         }

@@ -1,36 +1,37 @@
 <!-- Navigation -->
 <script src="js/main.js"></script>
+
 <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
 <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
         <li class="sidebar-brand">
-            <a href="#top" onclick=$("#menu-close").click();>Start Bootstrap</a>
+            <a href="#top" onclick=$("#menu-close").click();>Music Unity</a>
         </li>
         <li>
             <a href="#top" onclick=$("#menu-close").click();>Home</a>
         </li>
         <li>
-            <a href="#about" onclick=$("#menu-close").click();>About</a>
+            <a href="#about" onclick=$("#menu-close").click();>Whats Music Unity</a>
         </li>
         <li>
             <a href="#services" onclick=$("#menu-close").click();>Services</a>
         </li>
         <li>
-            <a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
+            <a href="#portfolio" onclick=$("#menu-close").click();>Sign in/Sign Up</a>
         </li>
         <li>
-            <a href="#contact" onclick=$("#menu-close").click();>Contact</a>
+            <a href="#team" onclick=$("#menu-close").click();>Our Awesome Team</a>
         </li>
     </ul>
 </nav>
 <header>
-    <div class="container">
+    <div class="container coverImage">
         <div class="intro-text">
             <div class="intro-lead-in">All Your Music at One Place</div>
             <div class="intro-heading">Because Music has be UNIFIED</div>
-            <a href="" ng-click="model.signup()" class=" btn btn-xl">Sign Up</a>
-            <a href="#services" class="page-scroll btn btn-xl">Sign In</a>
+            <a href="#portfolio"  class=" page-scroll btn btn-xl">Sign Up</a>
+            <a href="#portfolio" class="page-scroll btn btn-xl">Sign In</a>
         </div>
     </div>
 </header>
@@ -61,13 +62,14 @@
 
 <!-- Services -->
 <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+<div class="container">
 <div id="video-wrapper" class="video-wrapper">
     <video autoplay loop muted id="bgvid">
         <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunxxxny.webm" type="video/webm">
         <source src="img/Tomorrowland2013officialaftermovie.mp4" type="video/mp4">
     </video>
 </div>
-
+</div>
 
 <section id="services" class="services bg-primary">
     <div class="container">
@@ -123,6 +125,76 @@
             <!-- /.row -->
         </div>
         <!-- /.container -->
+</section>
+
+<!-- Signin/Signup -->
+<section id="portfolio" class="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h2>Join The Fun</h2>
+                <hr class="small">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="container-fluid ">
+                            <h3 class="section-subheading text-muted">Already a Member? Welcome Back !!!! </h3>
+                            <br>
+                            <br>
+                            <input type="text "
+                                   ng-model="model.user.username"
+                                   class="form-control  "
+                                   placeholder="username"/>
+                            <br>
+
+                            <input type="password "
+                                   ng-model="model.user.password"
+                                   class="form-control  "
+                                   placeholder="password"/>
+                            <br>
+
+
+                            <a class="btn btn-success btn-block"
+                               href="#/register">Login</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="container-fluid ">
+                            <h3 class=" section-subheading text-muted">Never Too Late to Start !!!</h3>
+                            <input type="text "
+                                   ng-model="model.user.username"
+                                   class="form-control  "
+                                   placeholder="username"/>
+                            <br>
+                            <input type="email "
+                                   ng-model="model.user.email"
+                                   class="form-control  "
+                                   placeholder="Email"/>
+                            <br>
+                            <input type="password "
+                                   ng-model="model.user.password"
+                                   class="form-control  "
+                                   placeholder="password"/>
+                            <br>
+                            <input type="password "
+                                   ng-model="model.user.verifyPassword"
+                                   class="form-control  "
+                                   placeholder="Verify Password"/>
+                            <br>
+
+                            <a class="btn btn-success btn-block "
+                               href="#/register">Register</a>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row (nested) -->
+
+            </div>
+            <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
 </section>
 
 <!-- Callout
@@ -181,55 +253,9 @@
 </section>
 
 
-<!-- Portfolio -->
-<section id="portfolio" class="portfolio">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 text-center">
-                <h2>Our Work</h2>
-                <hr class="small">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row (nested) -->
-                <a href="#" class="btn btn-dark">View More Items</a>
-            </div>
-            <!-- /.col-lg-10 -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</section>
 
 <!-- Call to Action -->
-<aside class="call-to-action bg-primary">
+<!--<aside class="call-to-action bg-primary">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -242,7 +268,7 @@
 </aside>-->
 
 <!-- Map -->
-<section id="contact" class="map">
+<!--<section id="contact" class="map">
     <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
     <br />
     <small>
@@ -252,7 +278,7 @@
 </section>
 
 <!-- Footer -->
-<footer>
+<!--<footer>
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 text-center">
@@ -283,7 +309,7 @@
         </div>
     </div>
     <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
-</footer>
+</footer>-->
 
 
 

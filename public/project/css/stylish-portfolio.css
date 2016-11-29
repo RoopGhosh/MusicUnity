@@ -267,7 +267,7 @@ section h3.section-subheading {
 }
 .team-member {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 .bg-light-gray {
     background-color: #eeeeee;
@@ -1084,5 +1084,11 @@ li.active a, li.active a:hover {
 
 .tab.active {
     display:block;
+}
+.coverImage{
+    background: url("http://blogs-images.forbes.com/jonathanchester/files/2016/09/Music-Industry-Photo.jpg?width=960");
+}
+.noBackGround{
+    background: white;
 }
 
