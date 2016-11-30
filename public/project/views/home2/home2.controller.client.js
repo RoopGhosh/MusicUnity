@@ -10,20 +10,48 @@
         vm.selectedSong="Please Select a Song"
         vm.clear=clear;
         vm.setArtWork="";
+        vm.likedState='none'
+        vm.videoId="";
+        vm.changeLikeState=changeLikeState;
 
-        // function setArtWork(artwork) {
-        //     vm.setArtWork=artwork;
-        // }
+        function changeLikeState(state) {
+            if(state==='like'){
+                //add or update the like collection
+                if($('#like').attr('class')==='fa fa-thumbs-up'){
+                    return
+                }
+                else{
+                    $('#like').attr('class','fa fa-thumbs-up');
+                    $('#dislike').attr('class','fa fa-thumbs-o-down');
+                    //add to the db
+
+                }
+
+            }
+            else if(state==='dislike'){
+                if($('#dislike').attr('class')==='fa fa-thumbs-down'){
+                    return
+                }
+                else{
+                    $('#like').attr('class','fa fa-thumbs-o-up');
+                    $('#dislike').attr('class','fa fa-thumbs-down');
+                    //if present in DB remove it(like schema) else do nothing
+                }
+
+
+            }
+        }
         function clear() {
             // var element= document.getElementById('searchResults')
             // element.style.visibility="hidden";
             $('#searchResults').hide();
             $('#searchtext').val(null);
         }
-        function getSongName (songName,artWork) {
+        function getSongName (songName,artWork,videoId) {
             vm.selectedSong=songName
             vm.setArtWork=artWork;
-            console.log(artWork);
+            vm.videoId=videoId;
+            reloadFunc(videoId);
         }
         function init() {
             //YouTubeService.initService();
