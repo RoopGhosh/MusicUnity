@@ -1,8 +1,9 @@
 
     var videoID = ["u1zgFlCw8Aw","jdqsiFw74Jk"];
 var forced = false;
-function reloadFunc() {
-    videoID[1]= 'N21u1bMhHyQ';
+function reloadFunc(videoId) {
+   // videoID[1]= 'N21u1bMhHyQ';
+    videoID[1]=videoId;
     forced = true;
     onPlayerStateChange('onStateChange');
 }
@@ -13,8 +14,8 @@ var count=0;
 function onYouTubePlayerAPIReady() {
     console.log(count);
     player = new YT.Player('player', {
-        height: '390',
-        width: '640',
+        height: '0',
+        width: '0',
         videoId: 'u1zgFlCw8Aw',
         events: {
             'onReady': onPlayerReady,

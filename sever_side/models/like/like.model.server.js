@@ -12,9 +12,19 @@ module.exports = function () {
         deleteLike: deleteLike,
         readLike: readLike,
         getLikeByUser: getLikeByUser,
-        getLikeBySong: getLikeBySong
+        getLikeBySong: getLikeBySong,
+        getLikeByUserAndSong:getLikeByUserAndSong
     };
     return api;
+
+
+    function getLikeByUserAndSong(userid,song) {
+        return LikeModel.find({
+            _user:userid,
+            _song:song
+        });
+    }
+
 
     function createUpdateLike(like) {
         //searches if there is a like for a song by the user. if yes it updates else it creates.
@@ -33,8 +43,16 @@ module.exports = function () {
             );
     }
 
-    function deleteLike(likeId) {
-        return LikeModel.remove({_id:likeId});
+    function deleteLike(userId,song) {
+        getLikeByUserAndSong(getLikeByUserAndSong)
+            .then(
+                function (response) {
+                    return LikeModel.remove({_id:response._id});
+                },
+                function (error) {
+
+                }
+            )
     }
 
     function readLike(likeId) {

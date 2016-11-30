@@ -1,6 +1,7 @@
 <!-- Navigation -->
 <body>
 <script src="js/main.js"></script>
+<script src="http://www.youtube.com/player_api"></script>
 
 <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
 <nav id="sidebar-wrapper">
@@ -28,24 +29,48 @@
 </nav>
 
 
-<div class="intro-text">
+<div class="intro-text coverImage">
     <div class="team-member  ">
-        <div class="container">
+        <div class="container searchBarPadding">
 
-            <input ng-model = model.searchText type="text"
-                   class="form-control"
+            <input id="searchtext" ng-model = model.searchText type="text"
+                   class="form-control searchbar"
                    placeholder="youtube search text"/>
             <br>
-            <a id = "search" class="btn btn-primary btn-block"
-               ng-click= "model.search(model.searchText)">SEARCH</a>
+            <div class="row">
+                <div class="col-xs-6">
+            <a id = "search" class="btn btn-primary btn-block searchbarcolor"
+               ng-click= "model.search(model.searchText)">Search</a>
+                </div>
+                <div class="col-xs-6">
+                    <a id = "clear" class="btn btn-primary btn-block searchbarcolor"
+                       ng-click= "model.clear()">Clear</a>
+                </div>
+            </div>
         </div>
 
-
-        <div class = "container" ng-repeat="item in model.youtubeResults">
+        <div id="searchResults">
+        <div class = "container list-group" ng-repeat="item in model.youtubeResults">
             <!--ng-repeat start-->
-            <a target="_blank" href='https://www.youtube.com/watch?v={{item.id.videoId}}'>{{item.snippet.title}}</a>
-            <button type="button" class="btn pull-right" data-toggle="modal" data-target="#myModal">Share</button>
-            <button type="button" class="btn pull-right"  ng-click="model.getSongName(item.snippet.title)">Play</button>
+            <!--<a target="_blank" class="list-group-item active" href='https://www.youtube.com/watch?v={{item.id.videoId}}'>-->
+                <!--<p class="list-group-item-text">{{item.snippet.thumbnails.medium.url}}-->
+                <!--<button type="button" class="btn pull-right" data-toggle="modal" data-target="#myModal">Share</button>-->
+                <!--<button type="button" class="btn pull-right"  ng-click="model.getSongName(item.snippet.title)">Play</button>-->
+                <!--</p>-->
+            <!--</a>-->
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src={{item.snippet.thumbnails.default.url}} alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h5 class="media-heading">{{item.snippet.title}}</h5>
+                    <button type="button" class="btn pull-right" data-toggle="modal" data-target="#myModal">Share</button>
+                    <button type="button" class="btn pull-right"  ng-click="model.getSongName(item.snippet.title,item.snippet.thumbnails.default.url,item.id.videoId)">Play</button>
+                </div>
+            </div>
+
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
 
@@ -67,7 +92,7 @@
                 </div>
             </div>
         </div>
-
+        </div>
       <!--  <div ifrm id="tabs2">
             <iframe id = "ifrm" width="640"height="390"frameborder="0" title="YouTube video player"type="text/html"
                     src="http://www.youtube.com/embed/u1zgFlCw8Aw?enablejsapi=1"></iframe></div>-->
@@ -352,26 +377,75 @@
     </div>
     <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
 </footer>-->
+<div id = "parent">
+    <div id="player"></div>
+</div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-4 team-member">
-                <h1> <i class="fa fa-backward" aria-hidden="true"></i></h1>
+    <div class="container ">
+        <div class="container-fluid">
+        <div class="row " style="text-align: center">
+            <div class="col-sm-4 hidden-xs">
+                <img  src={{model.setArtWork}} alt="...">
             </div>
-            <div class="col-xs-4 team-member">
-                <marquee behavior="scroll" direction="left"> <h2>{{model.selectedSong}}</h2></marquee>
+            <div class="col-xs-12 col-sm-4">
+                <div class="row">
+                    <div class="col-xs-3">
+                    <h3 ><i id="like" class="fa fa-thumbs-o-up" aria-hidden="true" ng-click="model.changeLikeState('like')"></i></h3>
+                    </div>
+                    <div class="col-xs-6 ">
+                        <marquee behavior="scroll" direction="left"> <h4>{{model.selectedSong}}</h4></marquee>
+                    </div>
+                    <div class="col-xs-3">
+                        <h3 ><i id="dislike" class="fa fa-thumbs-o-down" aria-hidden="true" ng-click="model.changeLikeState('dislike')"></i></i></h3>
+                    </div>
+                </div>
 
-                <h1> <i class="fa fa-play-circle-o" aria-hidden="true"></i></h1>
-
-                </ul>
             </div>
-            <div class="col-xs-4 team-member">
-                <h1> <i class="fa fa-step-forward" aria-hidden="true"></i></i></h1>
+            <div class="col-sm-4 hidden-xs">
+                <img  src={{model.setArtWork}} alt="...">
+            </div>
+           <!-- <div class="col-xs-3">
+                <marquee behavior="scroll" direction="left"> <h4>{{model.selectedSong}}</h4></marquee>
+            </div>
+            <div class="col-xs-3">
+                <h2><i class="fa fa-thumbs-up" aria-hidden="true"></i></h2>
+            </div>
+            <div class="col-xs-4">
+                <img  src={{model.setArtWork}} alt="...">
+            </div>-->
+
+            <!--<ul class="list-inline">
+                <li class="hidden-xs">
+                    <img  src={{model.setArtWork}} alt="...">
+
+                </li>
+                <li class="hidden-xs">
+                    <marquee behavior="scroll" direction="left"> <h4>{{model.selectedSong}}</h4></marquee>
+                </li>
+            </ul>-->
+        </div>
+        </div>
+        <div class="row " style="text-align: center">
+            <div class="col-xs-4 ">
+        <h2> <i class="fa fa-backward" aria-hidden="true"></i></h2>
+            </div>
+            <div class="col-xs-4 ">
+
+
+                <h2> <i class="fa fa-play-circle-o" aria-hidden="true"></i></h2>
+
+
+            </div>
+
+            <div class="col-xs-4 ">
+
+                <h2> <i class="fa fa-step-forward" aria-hidden="true"></i></i></h2>
             </div>
         </div>
 
     </div>
 </nav>
+
 </body>
 
 
