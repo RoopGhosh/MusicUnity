@@ -10,8 +10,8 @@ module.exports = function () {
         createComment:createComment,
         //updateComment:updateComment
         deleteComment:deleteComment,
-        readComment:readComment,
-        getCommentByUser:getCommentsByUser,
+        getCommentById:getCommentById,
+        getCommentByUser:getCommentByUser,
         getCommentForUser:getCommentForUser,
     };
     return api;
@@ -27,10 +27,8 @@ module.exports = function () {
         });
     }
 
-    function readComment(commentId) {
-        return CommentModel.findOne({
-            _id:commentId
-        });
+    function getCommentById(commentId) {
+        return CommentModel.findById(commentId);
     }
 
     function getCommentByUser(userId) {
