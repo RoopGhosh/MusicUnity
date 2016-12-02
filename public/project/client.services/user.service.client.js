@@ -16,9 +16,17 @@
             deleteUser:deleteUser,
             updateUser:updateUser,
             createUser:createUser,
+            findUserByUsername:findUserByUsername,
             getUserQueue:getUserQueue
         };
         return api;
+
+        function findUserByUsername(username) {
+            var user={username:username};
+            var url = "/api/user";
+            return $http.post(url,user);
+
+        }
 
         function findUserByCredentials(username,password) {
             var user = {username:username,password:password};

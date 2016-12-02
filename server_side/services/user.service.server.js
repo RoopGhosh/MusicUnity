@@ -3,7 +3,7 @@
  */
 module.exports = function (app,model) {
     app.get("/api/user/:uid",findUserById);
-    app.post("/api/user",findUserByCredentials);
+    app.post("/api/user",findUser);
     app.put("/api/user",updateUser);
     app.delete("/api/user/:uid",deleteUser);
     app.post("/api/user/new",createUser);
@@ -24,6 +24,21 @@ module.exports = function (app,model) {
             );
     }
 
+    function findUser(req, res) {
+        if(req.body.password){
+            findUserByCredentials(req,res)
+        }
+        else{
+            findUserByUsername(req,res);
+        }
+        // var params = req.params;
+        // var query = req.query;
+        // if(query.password && query.username) {
+        //     findUserByCredentials(req, res);
+        // } else if(query.username) {
+        //     findUserByUsername(req, res);
+        // }
+    }
     function findUserById(req,res){
         var id = req.params.uid;
         model.userModel.findUserById(id)
@@ -42,14 +57,14 @@ module.exports = function (app,model) {
         var user  = req.body;
         var username = user.username;
         var password = user.password;
-        model.userModel.findUserbyCredentials(username,password)
+        model.userModel.findUserByCredentials(username,password)
             .then(
                 function (body) {
                     if(body){
                         res.send(body)
                     }else{
                         console.log("NO USER FOUND");
-                        res.sendStatus(404).send('0');
+                        res.send('0');
                     }
                 },
                 function (error) {
@@ -57,6 +72,24 @@ module.exports = function (app,model) {
                     res.sendStatus(400).send(error);
                 }
             );
+    }
+
+    function findUserByUsername(req, res) {
+        var username = req.body.username;
+        model.userModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    if (user) {
+                        res.send(user);
+                    }
+                    else {
+                        res.send('0');
+                    }
+                }),
+            function (error) {
+                res.statusCode(400).send(error);
+            }
     }
 
     function updateUser(req,res){

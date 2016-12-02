@@ -10,7 +10,7 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/home", {
-                templateUrl: "/project/views/mainPage.view.client.html",
+                templateUrl: "/project/views/landingPage/mainPage.view.client.html",
                 controller:"MainPageController",
                 controllerAs :"model"
             })
