@@ -25,7 +25,7 @@
                     }else{
                         UserService.createUser(newUser)
                             .success(function (addedUser) {
-                                $location.url("/profile")
+                                $location.url("/user/"+addedUser+"/profile");
                                 console.log("user created");
                             })
                             .error(function (error) {
@@ -44,7 +44,7 @@
             UserService.findUserByCredentials(returningUser.loginUserName,returningUser.loginPassword)
                 .success(function (user) {
                     if(user!='0'){
-                        $location.url("/profile");
+                        $location.url("/user/"+user._id+"/profile");
                     }
                     else{
                         console.log("User not found");

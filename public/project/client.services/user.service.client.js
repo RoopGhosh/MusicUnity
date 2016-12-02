@@ -33,7 +33,7 @@
 
 
         function addSong2UserQueue(uid,song) {
-            return $http.post("/api/user/:uid/recent",song);
+            return $http.post("/api/user/"+uid+"/recent",song);
         }
 
         function getrecentSongByUser(userId) {

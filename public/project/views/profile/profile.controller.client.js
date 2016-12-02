@@ -3,14 +3,24 @@
  */
 (function() {
     angular
-        .module("WebAppMaker")
+        .module("MusicUnity")
         .controller("ProfileController", ProfileController)
         .controller("ProfileEditController", ProfileEditController)
 
     function ProfileController($routeParams,$http,UserService,PlaylistService,CommentService) {
-        var userid = $routeParams[uid];
+        var userid = $routeParams['uid'];
         var vm = this;
         function init() {
+            UserService.findUserById(userid)
+                .success(
+                    function (response) {
+                        vm.user = response;
+                    }
+                )
+                .error(function (error) {
+                    console.log(error+"at profile controller inti");
+                })
+
             vm.recentSongsByUser = recentSongsByUser;
             vm.playlistByUser =    playlistByUser;
             vm.commentsByUser =    commentsByUser;

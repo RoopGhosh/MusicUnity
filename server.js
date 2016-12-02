@@ -15,5 +15,6 @@ var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 5000;
 
 app.listen(port, ipaddress);
-console.log(process.env);
+console.log(ipaddress);
+console.log(port);
 //app.listen(5000);
