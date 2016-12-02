@@ -15,5 +15,25 @@
             createComment:createComment
         }
         return api;
+
+        function findCommentById(uid,cid) {
+            return $http.get("/api/user/"+uid+"/comm/"+cid);
+        }
+
+        function createComment(uid,comment) {
+            return $http.post("/api/user/"+uid+"/comment/new",comment);
+        }
+
+        function deleteComment(uid,cid) {
+            return $http.delete("/api/user/"+uid+"/comm/"+cid);
+        }
+
+        function findCommentByUser(userId) {
+            return $http.get("/api/user/"+userId+"/fromcomm");
+        }
+
+        function findCommentForUser(userId) {
+            return $http.get("/api/user/"+userId+"/tocomm");
+        }
     }
 })();

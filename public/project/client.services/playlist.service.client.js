@@ -17,28 +17,28 @@
         }
         return api;
 
-        function findPlaylistbyId() {
-
+        function findPlaylistbyId(userId) {
+            $http.get("/api/user/"+userId+"/pls");
         }
 
-        function findPlaylistbyUser(){
-
+        function findPlaylistbyUser(uid){
+            return $http.get("/api/user/"+uid+"/pls");
         }
 
-        function udpatePlaylist(){
-
+        function udpatePlaylist(uid,pid,pls){
+            return $http.put("/api/user/"+uid+"/pls/"+pid,pls);
         }
 
         function deletePlaylist(){
-
+            return $http.delete("/api/user/"+uid+"/pls/"+pid);
         }
 
-        function createPlaylist(){
-
+        function createPlaylist(uid,pls){
+            return $http.post("/api/user/"+uid+"/pls/new");
         }
 
-        function addSongtoPlaylist(){
-
+        function addSongtoPlaylist(uid,pid,song){
+            return $http.post("/api/user/"+uid+"/pls/"+pid+"/addSong",song);
         }
     }
 })();

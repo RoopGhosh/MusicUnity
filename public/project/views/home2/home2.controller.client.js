@@ -3,17 +3,43 @@
         .module("MusicUnity")
         .controller("HomeController",HomeController)
 
-    function HomeController(YouTubeService) {
+    function HomeController($routeParams,YouTubeService,UserService) {
         var vm = this;
         vm.search = search;
         vm.getSongName=getSongName;
-        vm.selectedSong="Please Select a Song"
+        vm.selectedSong="Please Select a Song";
         vm.clear=clear;
         vm.setArtWork="";
         vm.likedState='none'
         vm.videoId="";
+        vm.playPause = playPause;
         vm.changeLikeState=changeLikeState;
+        vm.add2Queue = add2Queue;
+        var playing = true;
 
+
+        function add2Queue(song) {
+            var uid = $routeParams['uid'];
+            UserService.addSong2UserQueue(uid,song)
+                .success(
+                    function (response) {
+                        vm.queue = response;
+                    }
+                )
+                .error(function (error) {
+                    console.log(error);
+
+                })
+        }
+        function playPause() {
+            console.log("I hit the play button");
+            if(playing){
+                pausePlayer();
+            }else{
+                playPlayer();
+            }
+            playing = !playing;
+        }
         function changeLikeState(state) {
             if(state==='like'){
                 //add or update the like collection
@@ -37,8 +63,6 @@
                     $('#dislike').attr('class','fa fa-thumbs-down');
                     //if present in DB remove it(like schema) else do nothing
                 }
-
-
             }
         }
         function clear() {

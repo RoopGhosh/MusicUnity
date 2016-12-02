@@ -15,6 +15,7 @@ module.exports = function () {
         services:[{type:String, enum:['Youtube','Soundcloud']}],
         gender:{type:String,enum:['Male,Female, Do Not Share']},
         queue:[String],
+        recentSong:[String],
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "user"});
 

@@ -15,20 +15,20 @@
         }
         return api;
         
-        function findLikeByUserAndSong() {
-            
+        function findLikeByUserAndSong(uid,song) {
+            return $http.get("/api/user/"+uid+"/song/"+song);
         }
         
-        function updateLikebyUserAndSong() {
-            
+        function updateLikebyUserAndSong(uid,song,like) { // like is a bool
+            return $http.get("/api/user/"+uid+"/song/"+song+"/"+like);
         }
         
-        function getLikeByUser() {
-            
+        function getLikeByUser(uid) {
+            return $http.get("/api/user/"+uid+"/likes");
         }
         
-        function getLikeBySong() {
-            
+        function getLikeBySong(song) {
+            return $http.get("/api/user/:uid/song/"+song+"/likes");
         }
     }
 })();

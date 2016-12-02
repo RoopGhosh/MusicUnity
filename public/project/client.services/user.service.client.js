@@ -17,7 +17,10 @@
             updateUser:updateUser,
             createUser:createUser,
             findUserByUsername:findUserByUsername,
-            getUserQueue:getUserQueue
+            getUserQueue:getUserQueue,
+            getrecentSongByUser:getrecentSongByUser,
+            addSong2UserQueue:addSong2UserQueue
+
         };
         return api;
 
@@ -25,7 +28,16 @@
             var user={username:username};
             var url = "/api/user";
             return $http.post(url,user);
+        };
+        return api;
 
+
+        function addSong2UserQueue(uid,song) {
+            return $http.post("/api/user/:uid/recent",song);
+        }
+
+        function getrecentSongByUser(userId) {
+            return $http.get("/api/user/"+userId+"/recent");
         }
 
         function findUserByCredentials(username,password) {

@@ -8,15 +8,23 @@ function reloadFunc(videoId) {
     onPlayerStateChange('onStateChange');
 }
 
+function pausePlayer() {
+    player.pauseVideo();
+}
+
+function playPlayer() {
+    player.playVideo();
+}
+
 // create youtube player
 var player;
 var count=0;
 function onYouTubePlayerAPIReady() {
     console.log(count);
     player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: 'u1zgFlCw8Aw',
+        height: '100',
+        width: '100',
+        videoId: '',
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange

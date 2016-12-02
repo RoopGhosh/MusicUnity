@@ -12,7 +12,7 @@ module.exports = function () {
         findUserByUsername: findUserByUsername,
         updateUser: updateUser,
         deleteUser: deleteUser,
-        getUserQueue:getUserQueue
+        getUserQueue:getUserQueue,
     };
     return api;
 

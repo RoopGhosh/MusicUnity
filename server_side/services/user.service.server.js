@@ -8,6 +8,8 @@ module.exports = function (app,model) {
     app.delete("/api/user/:uid",deleteUser);
     app.post("/api/user/new",createUser);
     app.get("/api/user/:uid/queue/",getUserQueue);
+    app.post("/api/user/:uid/recent",addRecentSongByUser);
+    app.get("/api/user/:uid/recent",getRecentSongByUser);
 
 
     function createUser(req,res) {
@@ -23,7 +25,6 @@ module.exports = function (app,model) {
                 }
             );
     }
-
     function findUser(req, res) {
         if(req.body.password){
             findUserByCredentials(req,res)
@@ -38,6 +39,38 @@ module.exports = function (app,model) {
         // } else if(query.username) {
         //     findUserByUsername(req, res);
         // }
+    }
+
+    function getRecentSongByUser(userId) {
+        model.userModel.findUserById(userId)
+            .then(
+                function (userObj) {
+                    res.send(userObj.recentSong);
+                },
+                function (error) {
+                    console.log(error);
+                    res.sendStatus(400).send(error);
+                }
+            )
+    }
+
+    function addRecentSongByUser(req,res) {
+        var userId = req.params.uid;
+        var song = req.body;
+        model.userModel.findUserById(userId)
+            .then(
+                function (userObj) {
+                    var recent = userObj.recentSong;
+                    recent.push(song);
+                    userObj.recentSong = recent;
+                    userObj.save();
+                    res.send(userObj)
+                },
+                function (error) {
+                    console.log(error);
+                    res.sendStatus(400).send(error);
+                }
+            )
     }
     function findUserById(req,res){
         var id = req.params.uid;

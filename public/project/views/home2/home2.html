@@ -29,7 +29,7 @@
 </nav>
 
 
-<div class="intro-text coverImage">
+<div class="intro-text">
     <div class="team-member  ">
         <div class="container searchBarPadding">
 
@@ -68,6 +68,7 @@
                     <h5 class="media-heading">{{item.snippet.title}}</h5>
                     <button type="button" class="btn pull-right" data-toggle="modal" data-target="#myModal">Share</button>
                     <button type="button" class="btn pull-right"  ng-click="model.getSongName(item.snippet.title,item.snippet.thumbnails.default.url,item.id.videoId)">Play</button>
+                    <button type="button" class="btn pull-right"  ng-click="model.add2Queue(item.id.videoId)">Add To Q</button>
                 </div>
             </div>
 
@@ -432,7 +433,7 @@
             <div class="col-xs-4 ">
 
 
-                <h2> <i class="fa fa-play-circle-o" aria-hidden="true"></i></h2>
+                <h2> <i ng-click = "model.playPause()" class="fa fa-play-circle-o" aria-hidden="true"></i></h2>
 
 
             </div>
