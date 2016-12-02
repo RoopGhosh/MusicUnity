@@ -4,7 +4,7 @@
 
 module.exports = function () {
     var mongoose = require("mongoose");
-    var CommentSchema = require("./comment.model.server")();
+    var CommentSchema = require("./comment.schema.server")();
     var CommentModel = mongoose.model("CommentModel", CommentSchema);
     var api = {
         createComment:createComment,

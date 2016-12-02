@@ -16,6 +16,30 @@
             addSongtoPlaylist:addSongtoPlaylist
         }
         return api;
+
+        function findPlaylistbyId() {
+
+        }
+
+        function findPlaylistbyUser(){
+
+        }
+
+        function udpatePlaylist(){
+
+        }
+
+        function deletePlaylist(){
+
+        }
+
+        function createPlaylist(){
+
+        }
+
+        function addSongtoPlaylist(){
+
+        }
     }
 })();
 

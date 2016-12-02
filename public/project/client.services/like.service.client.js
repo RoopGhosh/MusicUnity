@@ -14,6 +14,22 @@
             getLikeBySong:getLikeBySong
         }
         return api;
+        
+        function findLikeByUserAndSong() {
+            
+        }
+        
+        function updateLikebyUserAndSong() {
+            
+        }
+        
+        function getLikeByUser() {
+            
+        }
+        
+        function getLikeBySong() {
+            
+        }
     }
 })();
 

@@ -1,7 +1,7 @@
 
 module.exports = function () {
     var mongoose = require("mongoose");
-    var PlaylistSchema = require("./playlist.model.server")();
+    var PlaylistSchema = require("./playlist.schema.server")();
     var PlaylistModel = mongoose.model("PlaylistModel", PlaylistSchema);
     var api = {
         createPlaylist:createPlaylist,

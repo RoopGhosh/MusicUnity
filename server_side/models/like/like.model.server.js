@@ -4,7 +4,7 @@
 
 module.exports = function () {
     var mongoose = require("mongoose");
-    var LikeSchema = require("./Like.model.server")();
+    var LikeSchema = require("./Like.schema.server")();
     var LikeModel = mongoose.model("LikeModel", LikeSchema);
     var api = {
         createUpdateLike: createUpdateLike,
