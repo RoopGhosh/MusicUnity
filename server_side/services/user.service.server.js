@@ -7,7 +7,7 @@ module.exports = function (app,model) {
     app.put("/api/user",updateUser);
     app.delete("/api/user/:uid",deleteUser);
     app.post("/api/user/new",createUser);
-    app.get("/api/user/queue",getUserQueue);
+    app.get("/api/user/:uid/queue/",getUserQueue);
 
 
     function createUser(req,res) {

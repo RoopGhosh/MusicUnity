@@ -13,58 +13,36 @@
             createUser:createUser,
             findUserByCredentials:findUserByCredentials,
             findUserById:findUserById,
-            findUserByUsername:findUserByUsername,
             deleteUser:deleteUser,
             updateUser:updateUser,
-           // login: login,
-            //checkLogin: checkLogin,
-            //logout: logout
+            createUser:createUser,
+            getUserQueue:getUserQueue
         };
         return api;
 
-        // function logout() {
-        //     return $http.post("/api/logout");
-        // }
-        //
-        // function checkLogin() {
-        //     return $http.post("/api/checkLogin");
-        // }
-        //
-        // function login(username, password) {
-        //     var user = {
-        //         username: username,
-        //         password: password
-        //     };
-        //     return $http.post("/api/login", user);
-        // }
-        function createUser(newuser) {
-            //return users;
-            return $http.post("/api/user", newuser);
-            
+        function findUserByCredentials(username,password) {
+            var user = {username:username,password:password};
+            return $http.post("/api/user",user)
         }
-        function findUserByUsername(username) {
-            var url = "/api/user?username=" + username;
-            return $http.get(url);
 
-        }
-        function updateUser(updatedUser,id) {
-            var url = "/api/user/" + id;
-            return $http.put(url, updatedUser);
-
-
-        }
-        function findUserByCredentials (username,password) {
-            var url = '/api/user?username='+username+'&password='+password;
-            return $http.get(url);
-
-        }
         function findUserById(userId) {
-            var url = "/api/user/"+userId;
-            return $http.get(url);
+            return $http.get("/api/user/"+userId);
         }
-        function deleteUser(uid) {
-            var url = "/api/user/" + uid;
-            return $http.delete(url);
+
+        function updateUser(userid,user) {
+            return $http.put("/api/user/"+userid,user);
+        }
+
+        function deleteUser(userid) {
+            return $http.delete("/api/user/"+userid);
+        }
+
+        function createUser(user) {
+            return $http.post("/api/user/new",user);
+        }
+
+        function getUserQueue(userId) {
+            return $http.get("/api/user/"+userId+"/queue");
         }
     }
 })();
