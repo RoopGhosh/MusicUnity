@@ -12,6 +12,7 @@ module.exports = function () {
         email: String,
         phone:String,
         city:String,
+        url:String,
         services:[{type:String, enum:['Youtube','Soundcloud']}],
         gender:{type:String,enum:['Male,Female, Do Not Share']},
         queue:[String],

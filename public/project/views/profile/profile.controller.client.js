@@ -10,6 +10,8 @@
     function ProfileController($routeParams,$http,UserService,PlaylistService,CommentService) {
         var userid = $routeParams['uid'];
         var vm = this;
+        vm._id=userid;
+        vm.updateUser=updateUser;
         function init() {
             UserService.findUserById(userid)
                 .success(
@@ -29,6 +31,16 @@
         }
         init();
 
+
+        function updateUser(modifiedUser) {
+            UserService.updateUser(userid,modifiedUser)
+                .success(function (response) {
+                    $http.url("/user"+ response._id+ "/profile");//todo location.url to profile page.
+                })
+                .error(function (error) {
+                    console.log(error + "error updatiing widget in profile controller")
+                });
+        }
 
         function commentsForUser(userId) {
            CommentService.findCommentForUser(userId)
@@ -77,7 +89,7 @@
 
     function ProfileEditController($routeParams,$http,UserService) {
         var userid = $routeParams[uid];
-        vm.updateUser = updateUser;
+        
         function init() {
              UserService.findUserById(userid)
                 .success(function (user) {
@@ -92,7 +104,7 @@
         function updateUser(modifiedUser) {
             UserService.updateUser(userid,modifiedUser)
                 .success(function (response) {
-                    $http.url("");//todo location.url to profile page.
+                    $http.url("/user"+ response._id+ "/profile");//todo location.url to profile page.
                 })
                 .error(function (error) {
 

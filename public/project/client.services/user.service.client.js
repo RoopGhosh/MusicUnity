@@ -50,7 +50,7 @@
         }
 
         function updateUser(userid,user) {
-            return $http.put("/api/user/"+userid,user);
+            return $http.put("/api/user/",user);
         }
 
         function deleteUser(userid) {

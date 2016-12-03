@@ -16,7 +16,9 @@ module.exports = function () {
     };
     return api;
 
+
     function createUser(user) {
+        user.url="";
          return UserModel.create(user);
     }
 
@@ -25,6 +27,7 @@ module.exports = function () {
         return UserModel.findById(userid);
     }
     function updateUser(user,userId) {
+
         return UserModel
             .update(
                 {
@@ -33,7 +36,7 @@ module.exports = function () {
                 {
                     firstName:user.firstName,
                     lastName:user.lastName,
-                    email:user.email
+                    url:user.url
                     //todo more values HERE
                 }
                 // new value

@@ -29,7 +29,7 @@
 
         <div class="intro-text">
             <div class="team-member coverImage ">
-                <img src="img/1.png" class="img-responsive img-circle" alt="">
+                <img src="{{model.user.url}}" class="img-responsive img-circle" alt="">
                 <h4>{{model.user.firstName}}</h4>
                 <br>
                 <ul class="list-inline social-buttons ">
@@ -50,9 +50,14 @@
                                     </div>
                                     <div class="modal-body">
                                         <input type="text "
-                                               ng-model="model.user.name"
+                                                   ng-model="model.user.firstName"
+                                                   class="form-control incSize "
+                                                   placeholder="FirstName"/>
+                                        <br>
+                                        <input type="text "
+                                               ng-model="model.user.lastName"
                                                class="form-control incSize "
-                                               placeholder="Name"/>
+                                               placeholder="LastName"/>
                                         <br>
                                         <input type="email "
                                                ng-model="model.user.username"
@@ -60,7 +65,7 @@
                                                placeholder="Email"/>
                                         <br>
                                         <input type="password "
-                                               ng-model="model.user.currentPassword"
+                                               ng-model="model.user.password"
                                                class="form-control incSize "
                                                placeholder="Current Passowrd"/>
                                         <br>
@@ -69,16 +74,22 @@
                                                class="form-control incSize "
                                                placeholder="New Password"/>
                                         <br>
+                                        <input type="text "
+                                               ng-model="model.user.url"
+                                               class="form-control incSize "
+                                               placeholder="DP URl"/>
+                                        <br>
                                         <form  action="/api/upload"  method="post" enctype="multipart/form-data">
                                             <input  name="myFile"   type="file" class="incSize form-control"/>
-                                            <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
-                                            <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
-                                            <!--<button type="submit"   class="btn btn-block btn-primary">Upload Image</button>-->
+                                            <input  name="userId"    value="{{model._id}}" style="display: none"/>
+                                            <input name="url" value="{{model.user.url}}" style="display: none">
+                                           <!-- <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>-->
+                                            <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-success" data-dismiss="modal"
-                                                data-clipboard-action="copy" data-clipboard-target='#text-{{$index}}'>Update</button>
+                                                ng-click="model.updateUser(model.user)">Update</button>
                                     </div>
                                 </div>
 

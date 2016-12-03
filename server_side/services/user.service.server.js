@@ -2,6 +2,18 @@
  * Created by roopghosh on 11/29/16.
  */
 module.exports = function (app,model) {
+
+    var mime = require('mime');
+    var multer = require('multer'); // npm install multer --save
+    var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, __dirname+'/../../public/project/uploads')
+        },
+        filename: function (req, file, cb) {
+            cb(null, file.fieldname + '-' + Date.now() + '.' + mime.extension(file.mimetype));
+        }
+    });
+    var upload = multer({ storage: storage });
     app.get("/api/user/:uid",findUserById);
     app.post("/api/user",findUser);
     app.put("/api/user",updateUser);
@@ -10,7 +22,7 @@ module.exports = function (app,model) {
     app.get("/api/user/:uid/queue/",getUserQueue);
     app.post("/api/user/:uid/recent",addRecentSongByUser);
     app.get("/api/user/:uid/recent",getRecentSongByUser);
-
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
     function createUser(req,res) {
         var user  = req.body;
@@ -127,14 +139,14 @@ module.exports = function (app,model) {
 
     function updateUser(req,res){
         var user = req.body;
-        model.userModel.updateUser(user._id,user)
+        model.userModel.updateUser(user,user._id)
             .then(
                 function (body) {
                     res.send();
                 },
                 function (error) {
                     console.log(error);
-                    res.sendStatus(400).send(error);
+                    res.send(error + "error updating in server");
                 }
             );
     }
@@ -167,12 +179,20 @@ module.exports = function (app,model) {
             );
     }
 
-    /*createUser: createUser,
-     findUserById: findUserById,
-     findUserByCredentials: findUserByCredentials,
-     findUserByUsername: findUserByUsername,
-     updateUser: updateUser,
-     deleteUser: deleteUser,
-     getUserQueue:getUserQueue*/
+    function uploadImage(request, response) {
+        var userId= request.body.userId;
+        var myFile        = request.file;
+        console.log(myFile.filename)
+        model.userModel.findUserById(userId)
+            .then(function (user) {
+                user.url="uploads/" + myFile.filename
+                model.userModel.updateUser(user,userId)
+                    .then(function (updatedUser) {
+                        console.log(updatedUser);
+                        response.redirect("/project/#/user/" + userId + "/profile");
+                    })
+            })
+
+    }
 
 }
