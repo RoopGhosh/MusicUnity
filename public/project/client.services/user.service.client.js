@@ -20,7 +20,6 @@
             getUserQueue:getUserQueue,
             getrecentSongByUser:getrecentSongByUser,
             addSong2UserQueue:addSong2UserQueue
-
         };
         return api;
 

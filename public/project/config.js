@@ -30,11 +30,11 @@
                 //  controllerAs :"model"
             })
             .when("/user/:uid/profile", {
-                templateUrl: "/project/views/profile/profile.view.client.html",
-                    controller:"ProfileController",
-                  controllerAs :"model"
+            templateUrl: "/project/views/profile/profile.view.client.html",
+            controller:"ProfileController",
+            controllerAs :"model"
             })
-            .when("/home2", {
+            .when("/user/:uid/home2", {
                 templateUrl: "/project/views/home2/home2.html",
                     controller:"HomeController",
                   controllerAs :"model"

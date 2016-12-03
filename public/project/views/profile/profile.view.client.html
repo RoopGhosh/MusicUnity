@@ -212,27 +212,16 @@
                 <div class="container">
                     <h3>Recently Played</h3>
                 </div>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
-                    </a>
-                    <br>
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name1</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
-                    </a>
-                    <br>
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name1</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
-                    </a>
-                    <br>
-                    <button class="btn-dark">Show More</button>
+                <div ng-repeat = "song in model.recentSongs" class="container-fluid">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">
+                            <h4 class="list-group-item-heading">{{song}}</h4>
+                            <p class="list-group-item-text">Service Name</p>
+                            <p class="list-group-item-text">Sharable Link</p>
+                        </a>
+                    </div>
                 </div>
+            <button class="btn-dark">Show More</button>
             </div>
             <div class="col-sm-6">
                 <div class="container">
@@ -241,18 +230,6 @@
                 <div class="list-group">
                     <a href="#" class="list-group-item active">
                         <h4 class="list-group-item-heading">Song Name</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
-                    </a>
-                    <br>
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name1</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
-                    </a>
-                    <br>
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name1</h4>
                         <p class="list-group-item-text">Service Name</p>
                         <p class="list-group-item-text">Sharable Link</p>
                     </a>

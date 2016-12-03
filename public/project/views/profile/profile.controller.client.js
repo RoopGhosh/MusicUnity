@@ -7,7 +7,7 @@
         .controller("ProfileController", ProfileController)
         .controller("ProfileEditController", ProfileEditController)
 
-    function ProfileController($routeParams,$http,UserService,PlaylistService,CommentService) {
+    function ProfileController($routeParams,$http,UserService,PlaylistService,CommentService,LikeService) {
         var userid = $routeParams['uid'];
         var vm = this;
         vm._id=userid;
@@ -23,19 +23,29 @@
                     console.log(error+"at profile controller inti");
                 })
 
-            vm.recentSongsByUser = recentSongsByUser;
-            vm.playlistByUser =    playlistByUser;
-            vm.commentsByUser =    commentsByUser;
-            vm.commentsForUser =    commentsForUser;
-            vm.recentSongsByUser=  recentSongsByUser
+             recentSongsByUser(userid);
+            playlistByUser(userid);
+           commentsByUser(userid);
+            commentsForUser(userid);
+             recentSongsByUser(userid);
+             likeByUser(userid);
         }
         init();
 
+        function likeByUser(userid) {
+            LikeService.getLikeByUser(userid)
+                .success(function (response) {
+                    vm.likes= response;
+                })
+                .error(function (error) {
+                    console.log(error);
+                })
+        }
 
         function updateUser(modifiedUser) {
             UserService.updateUser(userid,modifiedUser)
                 .success(function (response) {
-                    $http.url("/user"+ response._id+ "/profile");//todo location.url to profile page.
+                    $http.url("/user"+ response._id+ "/profile");
                 })
                 .error(function (error) {
                     console.log(error + "error updatiing widget in profile controller")
@@ -49,7 +59,6 @@
                 })
                 .error(function (error) {
                     console.log(error);
-                    res.sendStatus(400).send(error);
                 });
         }
 
@@ -60,7 +69,6 @@
                 })
                 .error(function (error) {
                     console.log(error);
-                    res.sendStatus(400).send(error);
                 });
         }
 
@@ -71,7 +79,6 @@
                 })
                 .error(function (error) {
                     console.log(error);
-                    res.sendStatus(400).send(error);
                 });
         }
 
