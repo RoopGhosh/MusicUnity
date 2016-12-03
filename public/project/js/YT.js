@@ -68,6 +68,7 @@ function onPlayerStateChange(event) {
 function updateThumbnails(videoid) {
     var url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=VIDEOID&key=AIzaSyAqvaj33Z1ZRdiWP6vJ9IQ3EswflLRqqbA";
     url = url.replace("VIDEOID",videoid);
+    var title;
     $.getJSON(url,{async: false})
         .done(
             function (snippet) {
@@ -79,8 +80,15 @@ function updateThumbnails(videoid) {
                         '<img id="prev" src=' + image + ' alt="...">';
                 }
                 if(snippet.items[0].snippet.title){
-                    var title = snippet.items[0].snippet.title;
+                    title  = snippet.items[0].snippet.title;
                     document.getElementById("currentTrack").innerHTML = '<h4 id="currentTrack" class="ng-binding">' + title + '</h4>';
+                    $.notify("Playing "+title,
+                        {   className:'info',
+                            style: 'bootstrap',
+                            globalPosition: 'top center',
+                            autoHideDelay: 5000,
+                            autoHide: true,
+                            hideAnimation: 'slideUp'});
                 }
             }
         );

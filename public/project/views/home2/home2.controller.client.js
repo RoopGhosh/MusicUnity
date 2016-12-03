@@ -19,6 +19,13 @@
         qObj = ['bBhUcCCqkBo','vXcFGgwP1J4'];
 
         function add2Queue(song) {
+            $.notify("Your song added to queue",
+                {   className:'info',
+                    style: 'bootstrap',
+                    globalPosition: 'top center',
+                    autoHideDelay: 5000,
+                    autoHide: true,
+                    hideAnimation: 'slideUp'});
             cueFromUser(song);
             var uid = $routeParams['uid'];
             UserService.addSong2UserQueue(uid,song)

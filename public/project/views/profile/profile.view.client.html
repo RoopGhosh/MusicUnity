@@ -225,17 +225,18 @@
             </div>
             <div class="col-sm-6">
                 <div class="container">
-                    <h3>Most Played</h3>
+                    <h3>My Comments</h3>
                 </div>
+                <div ng-repeat = "comment in model.comments4user" class="container-fluid">
                 <div class="list-group">
                     <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name</h4>
+                        <h4 class="list-group-item-heading">{{comment.comment}}</h4>
                         <p class="list-group-item-text">Service Name</p>
                         <p class="list-group-item-text">Sharable Link</p>
                     </a>
-                    <br>
-                    <button class="btn-dark">Show More</button>
                 </div>
+            </div>
+            <button class="btn-dark">Show More</button>
             </div>
         </div>
         <!-- /.row -->

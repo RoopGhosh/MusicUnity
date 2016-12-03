@@ -53,8 +53,9 @@ module.exports = function (app,model) {
         // }
     }
 
-    function getRecentSongByUser(userId) {
-        model.userModel.findUserById(userId)
+    function getRecentSongByUser(req,res) {
+        var userid = req.params['uid'];
+        model.userModel.findUserById(userid)
             .then(
                 function (userObj) {
                     res.send(userObj.recentSong);

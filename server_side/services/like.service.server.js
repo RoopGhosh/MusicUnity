@@ -60,7 +60,7 @@ module.exports = function (app,model) {
     }
 
 
-    function getLikeByUser() {
+    function getLikeByUser(req,res) {
         var userid = req.params.uid;
         model.likeModel.getLikeByUser(userid)
             .then(
@@ -75,7 +75,7 @@ module.exports = function (app,model) {
     }
 
 
-    function getLikeBySong() {
+    function getLikeBySong(req,res) {
         var song = req.params.songName;
         model.likeModel.getLikeBySong(song)
             .then(
