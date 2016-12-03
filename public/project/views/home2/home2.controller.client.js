@@ -37,10 +37,8 @@
         function playPause() {
             console.log("I hit the play button");
             if(playing){
-                $('#play').attr('class','fa fa-play');
                 pausePlayer();
             }else{
-                $('#play').attr('class','fa fa-pause');
                 playPlayer();
             }
             playing = !playing;
@@ -80,7 +78,6 @@
             vm.selectedSong=songName
             vm.setArtWork=artWork;
             vm.videoId=videoId;
-            $('#play').attr('class','fa fa-pause');
             reloadFunc(videoId);
         }
         function init() {
