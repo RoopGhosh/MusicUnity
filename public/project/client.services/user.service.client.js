@@ -9,19 +9,21 @@
 
 
     function UserService($http) {
-        var api={
-            createUser:createUser,
-            findUserByCredentials:findUserByCredentials,
-            findUserById:findUserById,
-            deleteUser:deleteUser,
-            updateUser:updateUser,
-            createUser:createUser,
-            findUserByUsername:findUserByUsername,
-            getUserQueue:getUserQueue,
-            getrecentSongByUser:getrecentSongByUser,
-            addSong2UserQueue:addSong2UserQueue
-        };
+        var api= {
+            createUser: createUser,
+            findUserByCredentials: findUserByCredentials,
+            findUserById: findUserById,
+            deleteUser: deleteUser,
+            updateUser: updateUser,
+            createUser: createUser,
+            findUserByUsername: findUserByUsername,
+            getUserQueue: getUserQueue,
+            getrecentSongByUser: getrecentSongByUser,
+            addSong2UserQueue: addSong2UserQueue
+        }
         return api;
+
+
 
         function findUserByUsername(username) {
             var user={username:username};
@@ -32,7 +34,7 @@
 
 
         function addSong2UserQueue(uid,song) {
-            return $http.post("/api/user/"+uid+"/recent",song);
+            return $http.post("/api/user/"+uid+"/queue",song);
         }
 
         function getrecentSongByUser(userId) {

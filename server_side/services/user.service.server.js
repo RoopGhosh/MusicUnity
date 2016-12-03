@@ -23,8 +23,7 @@ module.exports = function (app,model) {
     app.post("/api/user/:uid/recent",addRecentSongByUser);
     app.get("/api/user/:uid/recent",getRecentSongByUser);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
-    app.post("/api/user/:uid/queue",addSong2UserQueue)
-
+    app.post("/api/user/:uid/queue",addSong2UserQueue);
 
     function addSong2UserQueue(req,res) {
         var userId=req.params.uid;
@@ -75,7 +74,7 @@ module.exports = function (app,model) {
         model.userModel.findUserById(userid)
             .then(
                 function (userObj) {
-                    res.send(userObj.recentSong);
+                    res.send(userObj._doc.recent);
                 },
                 function (error) {
                     console.log(error);

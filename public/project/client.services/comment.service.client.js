@@ -10,7 +10,7 @@
         var api = {
             findCommentById:findCommentById,
             findCommentByUser:findCommentByUser,
-            findCommentForUser:findCommentForUser,
+            //findCommentForUser:findCommentForUser,
             deleteComment:deleteComment,
             createComment:createComment
         }
@@ -32,6 +32,7 @@
             return $http.get("/api/user/"+userId+"/fromcomm");
         }
 
+        //not using
         function findCommentForUser(userId) {
             return $http.get("/api/user/"+userId+"/tocomm");
         }

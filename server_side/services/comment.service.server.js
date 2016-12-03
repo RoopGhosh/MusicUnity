@@ -1,7 +1,6 @@
 module.exports = function (app,model) {
     app.get("/api/user/:uid/comm/:cid", findCommentById);
     app.get("/api/user/:uid/fromcomm", findCommentByUser);
-    app.get("/api/user/:uid/tocomm", findCommentForUser);
     //app.put("/api/user/:uid/comm/:cid", udpateComment);
     app.delete("/api/user/:uid/comm/:cid", deleteComment);
     app.post("/api/user/:uid/comm/new", createComment);
@@ -33,6 +32,8 @@ module.exports = function (app,model) {
                 }
             );
     }
+
+    //not using
     function findCommentForUser(req,res) {
         var userid= req.params.uid;
         model.commentModel.getCommentForUser(userid)

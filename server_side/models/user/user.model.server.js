@@ -1,6 +1,3 @@
-/**
- * Created by Amardeep on 13/11/16.
- */
 module.exports = function () {
     var mongoose = require("mongoose");
     var UserSchema = require("./user.schema.server")();

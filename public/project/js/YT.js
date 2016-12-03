@@ -1,6 +1,7 @@
 
 var videoArray = [];
 var forced = false;
+var count=0;
 function reloadFunc(videoId) {
    // videoID[1]= 'N21u1bMhHyQ';
     videoArray.push(videoId);
@@ -22,7 +23,6 @@ function playPlayer() {
 
 // create youtube player
 var player;
-var count=0;
 function onYouTubePlayerAPIReady() {
     console.log(count);
     player = new YT.Player('player', {
@@ -44,38 +44,36 @@ function onPlayerReady(event) {
 
 // when video ends
 function onPlayerStateChange(event) {
-    if (event.data === 0 ) {
-        event.target.cueVideoById(videoArray[0]);
+    if(event.data === 0 || forced){
+        if (event.data === 0 ) {
+            event.target.cueVideoById(videoArray[count]);
+            var videoid = videoArray[count];
+        }
+        if(forced){
+            player.stopVideo();
+            event.target.cueVideoById(videoArray[count]);
+            player.nextVideo();
+            forced = false;
+        }
+        updateThumbnails(count);
+        if(count<videoArray.length-1) {
+            updateNextThumbnails(count + 1);
+        }
         event.target.playVideo();
-        var videoid = videoArray[0];
-        updateThumbnails(videoid);
-        videoArray.splice(0,1);
-        event.target.playVideo();
+        count++;
     }
-    if(forced){
-        player.stopVideo();
-        event.target.cueVideoById(videoArray[0]);
-        player.nextVideo();
-        forced = false;
-        var videoid = videoArray[0];
-        updateThumbnails(videoid);
-        videoArray.splice(0,1);
-        event.target.playVideo();
-    }
-
 }
 
-function updateThumbnails(videoid) {
+function updateThumbnails(count) {
+    var currentVideoId = videoArray[count];
     var url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=VIDEOID&key=AIzaSyAqvaj33Z1ZRdiWP6vJ9IQ3EswflLRqqbA";
-    url = url.replace("VIDEOID",videoid);
+    url = url.replace("VIDEOID",currentVideoId);
     var title;
     $.getJSON(url,{async: false})
         .done(
             function (snippet) {
                 if(snippet.items[0].snippet.thumbnails.default.url) {
                     var image = snippet.items[0].snippet.thumbnails.default.url;
-                    document.getElementById("next").innerHTML =
-                        '<img id="next" src=' + image + ' alt="...">';
                     document.getElementById("prev").innerHTML =
                         '<img id="prev" src=' + image + ' alt="...">';
                 }
@@ -89,6 +87,23 @@ function updateThumbnails(videoid) {
                             autoHideDelay: 5000,
                             autoHide: true,
                             hideAnimation: 'slideUp'});
+                }
+            }
+        );
+    return;
+}
+function updateNextThumbnails(count) {
+    var currentVideoId = videoArray[count];
+    var url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=VIDEOID&key=AIzaSyAqvaj33Z1ZRdiWP6vJ9IQ3EswflLRqqbA";
+    url = url.replace("VIDEOID",currentVideoId);
+    var title;
+    $.getJSON(url,{async: false})
+        .done(
+            function (snippet) {
+                if(snippet.items[0].snippet.thumbnails.default.url) {
+                    var image = snippet.items[0].snippet.thumbnails.default.url;
+                    document.getElementById("next").innerHTML =
+                        '<img id="next" src=' + image + ' alt="...">';
                 }
             }
         );

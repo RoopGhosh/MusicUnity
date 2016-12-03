@@ -225,14 +225,14 @@
             </div>
             <div class="col-sm-6">
                 <div class="container">
-                    <h3>My Comments</h3>
+                    <h3>My Followings</h3>
                 </div>
-                <div ng-repeat = "comment in model.comments4user" class="container-fluid">
+                <div ng-repeat = "user in model.following" class="container-fluid">
                 <div class="list-group">
                     <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">{{comment.comment}}</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
+                        <h4 class="list-group-item-heading">{{user.firstName}}</h4>
+                        <p class="list-group-item-text">2.{{user.lastName}}</p>
+                        <p class="list-group-item-text">3.{{user.username}}</p>
                     </a>
                 </div>
             </div>
@@ -256,7 +256,27 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">My PlayLists</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <div ng-repeat = "playObj in model.playlist" class="container-fluid">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">
+                            <h4 class="list-group-item-heading">{{playObj}}</h4>
+                        </a>
+                    </div>
+                </div>
+                <button class="btn-dark">Show More</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">My Liked Songs</h2>
+                <div ng-repeat = "likein model.likes" class="container-fluid">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">
+                            <h4 class="list-group-item-heading">{{like}}</h4>
+                        </a>
+                    </div>
+                </div>
+                <button class="btn-dark">Show More</button>
             </div>
         </div>
         <div class="row">

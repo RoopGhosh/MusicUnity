@@ -26,11 +26,36 @@
              recentSongsByUser(userid);
             playlistByUser(userid);
            commentsByUser(userid);
-            commentsForUser(userid);
-             recentSongsByUser(userid);
-             likeByUser(userid);
+            //commentsForUser(userid);
+            getUserFollowing(userid);
+             //likeByUser(userid);
         }
         init();
+
+        function getUserFollowing(userId) {
+            array=[];
+            UserService.findUserById(userId)
+                .success(function (response) {
+                    var userFollowing=response.following ;
+                    for(item in userFollowing){
+                        UserService.findUserById(userFollowing[item])
+                            .success(function (response) {
+                                array.push(response);
+                            })
+                            .error(
+                                function (error) {
+                                    console.log("while looping over users"+error);
+                                }
+                            )
+                    }
+                    vm.following = array;
+                })
+                .error(
+                    function (error) {
+                        console.log("error at get user following"+error);
+                    }
+                )
+        }
 
         function likeByUser(userid) {
             LikeService.getLikeByUser(userid)
@@ -52,6 +77,7 @@
                 });
         }
 
+        //not using
         function commentsForUser(userId) {
            CommentService.findCommentForUser(userId)
                 .success(function (res) {

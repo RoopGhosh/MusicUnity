@@ -1,7 +1,3 @@
-/**
- * Created by roopghosh on 11/29/16.
- */
-
 module.exports = function () {
     var mongoose = require("mongoose");
     var CommentSchema = require("./comment.schema.server")();
@@ -11,8 +7,7 @@ module.exports = function () {
         //updateComment:updateComment
         deleteComment:deleteComment,
         getCommentById:getCommentById,
-        getCommentByUser:getCommentByUser,
-        getCommentForUser:getCommentForUser,
+        getCommentByUser:getCommentByUser
     };
     return api;
 
@@ -32,16 +27,6 @@ module.exports = function () {
     }
 
     function getCommentByUser(userId) {
-        return CommentModel.find(
-            {_user:userId}
-        );
+        return CommentModel.find({_user:userId});
     }
-
-
-    function getCommentForUser(userId) {
-        return CommentModel.find({
-            forUser:userId
-        });
-    }
-
 }
