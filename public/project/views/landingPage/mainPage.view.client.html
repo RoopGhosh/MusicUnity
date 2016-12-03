@@ -30,11 +30,13 @@
         <div class="intro-text">
             <div class="intro-lead-in">All Your Music at One Place</div>
             <div class="intro-heading">Because Music has be UNIFIED</div>
-            <a href="#portfolio"  class=" page-scroll btn btn-xl">Sign Up</a>
-            <a href="#portfolio" class="page-scroll btn btn-xl">Sign In</a>
+            <a href="#portfolio"  class=" page-scroll btn btn-xl">Sign Up
+            </a>
+            <a href="#portfolio" class="page-scroll btn btn-xl" >Sign In</a>
         </div>
     </div>
 </header>
+
 <!-- Header -->
 <!-- <header id="top" class="header">
      <div class="text-vertical-center intro-text">
@@ -132,11 +134,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 text-center">
-
                 <h2>Join The Fun</h2>
                 <hr class="small">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="container-fluid">
+                    <div class="col-sm-6 " style="text-align: center">
                         <div class="container-fluid ">
                             <h3 class="section-subheading text-muted">Already a Member? Welcome Back !!!! </h3>
                             <div ng-show="model.errorLogin" class="alert alert-danger" role ="alert">
@@ -161,49 +163,52 @@
                                href="">Login</a>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="container-fluid">
-                            <div ng-show="model.errorRegister" class="alert alert-danger" role ="alert">
-                                {{model.errorRegister}}
-                            </div>
-                            <h3 class=" section-subheading text-muted">Never Too Late to Start !!!</h3>
-                            <input type="text"
-                                   ng-model="model.user.username"
-                                   class="form-control  "
-                                   placeholder="username"/>
-                            <br>
-                            <input type="text"
-                                   ng-model="model.user.firstName"
-                                   class="form-control  "
-                                   placeholder="firstName"/>
-                            <br>
-                            <input type="text"
+                        <div class="col-sm-6">
+
+                            <div class="container-fluid">
+                                <div ng-show="model.errorRegister" class="alert alert-danger" role ="alert">
+                                    {{model.errorRegister}}
+                                </div>
+                                <h3 class=" section-subheading text-muted">Never Too Late to Start !!!</h3>
+                                <input type="text"
+                                       ng-model="model.user.username"
+                                       class="form-control  "
+                                       placeholder="username"/>
+                                <br>
+                                <input type="text"
+                                       ng-model="model.user.firstName"
+                                       class="form-control  "
+                                       placeholder="firstName"/>
+                                <br>
+                                <input type="text"
                                        ng-model="model.user.lastName"
                                        class="form-control  "
                                        placeholder="lastName"/>
-                            <br>
-                            <input type="email"
-                                   ng-model="model.user.email"
-                                   class="form-control  "
-                                   placeholder="Email"/>
-                            <br>
-                            <input type="password"
-                                   ng-model="model.user.password"
-                                   class="form-control  "
-                                   placeholder="password"/>
-                            <br>
-                            <input type="password"
-                                   ng-model="model.user.verifyPassword"
-                                   class="form-control"
-                                   placeholder="Verify Password"/>
-                            <br>
+                                <br>
+                                <input type="email"
+                                       ng-model="model.user.email"
+                                       class="form-control  "
+                                       placeholder="Email"/>
+                                <br>
+                                <input type="password"
+                                       ng-model="model.user.password"
+                                       class="form-control  "
+                                       placeholder="password"/>
+                                <br>
+                                <input type="password"
+                                       ng-model="model.user.verifyPassword"
+                                       class="form-control"
+                                       placeholder="Verify Password"/>
+                                <br>
 
-                            <a ng-click="model.register(model.user)" class="btn btn-success btn-block "
-                               href="">Register</a>
+                                <a ng-click="model.register(model.user)" class="btn btn-success btn-block "
+                                   href="">Register</a>
+                            </div>
                         </div>
                     </div>
+                    </div>
 
-                </div>
+
                 <!-- /.row (nested) -->
 
             </div>
@@ -211,6 +216,7 @@
         </div>
         <!-- /.row -->
     </div>
+        </div>
     <!-- /.container -->
 </section>
 

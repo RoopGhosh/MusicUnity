@@ -23,7 +23,24 @@ module.exports = function (app,model) {
     app.post("/api/user/:uid/recent",addRecentSongByUser);
     app.get("/api/user/:uid/recent",getRecentSongByUser);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.post("/api/user/:uid/queue",addSong2UserQueue)
 
+
+    function addSong2UserQueue(req,res) {
+        var userId=req.params.uid;
+        var song=req.body.song;
+        model.userModel.findUserById(userId)
+            .then(
+                function (user) {
+                    user.queue.push(song);
+                    user.save();
+                    res.send(user);
+                },
+                function (error) {
+                    console.log(error + "error adding sont ot queue in server user service")
+                }
+            )
+    }
     function createUser(req,res) {
         var user  = req.body;
         model.userModel.createUser(user)
@@ -73,7 +90,7 @@ module.exports = function (app,model) {
         model.userModel.findUserById(userId)
             .then(
                 function (userObj) {
-                    var recent = userObj.recentSong;
+                    var recent = userObj.recent;
                     recent.push(song);
                     userObj.recentSong = recent;
                     userObj.save();

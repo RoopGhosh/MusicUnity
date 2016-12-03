@@ -5,6 +5,7 @@
 
     function HomeController($routeParams,YouTubeService,UserService) {
         var vm = this;
+        vm.userId=$routeParams['uid'];
         vm.search = search;
         vm.getSongName=getSongName;
         vm.selectedSong="Please Select a Song";
@@ -15,8 +16,18 @@
         vm.playPause = playPause;
         vm.changeLikeState=changeLikeState;
         vm.add2Queue = add2Queue;
+        vm.queue=""
+        vm.getQueue=getQueue;
         var playing = true;
         qObj = ['bBhUcCCqkBo','vXcFGgwP1J4'];
+
+        function getQueue() {
+            UserService.getUserQueue(vm.userId)
+                .then(function (userQueue) {
+                    vm.queue=userQueue;
+                })
+        }
+
 
         function add2Queue(song) {
             $.notify("Your song added to queue",
@@ -31,15 +42,17 @@
             UserService.addSong2UserQueue(uid,song)
                 .success(
                     function (response) {
-                        vm.queue = qObj;//response;
+                        vm.queue = response;//response;
+                        console.log("added to db")
                     }
                 )
                 .error(function (error) {
                     //todo
-                    vm.queue = qObj;
+                   //vm.queue = qObj;
                     console.log(error);
 
                 })
+
         }
         function playPause() {
             console.log("I hit the play button");

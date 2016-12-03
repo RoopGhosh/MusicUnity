@@ -3,6 +3,8 @@
 <script src="js/main.js"></script>
 <script src="http://www.youtube.com/player_api"></script>
 
+
+
 <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
 <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
@@ -24,6 +26,75 @@
         </li>
         <li>
             <a href="#team" onclick=$("#menu-close").click();>My Playlists</a>
+        </li>
+        <li>
+            <h2>Queue</h2>
+            <div>
+                <ul>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li> <li>
+                    SONG A
+                </li> <li>
+                    SONG A
+                </li>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG A
+                    </li>
+                    <li>
+                        SONG b
+                    </li>
+
+
+                </ul>
+            </div>
         </li>
     </ul>
 </nav>
@@ -380,7 +451,27 @@
     </div>
     <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
 </footer>-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <ul>
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src={{item.snippet.thumbnails.default.url}} alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h5 class="media-heading">{{item.snippet.title}}</h5>
+                    <button type="button" class="btn pull-right" data-toggle="modal" data-target="#myModal">Share</button>
+                    <button type="button" class="btn pull-right"  ng-click="model.remove(item.id.videoId)">Remove</button>
 
+                </div>
+            </div>
+            </ul>
+        </div>
+    </div>
+</div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container ">
         <div class="container-fluid">
@@ -434,7 +525,7 @@
 
 
                 <h2> <i id="play" ng-click = "model.playPause()" class="fa fa-play" aria-hidden="true"></i></h2>
-
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
 
             </div>
 
