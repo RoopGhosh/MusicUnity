@@ -16,17 +16,20 @@
         vm.changeLikeState=changeLikeState;
         vm.add2Queue = add2Queue;
         var playing = true;
-
+        qObj = ['bBhUcCCqkBo','vXcFGgwP1J4'];
 
         function add2Queue(song) {
+            cueFromUser(song);
             var uid = $routeParams['uid'];
             UserService.addSong2UserQueue(uid,song)
                 .success(
                     function (response) {
-                        vm.queue = response;
+                        vm.queue = qObj;//response;
                     }
                 )
                 .error(function (error) {
+                    //todo
+                    vm.queue = qObj;
                     console.log(error);
 
                 })
@@ -81,6 +84,8 @@
             //YouTubeService.initService();
         }
         init();
+
+
 
         function search(searchText) {
             YouTubeService.searchResult(searchText)

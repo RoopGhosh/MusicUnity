@@ -1,15 +1,19 @@
 
-    var videoID = ["u1zgFlCw8Aw","jdqsiFw74Jk"];
+var videoArray = [];
 var forced = false;
 function reloadFunc(videoId) {
    // videoID[1]= 'N21u1bMhHyQ';
-    videoID[1]=videoId;
+    videoArray.push(videoId);
     forced = true;
     onPlayerStateChange('onStateChange');
 }
 
 function pausePlayer() {
     player.pauseVideo();
+}
+
+function cueFromUser(song){
+    videoArray.push(song);
 }
 
 function playPlayer() {
@@ -22,8 +26,8 @@ var count=0;
 function onYouTubePlayerAPIReady() {
     console.log(count);
     player = new YT.Player('player', {
-        height: '100',
-        width: '100',
+        height: '340',
+        width: '500',
         videoId: '',
         events: {
             'onReady': onPlayerReady,
@@ -41,14 +45,44 @@ function onPlayerReady(event) {
 // when video ends
 function onPlayerStateChange(event) {
     if (event.data === 0 ) {
-        event.target.cueVideoById(videoID[1]);
+        event.target.cueVideoById(videoArray[0]);
+        event.target.playVideo();
+        var videoid = videoArray[0];
+        updateThumbnails(videoid);
+        videoArray.splice(0,1);
         event.target.playVideo();
     }
     if(forced){
         player.stopVideo();
-        event.target.cueVideoById(videoID[1]);
+        event.target.cueVideoById(videoArray[0]);
         player.nextVideo();
-        event.target.playVideo();
         forced = false;
+        var videoid = videoArray[0];
+        updateThumbnails(videoid);
+        videoArray.splice(0,1);
+        event.target.playVideo();
     }
+
+}
+
+function updateThumbnails(videoid) {
+    var url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=VIDEOID&key=AIzaSyAqvaj33Z1ZRdiWP6vJ9IQ3EswflLRqqbA";
+    url = url.replace("VIDEOID",videoid);
+    $.getJSON(url,{async: false})
+        .done(
+            function (snippet) {
+                if(snippet.items[0].snippet.thumbnails.default.url) {
+                    var image = snippet.items[0].snippet.thumbnails.default.url;
+                    document.getElementById("next").innerHTML =
+                        '<img id="next" src=' + image + ' alt="...">';
+                    document.getElementById("prev").innerHTML =
+                        '<img id="prev" src=' + image + ' alt="...">';
+                }
+                if(snippet.items[0].snippet.title){
+                    var title = snippet.items[0].snippet.title;
+                    document.getElementById("currentTrack").innerHTML = '<h4 id="currentTrack" class="ng-binding">' + title + '</h4>';
+                }
+            }
+        );
+    return;
 }
