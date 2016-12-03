@@ -39,6 +39,11 @@
                     controller:"HomeController",
                   controllerAs :"model"
             })
+            .when("/user/:uid/home1", {
+                templateUrl: "/project/views/home1/home1.view.client.html",
+              //  controller:"HomeController",
+                //controllerAs :"model"
+            })
             .otherwise({
                 redirectTo: "/home"
             })
