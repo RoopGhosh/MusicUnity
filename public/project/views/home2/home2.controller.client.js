@@ -3,7 +3,7 @@
         .module("MusicUnity")
         .controller("HomeController",HomeController)
 
-    function HomeController($routeParams,YouTubeService,UserService) {
+    function HomeController($routeParams,YouTubeService,UserService,LikeService) {
         var vm = this;
         vm.userId=$routeParams['uid'];
         vm.search = search;
@@ -11,7 +11,6 @@
         vm.selectedSong="Please Select a Song";
         vm.clear=clear;
         vm.setArtWork="";
-        vm.likedState='none'
         vm.videoId="";
         vm.playPause = playPause;
         vm.changeLikeState=changeLikeState;
@@ -89,7 +88,19 @@
                     $('#like').attr('class','fa fa-thumbs-up');
                     $('#dislike').attr('class','fa fa-thumbs-o-down');
                     //add to the db
-
+                    if(vm.selectedSong!= 'Please Select a Song'){
+                    LikeService.updateLikebyUserAndSong(vm.userId,vm.selectedSong,true)
+                        .success(
+                            function (response) {
+                                console.log("like updated");
+                            }
+                        )
+                        .error(
+                            function (error) {
+                                console.error("like update failed");
+                            }
+                        )
+                    }
                 }
 
             }
@@ -101,6 +112,19 @@
                     $('#like').attr('class','fa fa-thumbs-o-up');
                     $('#dislike').attr('class','fa fa-thumbs-down');
                     //if present in DB remove it(like schema) else do nothing
+                    if(vm.selectedSong!= 'Please Select a Song'){
+                        LikeService.updateLikebyUserAndSong(vm.userId,vm.selectedSong,false)
+                            .success(
+                                function (response) {
+                                    console.log("like removed");
+                                }
+                            )
+                            .error(
+                                function (error) {
+                                    console.error("like update failed");
+                                }
+                            )
+                    }
                 }
             }
         }

@@ -34,8 +34,8 @@ module.exports = function (app,model) {
         var like = req.params.like;
         var userId= req.params.uid;
         var song= req.params.songName;
-        if(like){
-            model.likeModel.createUpdateLike({_user:userId,_song:song})
+        if(like=='true'){
+            model.likeModel.createUpdateLike({_user:userId,song:song})
                 .then(
                     function (response) {
                         res.send(response);
@@ -46,7 +46,7 @@ module.exports = function (app,model) {
                     }
                 )
         }else{
-            model.likeModel.deleteLike({_user:userId,_song:song})
+            model.likeModel.deleteLike({_user:userId,song:song})
                 .then(
                     function (response) {
                         res.send(response);

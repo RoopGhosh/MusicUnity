@@ -28,7 +28,7 @@
            commentsByUser(userid);
             //commentsForUser(userid);
             getUserFollowing(userid);
-             //likeByUser(userid);
+             likeByUser(userid);
         }
         init();
 
