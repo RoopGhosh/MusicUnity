@@ -3,10 +3,11 @@
         .module("MusicUnity")
         .controller("Home1Controller", Home1Controller)
 
-    function Home1Controller($routeParams,UserService,LikeService,$http,CommentService) {
+    function Home1Controller($routeParams,UserService,LikeService,$http,$location,CommentService) {
         var vm = this;
         vm.userid = $routeParams['uid'];
         vm.FollowerComments=[];
+        vm.search = search;
         function init() {
             UserService.findUserById(vm.userid)
                 .success(function (user) {
@@ -31,5 +32,8 @@
                 )
         }
         init();
+        function search(text) {
+            $location.url("/user/"+vm.userid+"/home2?search="+text);
+        }
     }
 })();

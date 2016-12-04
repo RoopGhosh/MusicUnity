@@ -19,18 +19,22 @@
             findUserByUsername: findUserByUsername,
             getUserQueue: getUserQueue,
             getrecentSongByUser: getrecentSongByUser,
-            addSong2UserQueue: addSong2UserQueue
+            addSong2UserQueue: addSong2UserQueue,
+            addSong2Recent:addSong2Recent
         }
         return api;
 
 
+        function addSong2Recent(recentObj,uid) {
+            //recentObj= {title,url,videoId}
+            return $http.post("/api/user/"+uid+"/recent",recentObj);
+        }
 
         function findUserByUsername(username) {
             var user={username:username};
             var url = "/api/user";
             return $http.post(url,user);
-        };
-        return api;
+        }
 
 
         function addSong2UserQueue(uid,song) {

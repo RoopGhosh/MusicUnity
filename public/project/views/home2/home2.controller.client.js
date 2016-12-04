@@ -139,10 +139,18 @@
             vm.setArtWork=artWork;
             vm.videoId=videoId;
             $('#play').attr('class','fa fa-pause');
-            reloadFunc(videoId);
+            reloadFunc(videoId,vm.userId);
         }
         function init() {
             //YouTubeService.initService();
+            var searchText = $routeParams.search;
+            if(searchText){
+                search(searchText);
+                vm.searchText = searchText;
+                if(YT.loaded){
+                    onYouTubePlayerAPIReady();
+                }
+            }
         }
         init();
 

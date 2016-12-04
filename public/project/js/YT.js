@@ -2,8 +2,11 @@
 var videoArray = [];
 var forced = false;
 var count=0;
-function reloadFunc(videoId) {
+function reloadFunc(videoId,userId) {
    // videoID[1]= 'N21u1bMhHyQ';
+    if(!uid){
+        uid  = userId;
+    }
     videoArray.push(videoId);
     forced = true;
     onPlayerStateChange('onStateChange');
@@ -23,8 +26,8 @@ function playPlayer() {
 
 // create youtube player
 var player;
+var uid;
 function onYouTubePlayerAPIReady() {
-    console.log(count);
     player = new YT.Player('player', {
         height: '340',
         width: '500',
@@ -55,7 +58,21 @@ function onPlayerStateChange(event) {
             player.nextVideo();
             forced = false;
         }
-        updateThumbnails(count);
+        updateThumbnails(count)
+            .done(
+                function (response) {
+                    console.log("done updating thumbnail")
+                    var recent = {
+                        title : response.items[0].snippet.title,
+                        url :response.items[0].snippet.thumbnails.default.url,
+                        videoId :response.items[0].id
+                    }
+
+                    angular.injector(['ng', 'MusicUnity']).invoke(function (UserService) {
+                        UserService.addSong2Recent(recent,uid);
+                    });
+                }
+            );
         if(count<videoArray.length-1) {
             updateNextThumbnails(count + 1);
         }
@@ -69,7 +86,7 @@ function updateThumbnails(count) {
     var url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=VIDEOID&key=AIzaSyAqvaj33Z1ZRdiWP6vJ9IQ3EswflLRqqbA";
     url = url.replace("VIDEOID",currentVideoId);
     var title;
-    $.getJSON(url,{async: false})
+    return $.getJSON(url,{async: false})
         .done(
             function (snippet) {
                 if(snippet.items[0].snippet.thumbnails.default.url) {
@@ -90,7 +107,7 @@ function updateThumbnails(count) {
                 }
             }
         );
-    return;
+
 }
 function updateNextThumbnails(count) {
     var currentVideoId = videoArray[count];

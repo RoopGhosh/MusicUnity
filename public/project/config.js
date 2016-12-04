@@ -31,8 +31,8 @@
             })
             .when("/user/:uid/home2", {
                 templateUrl: "/project/views/home2/home2.html",
-                    controller:"Home2Controller",
-                  controllerAs :"model"
+                controller:"Home2Controller",
+                controllerAs :"model"
             })
             .when("/user/:uid/home1", {
                 templateUrl: "/project/views/home1/home1.view.client.html",

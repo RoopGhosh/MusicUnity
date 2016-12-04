@@ -97,16 +97,22 @@ module.exports = function (app,model) {
         var song = req.body;
         model.userModel.findUserById(userId)
             .then(
-                function (userObj) {
-                    var recent = userObj.recent;
-                    recent.push(song);
-                    userObj.recentSong = recent;
-                    userObj.save();
-                    res.send(userObj)
+                function (user) {
+                    var recentSongList = user._doc.recent;
+                    recentSongList.push(song);
+                    console.log(recentSongList.json);
+                    model.userModel.addsong2Recent(user._id.toString(),recentSongList)
+                        .then(
+                            function (response) {
+                                res.send(200);
+                            },
+                            function (error) {
+                                console.error("while adding song to recent list");
+                            }
+                        )
                 },
                 function (error) {
-                    console.log(error);
-                    res.sendStatus(400).send(error);
+                    console.log(error + "error adding song to recent in server user service")
                 }
             )
     }

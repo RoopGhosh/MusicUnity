@@ -13,7 +13,7 @@ module.exports = function () {
         services:[{type:String, enum:['Youtube','Soundcloud']}],
         gender:{type:String,enum:['Male,Female, Do Not Share']},
         queue:[String],
-        recentSong:[String],
+        recent:[{title:String,url:String,videoId:String}],
         following: [{type:mongoose.Schema.Types.ObjectId,ref:"UserModel"}],
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "user"});
