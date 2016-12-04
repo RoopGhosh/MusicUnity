@@ -22,22 +22,29 @@
         qObj = ['bBhUcCCqkBo','vXcFGgwP1J4'];
 
         function getQueue() {
+            vm.queue=[];
             UserService.getUserQueue(vm.userId)
                 .then(function (userQueue) {
-                    vm.queue=userQueue;
+                    var queue=userQueue.data.queue;
+                    for(item in queue){
+                       YouTubeService.snippetData(queue[item])
+                           .success(function (response) {
+                               console.log(response);
+                               var obj = {
+                                   thumbnail : response.items[0].snippet.thumbnails.default,
+                                   title : response.items[0].snippet.title,
+                               }
+                               vm.queue.push(obj);
+                           })
+                           .error(function (error) {
+                               console.log("while retriving snippet data for queue");
+                           })
+                    }
                 })
         }
 
 
         function add2Queue(song) {
-            $.notify("Your song added to queue",
-                {   className:'info',
-                    style: 'bootstrap',
-                    globalPosition: 'top center',
-                    autoHideDelay: 5000,
-                    autoHide: true,
-                    hideAnimation: 'slideUp'});
-            cueFromUser(song);
             var uid = $routeParams['uid'];
             UserService.addSong2UserQueue(uid,song)
                 .success(
@@ -48,11 +55,18 @@
                 )
                 .error(function (error) {
                     //todo
-                   //vm.queue = qObj;
+                    //vm.queue = qObj;
                     console.log(error);
 
                 })
-
+            $.notify("Your song added to queue",
+                {   className:'info',
+                    style: 'bootstrap',
+                    globalPosition: 'top center',
+                    autoHideDelay: 5000,
+                    autoHide: true,
+                    hideAnimation: 'slideUp'});
+            cueFromUser(song);
         }
         function playPause() {
             console.log("I hit the play button");

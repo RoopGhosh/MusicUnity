@@ -34,7 +34,7 @@
 
 
         function addSong2UserQueue(uid,song) {
-            return $http.post("/api/user/"+uid+"/queue",song);
+            return $http.get("/api/user/"+uid+"/queue1?song="+song);
         }
 
         function getrecentSongByUser(userId) {

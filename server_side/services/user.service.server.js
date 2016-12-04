@@ -19,21 +19,30 @@ module.exports = function (app,model) {
     app.put("/api/user",updateUser);
     app.delete("/api/user/:uid",deleteUser);
     app.post("/api/user/new",createUser);
-    app.get("/api/user/:uid/queue/",getUserQueue);
+    app.get("/api/user/:uid/queue",getUserQueue);
     app.post("/api/user/:uid/recent",addRecentSongByUser);
     app.get("/api/user/:uid/recent",getRecentSongByUser);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
-    app.post("/api/user/:uid/queue",addSong2UserQueue);
+    app.get("/api/user/:uid/queue1",addSong2UserQueue);
 
     function addSong2UserQueue(req,res) {
         var userId=req.params.uid;
-        var song=req.body.song;
+        var song=req.query.song;
         model.userModel.findUserById(userId)
             .then(
                 function (user) {
-                    user.queue.push(song);
-                    user.save();
-                    res.send(user);
+                    var queue = user.queue;
+                    queue.push(song);
+                    model.userModel.addsong2Queue(user._id,queue)
+                        .then(
+                            function (response) {
+                                res.send(200);
+                            },
+                            function (error) {
+                                console.error("while adding song to queue");
+                            }
+                        )
+
                 },
                 function (error) {
                     console.log(error + "error adding sont ot queue in server user service")

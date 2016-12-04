@@ -10,9 +10,21 @@ module.exports = function () {
         updateUser: updateUser,
         deleteUser: deleteUser,
         getUserQueue:getUserQueue,
+        addsong2Queue:addsong2Queue
     };
     return api;
 
+    function addsong2Queue(userId,queue) {
+        return UserModel
+            .update(
+                {
+                    _id:userId
+                },//filter
+                {
+                   queue:queue
+                }
+            );
+    }
 
     function createUser(user) {
         user.url="";
@@ -60,8 +72,8 @@ module.exports = function () {
     }
 
     function getUserQueue(userid) {
-        return UserModel.findUserById(
-            {},
+        return UserModel.findById(
+            {_id:userid},
             {
                 queue:1
             }
