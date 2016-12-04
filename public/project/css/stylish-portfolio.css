@@ -73,7 +73,7 @@ hr.small {
     height: 100%;
     transform: translateX(250px);
     overflow-y: auto;
-    background: #222;
+    background: black;
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
     -ms-transition: all 0.4s ease 0s;
@@ -1336,12 +1336,8 @@ li.active a, li.active a:hover {
     background-color: #00A4E4;
     color: #FFFFFF;
 }
-.big-register{
-    background-color: rgba(0,0,0,.0);
-    color: #00bbff;
-    border-color: #00bbff;
-}
+
 .big-register:hover{
-    border-color: #00A4E4;
-    color:  #00A4E4;
+    background-color: #00A4E4;
+    color: #FFFFFF;
 }
