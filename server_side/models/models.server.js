@@ -8,8 +8,8 @@ module.exports = function () {
 
     var userModel = require("./user/user.model.server")();
     var playlistModel = require("./playlist/playlist.model.server")();
-    var commentModel= require("./comment/comment.model.server")();
     var likeModel= require("./like/like.model.server")();
+    var commentModel= require("./comment/comment.model.server")();
     var model = {
         userModel : userModel,
         playlistModel:playlistModel,

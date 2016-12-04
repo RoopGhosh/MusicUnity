@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("MusicUnity")
-        .controller("HomeController",HomeController)
+        .controller("Home2Controller",Home2Controller)
 
-    function HomeController($routeParams,YouTubeService,UserService,LikeService) {
+    function Home2Controller($routeParams,YouTubeService,UserService,LikeService) {
         var vm = this;
         vm.userId=$routeParams['uid'];
         vm.search = search;

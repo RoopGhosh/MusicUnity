@@ -67,6 +67,7 @@ module.exports = function (app,model) {
 
     function createComment(req,res) {
         var comment = req.body;
+        var userid= req.params.uid;
         model.commentModel.createComment(comment)
             .then(
                 function (response) {

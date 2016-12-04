@@ -21,7 +21,7 @@
         }
 
         function createComment(uid,comment) {
-            return $http.post("/api/user/"+uid+"/comment/new",comment);
+            return $http.post("/api/user/"+uid+"/comm/new",{_user:uid,comment:comment});
         }
 
         function deleteComment(uid,cid) {
