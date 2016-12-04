@@ -46,15 +46,16 @@ body {
 
 .btn-light {
     border-radius: 0;
-    color: #333;
-    background-color: rgb(255,255,255);
+    color: white;
+    font-size: 24px;
+    margin-top: 0px;
 }
 
 .btn-light:hover,
 .btn-light:focus,
 .btn-light:active {
-    color: #333;
-    background-color: rgba(255,255,255,0.8);
+    color: white;
+    background-color: #00A4E4;;
 }
 
 /* Custom Horizontal Rule */
@@ -98,13 +99,13 @@ hr.small {
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999;
+    color: white;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #fff;
-    background: rgba(255,255,255,0.2);
+    color: #00A4E4;
+    background: white;
 }
 
 .sidebar-nav li a:active,
@@ -114,7 +115,7 @@ hr.small {
 
 .sidebar-nav > .sidebar-brand {
     height: 55px;
-    font-size: 18px;
+    font-size: 30px;
     line-height: 55px;
 }
 
@@ -1340,4 +1341,19 @@ li.active a, li.active a:hover {
 .big-register:hover{
     background-color: #00A4E4;
     color: #FFFFFF;
+}
+.sizeIncSidebar{
+    font-size: 26px;
+
+}
+.logoHeight{
+    height: 93px;
+    margin-top: -72px;
+}
+.moveSidebarElementsDown{
+    margin-top: 95px;
+
+}
+.team-member-sizeAdjust{
+    max-width: 350px;
 }
