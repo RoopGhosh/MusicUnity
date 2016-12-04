@@ -3,7 +3,7 @@
         .module("MusicUnity")
         .controller("Home2Controller",Home2Controller)
 
-    function Home2Controller($routeParams,YouTubeService,UserService,LikeService) {
+    function Home2Controller($routeParams,YouTubeService,UserService,LikeService,PlaylistService) {
         var vm = this;
         vm.userId=$routeParams['uid'];
         vm.search = search;
@@ -19,6 +19,30 @@
         vm.getQueue=getQueue;
         var playing = true;
         qObj = ['bBhUcCCqkBo','vXcFGgwP1J4'];
+        vm.save2Playlist= save2Playlist;
+
+
+        function save2Playlist(private,name) {
+            vm.queue=[];
+            UserService.getUserQueue(vm.userId)
+                .then(function (userQueue) {
+                    var queue=userQueue.data.queue;
+                    PlaylistService.createPlaylist(queue,vm.userId,private,name)
+                        .success(function (response) {
+                            console.log(response);
+                        })
+                        .error(function (error) {
+                            console.log("while creating playlsit");
+                        })
+                })
+            $.notify("Your song added to queue",
+                {   className:'info',
+                    style: 'bootstrap',
+                    globalPosition: 'top center',
+                    autoHideDelay: 5000,
+                    autoHide: true,
+                    hideAnimation: 'slideUp'});
+        }
 
         function getQueue() {
             vm.queue=[];

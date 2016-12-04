@@ -1,8 +1,9 @@
 module.exports = function () {
     var mongoose = require("mongoose");
     var PlaylistSchema = mongoose.Schema({
-        private:Boolean,
+        private:{type:Boolean,default:false},
         _user:{type:mongoose.Schema.Types.ObjectId,ref:"UserModel"},
+        name:String,
         songs:[String]
     }, {collection: "playlist"});
     return PlaylistSchema;

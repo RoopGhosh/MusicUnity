@@ -33,8 +33,13 @@
             return $http.delete("/api/user/"+uid+"/pls/"+pid);
         }
 
-        function createPlaylist(uid,pls){
-            return $http.post("/api/user/"+uid+"/pls/new");
+        function createPlaylist(queue,uid,private,name){
+            var pls = {
+                songs:queue,
+                private:private,
+                name : name
+            };
+            return $http.post("/api/user/"+uid+"/pls/new",pls);
         }
 
         function addSongtoPlaylist(uid,pid,song){

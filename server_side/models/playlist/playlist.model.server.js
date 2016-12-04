@@ -49,7 +49,7 @@ module.exports = function () {
 
     function findPlaylistbyUser(userId) {
         return PlaylistModel.find({
-            user:userId
+            _user:userId
         });
     }
     function deletePlaylist(playlistId) {
