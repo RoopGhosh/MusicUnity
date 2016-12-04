@@ -49,8 +49,9 @@
 
                     }
                     else{
-                        console.log("User not found");
-                        vm.errorLogin="User Not found";
+
+                        shakeModal();
+
                     }
                 })
                 .error(function (error) {
@@ -58,6 +59,14 @@
                 })
 
 
+        }
+        function shakeModal(){
+            $('#loginModal .modal-dialog').addClass('shake');
+           $('.error').addClass('alert alert-danger').html("Invalid email/password combination");
+            $('input[type="password"]').val('');
+             setTimeout( function(){
+                 $('#loginModal .modal-dialog').removeClass('shake');
+             }, 10000 );
         }
     }
 })();

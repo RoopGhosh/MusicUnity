@@ -71,12 +71,12 @@
                             <span>or</span>
                             <div class="line r"></div>
                         </div>
-                        <div class="error"></div>
+                        <div class="error">{{vm.errorLogin}}</div>
                         <div class="form loginBox">
-                            <form method="post" action="/login" accept-charset="UTF-8">
-                                <input id="username_login" ng-model="model.user.loginUserName" class="form-control" type="text" placeholder="Email" name="email">
+                            <form >
+                                <input id="username_login" ng-model="model.user.loginUserName" class="form-control" type="text" placeholder="Username" name="email">
                                 <input id="password_login" ng-model="model.user.loginPassword" class="form-control" type="password" placeholder="Password" name="password">
-                                <input class="btn btn-default btn-login" type="button" value="Login" ng-click="model.login(model.user)" data-dismiss="modal" >
+                                <input class="btn btn-default btn-login" type="button" value="Login" ng-click="model.login(model.user)"  >
                             </form>
                         </div>
                     </div>
@@ -84,11 +84,14 @@
                 <div class="box">
                     <div class="content registerBox" style="display:none;">
                         <div class="form">
-                            <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
-                                <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                                <input id="password" class="form-control" type="password" placeholder="Password" name="password">
-                                <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
-                                <input class="btn btn-default btn-register" type="submit" value="Create account" name="commit">
+                            <form >
+                                <input id="usernameRegister" ng-model="model.user.username" class="form-control" type="text" placeholder="Username" name="email">
+                                <input id="emailRegister" ng-model="model.user.email" class="form-control" type="text" placeholder="Email" name="email">
+                                <input id="firstName" ng-model="model.user.firstName" class="form-control" type="text" placeholder="FirstName" name="email">
+                                <input id="lastName" ng-model="model.user.lastName" class="form-control" type="text" placeholder="LastName" name="email">
+                                <input id="passwordRegister" ng-model="model.user.passowrd" class="form-control" type="password" placeholder="Password" name="password">
+                                <input id="password_confirmation" ng-model="model.user.verifyPassword"class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                                <input class="btn btn-default btn-register" type="button" value="Create account" ng-click="model.register(model.user)">
                             </form>
                         </div>
                     </div>
@@ -134,8 +137,24 @@
     </video>
 </div>
 </div>
+<section id="about" class="about bg-primary">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+                <h2>What Is Music Unity</h2>
+                <hr class="small">
+               <p style="text-justify: auto">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
 
-<section id="services" class="services bg-primary">
+                   The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+</section>
+<section id="services" class="about bg-primary">
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-10 col-lg-offset-1">
@@ -191,7 +210,7 @@
         <!-- /.container -->
 </section>
 
-<!-- Signin/Signup -->
+<!-- Signin/Signup
 <section id="portfolio" class="portfolio">
     <div class="container">
         <div class="row">
