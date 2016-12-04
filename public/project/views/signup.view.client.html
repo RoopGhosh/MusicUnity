@@ -1,95 +1,93 @@
-<!-- Navigation -->
-<script src="js/main.js"></script>
-<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-<nav id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-        <li class="sidebar-brand">
-            <a href="#top" onclick=$("#menu-close").click();>Start Bootstrap</a>
-        </li>
-        <li>
-            <a href="#top" onclick=$("#menu-close").click();>Home</a>
-        </li>
-        <li>
-            <a href="#about" onclick=$("#menu-close").click();>About</a>
-        </li>
-        <li>
-            <a href="#services" onclick=$("#menu-close").click();>Services</a>
-        </li>
-        <li>
-            <a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
-        </li>
-        <li>
-            <a href="#contact" onclick=$("#menu-close").click();>Contact</a>
-        </li>
-    </ul>
-</nav>
-<header>
-    <div class="container header">
-        <div class="intro-text">
-            <div class="intro-lead-in">Your Gate Way to Music Unity</div>
 
-        <div class="container ">
-        <input type="text "
-               ng-model="model.user.username"
-               class="form-control incSize "
-               placeholder="username"/>
-            <br>
-            <input type="email "
-                   ng-model="model.user.username"
-                   class="form-control incSize "
-                   placeholder="Email"/>
-            <br>
-        <input type="password "
-               ng-model="model.user.password"
-               class="form-control incSize "
-               placeholder="password"/>
-            <br>
-            <input type="password "
-                   ng-model="model.user.password"
-                   class="form-control incSize "
-                   placeholder="Verify Password"/>
-            <br>
-        <button class="btn btn-primary btn-block" href="#" ng-click="model.login(model.user)"
-        >Login</button>
-            <br>
-        <a class="btn btn-success btn-block"
-           href="#/register">Register</a>
-        </div>
-            </div>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <style>body{padding-top: 60px;}</style>
+
+    <!--<link href="bootstrap3/css/bootstrap.css" rel="stylesheet" />-->
+
+    <!--<link href="..login-register.css" rel="stylesheet" />-->
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+
+
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a>
+            <a class="btn big-register" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a></div>
+        <div class="col-sm-4"></div>
     </div>
-</header>
-<!-- Header -->
-<!-- <header id="top" class="header">
-     <div class="text-vertical-center intro-text">
-         <h1>Home To All Your Music</h1>
-         <h3>Cause Music Unites Us</h3>
-         <br>
-         <a href="#about" class="btn btn-dark btn-lg ">Sign Up</a>
-         <a href="#about" class="btn btn-dark btn-lg">Already a member? Sign in</a>
-     </div>
- </header>-->
 
-<!-- About -->
-<!--<section id="about" class="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-                <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+
+    <div class="modal fade login" id="loginModal">
+        <div class="modal-dialog login animated">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Login with</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box">
+                        <div class="content">
+                            <div class="social">
+                                <a class="circle github" href="/auth/github">
+                                    <i class="fa fa-github fa-fw"></i>
+                                </a>
+                                <a id="google_login" class="circle google" href="/auth/google_oauth2">
+                                    <i class="fa fa-google-plus fa-fw"></i>
+                                </a>
+                                <a id="facebook_login" class="circle facebook" href="/auth/facebook">
+                                    <i class="fa fa-facebook fa-fw"></i>
+                                </a>
+                            </div>
+                            <div class="division">
+                                <div class="line l"></div>
+                                <span>or</span>
+                                <div class="line r"></div>
+                            </div>
+                            <div class="error"></div>
+                            <div class="form loginBox">
+                                <form method="post" action="/login" accept-charset="UTF-8">
+                                    <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                    <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="content registerBox" style="display:none;">
+                            <div class="form">
+                                <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
+                                    <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                    <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                                    <input class="btn btn-default btn-register" type="submit" value="Create account" name="commit">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="forgot login-footer">
+                            <span>Looking to
+                                 <a href="javascript: showRegisterForm();">create an account</a>
+                            ?</span>
+                    </div>
+                    <div class="forgot register-footer" style="display:none">
+                        <span>Already have an account?</span>
+                        <a href="javascript: showLoginForm();">Login</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- /.row -->
-<!-- </div>
- <!-- /.container -->
-<!--</section>
-
-<!-- Services -->
-<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-
-
-
-
-
-<!-- Custom Theme JavaScript -->
+    </div>
+</div>
 

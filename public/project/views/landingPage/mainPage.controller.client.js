@@ -41,10 +41,12 @@
 
         function login (returningUser) {
             console.log()
+
             UserService.findUserByCredentials(returningUser.loginUserName,returningUser.loginPassword)
                 .success(function (user) {
                     if(user!='0'){
                         $location.url("/user/"+user._id+"/profile");
+
                     }
                     else{
                         console.log("User not found");

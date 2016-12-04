@@ -8,11 +8,14 @@
         .controller("ProfileEditController", ProfileEditController)
 
     function ProfileController($routeParams,$http,UserService,PlaylistService,CommentService,LikeService) {
+        $('body').attr('class',"");
+        $('.modal-backdrop').attr('class',"");
         var userid = $routeParams['uid'];
         var vm = this;
         vm._id=userid;
         vm.updateUser=updateUser;
         function init() {
+
             UserService.findUserById(userid)
                 .success(
                     function (response) {
