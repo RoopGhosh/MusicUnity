@@ -1,115 +1,164 @@
 <!-- Navigation -->
 <script src="js/main.js"></script>
-
+<body class="background">
 <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
 <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-        <li class="sidebar-brand">
-            <a href="#top" onclick=$("#menu-close").click();>Music Unity</a>
+        <li class="sidebar-brand ">
+            <a href="#top" onclick=$("#menu-close").click();>
+                <div class="container ">
+                    <img class="logoHeight" src="img/musisUnity.png">
+                </div>
+            </a>
         </li>
-        <li>
-            <a href="#top" onclick=$("#menu-close").click();>Home</a>
+        <li class="sizeIncSidebar moveSidebarElementsDown">
+            <a href="" onclick=$("#menu-close").click();>Logout</a>
         </li>
-        <li>
-            <a href="#about" onclick=$("#menu-close").click();>Whats Music Unity</a>
+        <li class="sizeIncSidebar">
+            <a href="#about" onclick=$("#menu-close").click();>Search Music</a>
         </li>
-        <li>
-            <a href="#services" onclick=$("#menu-close").click();>My Services</a>
+        <li class="sizeIncSidebar">
+            <a href="#services" onclick=$("#menu-close").click();>Your Services</a>
         </li>
-        <li>
-            <a href="#portfolio" onclick=$("#menu-close").click();>My Recent Music</a>
-        </li>
-        <li>
-            <a href="#team" onclick=$("#menu-close").click();>My Playlists</a>
+
+        <li class="sizeIncSidebar">
+            <a href="#team" onclick=$("#menu-close").click();>Our Awesome Team</a>
         </li>
     </ul>
 </nav>
 
 
-        <div class="intro-text">
-            <div class="team-member coverImage ">
-                <img src="{{model.user.url}}" class="img-responsive img-circle" alt="">
-                <h4>{{model.user.firstName}}</h4>
-                <br>
-                <ul class="list-inline social-buttons ">
-                    <li><a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href=""><i class=" abc fa fa-pencil" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i></a>
-                        <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog">
+<div class="intro-text">
+    <div class="team-member  ">
+        <img src="{{model.user.url}}" class="img-responsive img-circle" alt="">
+        <h4>{{model.user.firstName}}</h4>
+        <br>
+        <ul class="list-inline social-buttons ">
+            <li><a href="#"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li><a href="#"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0)"><i class=" abc fa fa-pencil" aria-hidden="true" data-toggle="modal"
+                              onclick="openLoginModal();"></i></a>
+                <div class="modal fade login" id="loginModal">
+                    <div class="modal-dialog login animated">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Login with</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="box">
+                                    <div class="content">
+                                        <div class="error">{{vm.errorLogin}}</div>
+                                        <div class="form loginBox">
+                                            <form >
+                                                <input id="usernameRegister" ng-model="model.user.username" class="form-control" type="text" placeholder="Username" name="email">
+                                                <input id="emailRegister" ng-model="model.user.email" class="form-control" type="text" placeholder="Email" name="email">
+                                                <input id="firstName" ng-model="model.user.firstName" class="form-control" type="text" placeholder="FirstName" name="email">
+                                                <input id="lastName" ng-model="model.user.lastName" class="form-control" type="text" placeholder="LastName" name="email">
+                                                <input id="passwordRegister" ng-model="model.user.passowrd" class="form-control" type="password" placeholder="Password" name="password">
+                                                <input id="password_confirmation" ng-model="model.user.verifyPassword"class="form-control" type="password" placeholder="New Password" name="password_confirmation">
+                                                <form action="/api/upload" method="post" enctype="multipart/form-data">
+                                                    <input name="myFile" type="file" class="incSize form-control"/>
+                                                    <input name="userId" value="{{model._id}}" style="display: none"/>
+                                                    <input name="url" value="{{model.user.url}}" style="display: none">
+                                                    <br>
+                                                    <button type="submit" class="btn btn-block btn-primary" style="height: 49px;">Upload Image</button>
+                                                </form>
 
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Update Profile</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input type="text "
-                                                   ng-model="model.user.firstName"
-                                                   class="form-control incSize "
-                                                   placeholder="FirstName"/>
-                                        <br>
-                                        <input type="text "
-                                               ng-model="model.user.lastName"
-                                               class="form-control incSize "
-                                               placeholder="LastName"/>
-                                        <br>
-                                        <input type="email "
-                                               ng-model="model.user.username"
-                                               class="form-control incSize "
-                                               placeholder="Email"/>
-                                        <br>
-                                        <input type="password "
-                                               ng-model="model.user.password"
-                                               class="form-control incSize "
-                                               placeholder="Current Passowrd"/>
-                                        <br>
-                                        <input type="password "
-                                               ng-model="model.user.newPassword"
-                                               class="form-control incSize "
-                                               placeholder="New Password"/>
-                                        <br>
-                                        <input type="text "
-                                               ng-model="model.user.url"
-                                               class="form-control incSize "
-                                               placeholder="DP URl"/>
-                                        <br>
-                                        <form  action="/api/upload"  method="post" enctype="multipart/form-data">
-                                            <input  name="myFile"   type="file" class="incSize form-control"/>
-                                            <input  name="userId"    value="{{model._id}}" style="display: none"/>
-                                            <input name="url" value="{{model.user.url}}" style="display: none">
-                                           <!-- <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>-->
-                                            <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" data-dismiss="modal"
-                                                ng-click="model.updateUser(model.user)">Update</button>
+                                                <input class="btn btn-default btn-login" type="button" value="Update" ng-click="model.updateUser(model.user)"  >
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
 
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                            <div class="modal-footer">
+                                <div class="forgot login-footer">
 
-            </div>
-            <header>
-                <ul class="list-inline">
-                    <li>
-            <a href="#portfolio"  class=" page-scroll btn btn-xl">Recent </a>
-                    </li>
-                    <li>
-            <a href="#portfolio" class="page-scroll btn btn-xl">PlayLists</a>
-                    </li>
-                </ul>
-            </header>
-        </div>
+                                </div>
+                                <div class="forgot register-footer" style="display:none">
+                                    <span>Already have an account?</span>
+                                    <a href="javascript: showLoginForm();">Login</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               <!-- <div class="modal fade" id="myModal" role="dialog">
+                   <!-- <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                      <!--  <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Update Profile</h4>
+                            </div>
+                            <div class="modal-body">
+                                <input type="text "
+                                       ng-model="model.user.firstName"
+                                       class="form-control incSize "
+                                       placeholder="FirstName"/>
+                                <br>
+                                <input type="text "
+                                       ng-model="model.user.lastName"
+                                       class="form-control incSize "
+                                       placeholder="LastName"/>
+                                <br>
+                                <input type="email "
+                                       ng-model="model.user.username"
+                                       class="form-control incSize "
+                                       placeholder="Email"/>
+                                <br>
+                                <input type="password "
+                                       ng-model="model.user.password"
+                                       class="form-control incSize "
+                                       placeholder="Current Passowrd"/>
+                                <br>
+                                <input type="password "
+                                       ng-model="model.user.newPassword"
+                                       class="form-control incSize "
+                                       placeholder="New Password"/>
+                                <br>
+                                <input type="text "
+                                       ng-model="model.user.url"
+                                       class="form-control incSize "
+                                       placeholder="DP URl"/>
+                                <br>
+                                <form action="/api/upload" method="post" enctype="multipart/form-data">
+                                    <input name="myFile" type="file" class="incSize form-control"/>
+                                    <input name="userId" value="{{model._id}}" style="display: none"/>
+                                    <input name="url" value="{{model.user.url}}" style="display: none">
+                                    <!-- <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+                                    <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal"
+                                        ng-click="model.updateUser(model.user)">Update
+                                </button>
+                            </div>
+                        </div>-->
+
+                  <!--  </div>
+                </div>-->
+            </li>
+        </ul>
+
+    </div>
+    <header>
+        <ul class="list-inline">
+            <li>
+                <a href="#portfolio" class=" page-scroll btn btn-xl">Recent </a>
+            </li>
+            <li>
+                <a href="#portfolio" class="page-scroll btn btn-xl">PlayLists</a>
+            </li>
+        </ul>
+    </header>
+</div>
 
 
 <!-- Header -->
@@ -143,100 +192,50 @@
     <div id="video-wrapper" class="video-wrapper">
         <video autoplay loop muted id="bgvid">
             <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunxxxny.webm" type="video/webm">
-            <source src="http://download1500.mediafire.com/66c3i3o5hfeg/pkp7mukmb78468c/Tomorrowland+2013++official+aftermovie.mp4" type="video/mp4">
+            <source src="http://download1500.mediafire.com/66c3i3o5hfeg/pkp7mukmb78468c/Tomorrowland+2013++official+aftermovie.mp4"
+                    type="video/mp4">
         </video>
     </div>
 </div>
 
-<section id="services" class="services bg-primary">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-lg-10 col-lg-offset-1">
-                <h2>Your Services</h2>
-                <hr class="small">
-                <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-soundcloud fa-stack-1x text-primary"></i>
-                            </span>
-                            <h4>
-                                <strong>SoundCloud</strong>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-light">Learn More</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-youtube fa-stack-1x text-primary"></i>
-                            </span>
-                            <h4>
-                                <strong>YouTube</strong>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-light">Learn More</a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-plus fa-stack-1x text-primary"></i>
-                            </span>
-                            <h4>
-                                <strong>Add More</strong>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-light">Learn More</a>
-                        </div>
-                    </div>
-
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-</section>
 
 <!-- Signin/Signup -->
 <section id="portfolio" class="portfolio">
     <div class="container">
         <div class="row ">
-            <div class="col-sm-6">
-                <div class="container">
-                    <h3>Recently Played</h3>
+            <div class="col-sm-6 Content">
+
+                <h3 class="allgntoCenter">Recently Played</h3>
+                <div class="container ">
+
+                    <div ng-repeat="song in model.recentSongs">
+                        <div class="list-group ">
+                            <a href="#" class="list-group-item active">
+                                <h4 class="list-group-item-heading">{{song}}</h4>
+                                <p class="list-group-item-text">Service Name</p>
+                                <p class="list-group-item-text">Sharable Link</p>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
-                <div ng-repeat = "song in model.recentSongs" class="container-fluid">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item active">
-                            <h4 class="list-group-item-heading">{{song}}</h4>
-                            <p class="list-group-item-text">Service Name</p>
-                            <p class="list-group-item-text">Sharable Link</p>
-                        </a>
+
+            </div>
+            <div class="col-sm-6 pull-right Content">
+
+                <h3 class="allgntoCenter">My Followings</h3>
+                <div class="container">
+
+                    <div ng-repeat="user in model.following" class="container-fluid">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">
+                                <h4 class="list-group-item-heading">{{user.firstName}}</h4>
+                                <p class="list-group-item-text">2.{{user.lastName}}</p>
+                                <p class="list-group-item-text">3.{{user.username}}</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            <button class="btn-dark">Show More</button>
-            </div>
-            <div class="col-sm-6">
-                <div class="container">
-                    <h3>My Followings</h3>
-                </div>
-                <div ng-repeat = "user in model.following" class="container-fluid">
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">{{user.firstName}}</h4>
-                        <p class="list-group-item-text">2.{{user.lastName}}</p>
-                        <p class="list-group-item-text">3.{{user.username}}</p>
-                    </a>
-                </div>
-            </div>
-            <button class="btn-dark">Show More</button>
             </div>
         </div>
         <!-- /.row -->
@@ -254,72 +253,36 @@
 <section id="team" class="bg-light-gray">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">My PlayLists</h2>
-                <div ng-repeat = "playObj in model.playlist" class="container-fluid">
+            <div class="col-sm-6 text-center">
+                <h3 class="allgntoCenter">My PlayLists</h3>
+                <div ng-repeat="playObj in model.playlist" class="container-fluid">
                     <div class="list-group">
                         <a href="#" class="list-group-item active">
                             <h4 class="list-group-item-heading">{{playObj}}</h4>
                         </a>
                     </div>
                 </div>
-                <button class="btn-dark">Show More</button>
+
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">My Liked Songs</h2>
-                <div ng-repeat = "like in model.likes" class="container-fluid">
+
+
+            <div class="col-sm-6 text-center">
+                <h3 class="allgntoCenter">My Liked Songs</h3>
+                <div ng-repeat="like in model.likes" class="container-fluid">
                     <div class="list-group">
                         <a href="#" class="list-group-item active">
                             <h4 class="list-group-item-heading">{{like}}</h4>
                         </a>
                     </div>
                 </div>
-                <button class="btn-dark">Show More</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="team-member">
-                    <img src="img/1.png" class="img-responsive img-circle" alt="">
-                    <h4>{{model.user.firstName}}</h4>
-                    <p class="text-muted">Position</p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="team-member">
-                    <img src="img/1.png" class="img-responsive img-circle" alt="">
-                    <h4>Roop</h4>
-                    <p class="text-muted">Position</p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-                </div>
             </div>
         </div>
+
+
 </section>
 
-
+</body>
 
 <!-- Call to Action -->
 <!--<aside class="call-to-action bg-primary">
@@ -377,8 +340,6 @@
     </div>
     <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
 </footer>-->
-
-
 
 
 <!-- Custom Theme JavaScript -->

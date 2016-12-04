@@ -338,8 +338,8 @@ h6 {
 }
 .btn-primary {
     color: white;
-    background-color: #fed136;
-    border-color: #fed136;
+    background-color: #00A4E4;
+    border-color: #00A4E4;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     font-weight: 700;
@@ -350,8 +350,8 @@ h6 {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
     color: white;
-    background-color: #fec503;
-    border-color: #f6bf01;
+    background-color: #00A4E4;;
+    border-color: #00A4E4;;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -397,8 +397,8 @@ fieldset[disabled] .btn-primary.active {
 .btn-xl.active,
 .open .dropdown-toggle.btn-xl {
     color: white;
-    background-color: #fec503;
-    border-color: #f6bf01;
+    background-color: #00A4E4;;
+    border-color: #00A4E4;;
 }
 .btn-xl:active,
 .btn-xl.active,
@@ -420,11 +420,11 @@ fieldset[disabled] .btn-xl:active,
 .btn-xl.disabled.active,
 .btn-xl[disabled].active,
 fieldset[disabled] .btn-xl.active {
-    background-color: #fed136;
-    border-color: #fed136;
+    background-color: #00A4E4;;
+    border-color:#00A4E4;;
 }
 .btn-xl .badge {
-    color: #fed136;
+    color: #00A4E4;;
     background-color: white;
 }
 .navbar-custom {
@@ -1356,4 +1356,25 @@ li.active a, li.active a:hover {
 }
 .team-member-sizeAdjust{
     max-width: 350px;
+}
+.FixedHeightContainer
+{
+    float:right;
+    height: 250px;
+    width:100px;
+    padding:3px;
+    background:#f00;
+}
+.Content
+{
+    height:400px;
+    overflow-x: hidden ;
+    overflow-y:auto;
+    background:#fff;
+}
+.allgntoCenter{
+    text-align: center;
+}
+.background{
+    background-color: #7FB5DA;
 }
