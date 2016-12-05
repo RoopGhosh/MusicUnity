@@ -73,7 +73,8 @@
         function updateUser(modifiedUser) {
             UserService.updateUser(userid,modifiedUser)
                 .success(function (response) {
-                    $http.url("/user"+ response._id+ "/profile");
+                    $('.error').addClass('alert alert-success').html("Profile Updated")
+                   // $location.url("/user"+ userid+ "/profile");
                 })
                 .error(function (error) {
                     console.log(error + "error updatiing widget in profile controller")

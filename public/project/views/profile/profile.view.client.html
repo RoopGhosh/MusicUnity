@@ -29,9 +29,9 @@
 </nav>
 
 
-<div class="intro-text">
+<div class="intro-text coverImage">
     <div class="team-member  ">
-        <img src="{{model.user.url}}" class="img-responsive img-circle" alt="">
+        <img src="{{model.user.url}}" class="img-responsive img-circle team-member-sizeAdjust" alt="">
         <h4>{{model.user.firstName}}</h4>
         <br>
         <ul class="list-inline social-buttons ">
@@ -41,36 +41,59 @@
             </li>
             <li>
                 <a href="javascript:void(0)"><i class=" abc fa fa-pencil" aria-hidden="true" data-toggle="modal"
-                              onclick="openLoginModal();"></i></a>
+                                                onclick="openLoginModal();"></i></a>
                 <div class="modal fade login" id="loginModal">
                     <div class="modal-dialog login animated">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Login with</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Update Profile</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="box">
                                     <div class="content">
-                                        <div class="error">{{vm.errorLogin}}</div>
+                                        <div class=" alert alert-info ">
+                                            <strong>Info!</strong> Select the picture and Click Uplaod Picture to change
+                                            DP or simply add URL :)
+                                        </div>
+                                        <div class="error">{{model.errorLogin}}</div>
                                         <div class="form loginBox">
-                                            <form >
-                                                <input id="usernameRegister" ng-model="model.user.username" class="form-control" type="text" placeholder="Username" name="email">
-                                                <input id="emailRegister" ng-model="model.user.email" class="form-control" type="text" placeholder="Email" name="email">
-                                                <input id="firstName" ng-model="model.user.firstName" class="form-control" type="text" placeholder="FirstName" name="email">
-                                                <input id="lastName" ng-model="model.user.lastName" class="form-control" type="text" placeholder="LastName" name="email">
-                                                <input id="passwordRegister" ng-model="model.user.passowrd" class="form-control" type="password" placeholder="Password" name="password">
-                                                <input id="password_confirmation" ng-model="model.user.verifyPassword"class="form-control" type="password" placeholder="New Password" name="password_confirmation">
-                                                <form action="/api/upload" method="post" enctype="multipart/form-data">
-                                                    <input name="myFile" type="file" class="incSize form-control"/>
-                                                    <input name="userId" value="{{model._id}}" style="display: none"/>
-                                                    <input name="url" value="{{model.user.url}}" style="display: none">
-                                                    <br>
-                                                    <button type="submit" class="btn btn-block btn-primary" style="height: 49px;">Upload Image</button>
-                                                </form>
-
-                                                <input class="btn btn-default btn-login" type="button" value="Update" ng-click="model.updateUser(model.user)"  >
+                                            <form>
+                                                <input id="usernameRegister" ng-model="model.user.username"
+                                                       class="form-control" type="text" placeholder="Username"
+                                                       name="email">
+                                                <input id="emailRegister" ng-model="model.user.email"
+                                                       class="form-control" type="text" placeholder="Email"
+                                                       name="email">
+                                                <input id="firstName" ng-model="model.user.firstName"
+                                                       class="form-control" type="text" placeholder="FirstName"
+                                                       name="email">
+                                                <input id="lastName" ng-model="model.user.lastName" class="form-control"
+                                                       type="text" placeholder="LastName" name="email">
+                                                <input id="passwordRegister" ng-model="model.user.passowrd"
+                                                       class="form-control" type="password" placeholder="Password"
+                                                       name="password">
+                                                <input id="password_confirmation" ng-model="model.user.verifyPassword"
+                                                       class="form-control" type="password" placeholder="New Password"
+                                                       name="password_confirmation">
+                                                <input id="url" ng-model="model.user.url" class="form-control"
+                                                       type="text" placeholder="URL" name="URL">
                                             </form>
+                                            <form action="/api/upload" method="post" enctype="multipart/form-data">
+                                                <input name="myFile" type="file" class="incSize form-control"/>
+
+                                                <input name="userId" value="{{model._id}}" style="display: none"/>
+                                                <button type="submit" class="btn btn-block btn-primary"
+                                                        style="height: 49px;">Upload Image
+                                                </button>
+
+
+                                            </form>
+
+                                            <input class="btn btn-default btn-login" type="button" value="Update"
+                                                   ng-click="model.updateUser(model.user)">
+
                                         </div>
                                     </div>
                                 </div>
@@ -87,63 +110,63 @@
                             </div>
                         </div>
                     </div>
-               <!-- <div class="modal fade" id="myModal" role="dialog">
-                   <!-- <div class="modal-dialog">
+                    <!-- <div class="modal fade" id="myModal" role="dialog">
+                        <!-- <div class="modal-dialog">
 
-                        <!-- Modal content-->
-                      <!--  <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Update Profile</h4>
-                            </div>
-                            <div class="modal-body">
-                                <input type="text "
-                                       ng-model="model.user.firstName"
-                                       class="form-control incSize "
-                                       placeholder="FirstName"/>
-                                <br>
-                                <input type="text "
-                                       ng-model="model.user.lastName"
-                                       class="form-control incSize "
-                                       placeholder="LastName"/>
-                                <br>
-                                <input type="email "
-                                       ng-model="model.user.username"
-                                       class="form-control incSize "
-                                       placeholder="Email"/>
-                                <br>
-                                <input type="password "
-                                       ng-model="model.user.password"
-                                       class="form-control incSize "
-                                       placeholder="Current Passowrd"/>
-                                <br>
-                                <input type="password "
-                                       ng-model="model.user.newPassword"
-                                       class="form-control incSize "
-                                       placeholder="New Password"/>
-                                <br>
-                                <input type="text "
-                                       ng-model="model.user.url"
-                                       class="form-control incSize "
-                                       placeholder="DP URl"/>
-                                <br>
-                                <form action="/api/upload" method="post" enctype="multipart/form-data">
-                                    <input name="myFile" type="file" class="incSize form-control"/>
-                                    <input name="userId" value="{{model._id}}" style="display: none"/>
-                                    <input name="url" value="{{model.user.url}}" style="display: none">
-                                    <!-- <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
-                                    <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal"
-                                        ng-click="model.updateUser(model.user)">Update
-                                </button>
-                            </div>
-                        </div>-->
+                             <!-- Modal content-->
+                    <!--  <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Update Profile</h4>
+                          </div>
+                          <div class="modal-body">
+                              <input type="text "
+                                     ng-model="model.user.firstName"
+                                     class="form-control incSize "
+                                     placeholder="FirstName"/>
+                              <br>
+                              <input type="text "
+                                     ng-model="model.user.lastName"
+                                     class="form-control incSize "
+                                     placeholder="LastName"/>
+                              <br>
+                              <input type="email "
+                                     ng-model="model.user.username"
+                                     class="form-control incSize "
+                                     placeholder="Email"/>
+                              <br>
+                              <input type="password "
+                                     ng-model="model.user.password"
+                                     class="form-control incSize "
+                                     placeholder="Current Passowrd"/>
+                              <br>
+                              <input type="password "
+                                     ng-model="model.user.newPassword"
+                                     class="form-control incSize "
+                                     placeholder="New Password"/>
+                              <br>
+                              <input type="text "
+                                     ng-model="model.user.url"
+                                     class="form-control incSize "
+                                     placeholder="DP URl"/>
+                              <br>
+                              <form action="/api/upload" method="post" enctype="multipart/form-data">
+                                  <input name="myFile" type="file" class="incSize form-control"/>
+                                  <input name="userId" value="{{model._id}}" style="display: none"/>
+                                  <input name="url" value="{{model.user.url}}" style="display: none">
+                                  <!-- <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+                                  <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+                              </form>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-success" data-dismiss="modal"
+                                      ng-click="model.updateUser(model.user)">Update
+                              </button>
+                          </div>
+                      </div>-->
 
-                  <!--  </div>
-                </div>-->
+                    <!--  </div>
+                  </div>-->
             </li>
         </ul>
 
@@ -151,44 +174,24 @@
     <header>
         <ul class="list-inline">
             <li>
-                <a href="#portfolio" class=" page-scroll btn btn-xl">Recent </a>
+                <a class="btn big-login page-scroll"  href="#portfolio">Recent</a>
+
+
             </li>
             <li>
-                <a href="#portfolio" class="page-scroll btn btn-xl">PlayLists</a>
+                <a class="btn big-register page-scroll"  href="#Playlists" >Playlists</a>
+
             </li>
         </ul>
     </header>
 </div>
 
 
-<!-- Header -->
-<!-- <header id="top" class="header">
-     <div class="text-vertical-center intro-text">
-         <h1>Home To All Your Music</h1>
-         <h3>Cause Music Unites Us</h3>
-         <br>
-         <a href="#about" class="btn btn-dark btn-lg ">Sign Up</a>
-         <a href="#about" class="btn btn-dark btn-lg">Already a member? Sign in</a>
-     </div>
- </header>-->
 
-<!-- About -->
-<!--<section id="about" class="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-                <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
-            </div>
-        </div>
-        <!-- /.row -->
-<!-- </div>
- <!-- /.container -->
-<!--</section>
 
 <!-- Services -->
 <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-<div class="container">
+<div class="container ">
     <div id="video-wrapper" class="video-wrapper">
         <video autoplay loop muted id="bgvid">
             <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunxxxny.webm" type="video/webm">
@@ -199,29 +202,58 @@
 </div>
 
 
-<!-- Signin/Signup -->
-<section id="portfolio" class="portfolio">
+<!-- Recent Played -->
+<section id="portfolio" class="portfolio bg-light-gray ">
     <div class="container">
         <div class="row ">
-            <div class="col-sm-6 Content">
-
+            <div class="col-sm-6 Content bg-light-gray backgroundRecents">
                 <h3 class="allgntoCenter">Recently Played</h3>
-                <div class="container ">
+                <div class="row">
+                    <div class="col-xs-9">
+                        <div class="container ">
+                            <div ng-repeat="song in model.recentSongs">
+                                <div class="list-group active">
+                                    <a href="#" class="list-group-item active">
+                                        <h5 class="list-group-item-heading">
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <img class="media-object" src={{song.url}} alt="...">
+                                                </li>
 
-                    <div ng-repeat="song in model.recentSongs">
-                        <div class="list-group ">
-                            <a href="#" class="list-group-item active">
-                                <h4 class="list-group-item-heading">{{song}}</h4>
-                                <p class="list-group-item-text">Service Name</p>
-                                <p class="list-group-item-text">Sharable Link</p>
-                            </a>
+                                                <li>
+                                                    <marquee behavior="scroll" direction="left"> <h4 id = "currentTrack">{{song.title}}</h4></marquee>
+
+                                                </li>
+
+                                            </ul>
+                                        </h5>
+
+                                        <p class="list-group-item-text">Sharable Link</p>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                 <!--   <div class="col-xs-3">
+                        <ul class="list-inline ">
+                            <li>
+                                <h1> <i id="play"  class="fa fa-play" aria-hidden="true"></i></h1>
+                            </li>
+                            <li>
+                                <h1> <i id="addtoQueue"  class="fa fa-plus" aria-hidden="true"></i></h1>
+                            </li>
+                            <li>
+                                <h1> <i id="delete"  class="fa fa-trash" aria-hidden="true"></i></h1>
+                            </li>
+                        </ul>
 
+
+
+                    </div>-->
                 </div>
 
             </div>
-            <div class="col-sm-6 pull-right Content">
+            <div class="col-sm-6  Content backgroundRecents">
 
                 <h3 class="allgntoCenter">My Followings</h3>
                 <div class="container">
@@ -243,14 +275,9 @@
     <!-- /.container -->
 </section>
 
-<!-- Callout
- <aside class="callout">
-     <div class="text-vertical-center">
-         <h1>Vertically Centered Text</h1>
-     </div>
- </aside>-->
+
 <!-- Team Section -->
-<section id="team" class="bg-light-gray">
+<section id="Playlists" class="bg-light-gray">
     <div class="container">
         <div class="row">
             <div class="col-sm-6 text-center">
@@ -265,18 +292,35 @@
 
             </div>
 
+            <div class="col-sm-6 Content bg-light-gray backgroundRecents">
+                <h3 class="allgntoCenter">My Jams</h3>
+                <div class="row">
+                    <div class="col-xs-9">
+                        <div class="container ">
+                            <div ng-repeat="like in model.likes">
+                                <div class="list-group active">
+                                    <a href="#" class="list-group-item active">
+                                        <h5 class="list-group-item-heading">
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <img class="media-object" src={{like.url}} alt="...">
+                                                </li>
 
-            <div class="col-sm-6 text-center">
-                <h3 class="allgntoCenter">My Liked Songs</h3>
-                <div ng-repeat="like in model.likes" class="container-fluid">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item active">
-                            <h4 class="list-group-item-heading">{{like}}</h4>
-                        </a>
+                                                <li>
+                                                    <marquee behavior="scroll" direction="left"> <h4 id = "likedTrack">{{like.song}}</h4></marquee>
+
+                                                </li>
+
+                                            </ul>
+                                        </h5>
+
+                                        <p class="list-group-item-text">Sharable Link</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-            </div>
         </div>
 
 

@@ -1087,7 +1087,7 @@ li.active a, li.active a:hover {
     display:block;
 }
 .coverImage{
-    background: url("http://blogs-images.forbes.com/jonathanchester/files/2016/09/Music-Industry-Photo.jpg?width=960");
+    background: url("http://monkeyviral.com/img/background.png");
 }
 .noBackGround{
     background: white;
@@ -1367,7 +1367,7 @@ li.active a, li.active a:hover {
 }
 .Content
 {
-    height:400px;
+    height:520px;
     overflow-x: hidden ;
     overflow-y:auto;
     background:#fff;
@@ -1377,4 +1377,7 @@ li.active a, li.active a:hover {
 }
 .background{
     background-color: #7FB5DA;
+}
+.backgroundRecents{
+    background-color: #eeeeee;
 }
