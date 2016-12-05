@@ -1,5 +1,29 @@
+<script src="../js/clipboard.js"></script>
+<input id="foo" value="https://github.com/zenorocha/clipboard.js.git">
+<!-- Trigger -->
+<button class="btn" data-clipboard-target="#foo">
+    hahaha
+</button>
 
-<!-- SCM Music Player http://scmplayer.net -->
-<script id ="script" type="text/javascript" src="http://scmplayer.net/script.js"
-        data-config="{'skin':'skins/tunes/skin.css','volume':50,'autoplay':false,'shuffle':false,'repeat':1,'placement':'top','showplaylist':true,'playlist':[{'title':'','url':'https://www.youtube.com/watch?v=7w4TMdCLNMM&t=80s'}]}" ></script>
-<!-- SCM Music Player script end -->
+
+<!-- Target -->
+<textarea id="bar">Mussum ipsum cacilds...</textarea>
+
+<!-- Trigger -->
+<button class="btn" data-clipboard-action="cut" data-clipboard-target="#bar">
+    Cut to clipboard
+</button>
+
+<!-- 3. Instantiate clipboard by passing a HTML element -->
+<script>
+    var btn = document.getElementsByClassName('btn');
+    var clipboard = new Clipboard(btn);
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+</script>
+</body>
+</html>

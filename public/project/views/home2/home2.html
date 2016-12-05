@@ -1,4 +1,5 @@
-<!-- Navigation -->
+
+
 <body>
 <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
 <nav id="sidebar-wrapper">
@@ -69,15 +70,13 @@
                 </div>
                 <div class="media-body">
                     <h5 class="media-heading">{{item.snippet.title}}</h5>
-                    <button type="button" class="btn pull-right" data-toggle="modal" data-target="#myModal">Share</button>
+                    <button type="button" class="btn pull-right" ng-click= "model.shareVideoId(item.id.videoId)" data-toggle="modal" data-target="#myModal">Share</button>
                     <button type="button" class="btn pull-right"  ng-click="model.getSongName(item.snippet.title,item.snippet.thumbnails.default.url,item.id.videoId)">Play</button>
                     <button type="button" class="btn pull-right"  ng-click="model.add2Queue(item.id.videoId)">Add To Q</button>
                 </div>
             </div>
-
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
-
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
@@ -85,12 +84,18 @@
                             <h4 class="modal-title">Copy Content</h4>
                         </div>
                         <div class="modal-body">
-                            <textarea class="form-control" id='text-{{$index}}'>https://www.youtube.com/watch?v={{item.id.videoId}}</textarea>
+                            <textarea readonly class="form-control" id='text'>https://www.youtube.com/watch?v={{model.shareVideoid}}</textarea>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn" data-dismiss="modal"
-                                    data-clipboard-action="copy" data-clipboard-target='#text-{{$index}}'>Copy To Clipboard.</button>
+                            <button class="btn"  data-clipboard-target="#text"data-dismiss="modal"
+                                    data-clipboard-action="copy">
+                                Copy to clipboard
+                            </button>
                         </div>
+                        <script>
+                            var btn = document.getElementsByClassName('btn');
+                            var clipboard = new Clipboard(btn);
+                        </script>
                     </div>
                 </div>
             </div>
@@ -355,5 +360,4 @@
 
 
 <!-- Custom Theme JavaScript -->
-
 

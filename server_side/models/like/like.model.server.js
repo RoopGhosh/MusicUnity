@@ -4,7 +4,7 @@
 
 module.exports = function () {
     var mongoose = require("mongoose");
-    var LikeSchema = require("./Like.schema.server")();
+    var LikeSchema = require("./like.schema.server")();
     var LikeModel = mongoose.model("LikeModel", LikeSchema);
     var api = {
         createUpdateLike: createUpdateLike,
@@ -17,14 +17,12 @@ module.exports = function () {
     };
     return api;
 
-
     function getLikeByUserAndSong(userid,song) {
         return LikeModel.findOne({
             _user:userid,
             song:song
         });
     }
-
 
     function createUpdateLike(like) {
         //searches if there is a like for a song by the user. if yes it updates else it creates.

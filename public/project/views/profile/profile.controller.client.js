@@ -95,7 +95,7 @@
         function recentSongsByUser(userId) {
             UserService.getrecentSongByUser(userId)
                 .success(function (res) {
-                    vm.recentSongs = res;
+                    vm.recentSongs = res.reverse();
                 })
                 .error(function (error) {
                     console.log(error);

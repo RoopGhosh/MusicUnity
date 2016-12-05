@@ -20,6 +20,11 @@
         var playing = true;
         qObj = ['bBhUcCCqkBo','vXcFGgwP1J4'];
         vm.save2Playlist= save2Playlist;
+        vm.shareVideoId=shareVideoId
+
+        function shareVideoId(videoId) {
+            vm.shareVideoid = videoId;
+        }
 
 
         function save2Playlist(private,name) {
