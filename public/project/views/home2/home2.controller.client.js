@@ -99,10 +99,10 @@
         function playPause() {
             console.log("I hit the play button");
             if(playing){
-                $('#play').attr('class','fa fa-play');
+                $('#play').attr('class','fa fa-play whiteColor');
                 pausePlayer();
             }else{
-                $('#play').attr('class','fa fa-pause');
+                $('#play').attr('class','fa fa-pause whiteColor');
                 playPlayer();
             }
             playing = !playing;
@@ -110,12 +110,12 @@
         function changeLikeState(state) {
             if(state==='like'){
                 //add or update the like collection
-                if($('#like').attr('class')==='fa fa-thumbs-up'){
+                if($('#like').attr('class')==='fa fa-thumbs-up whiteColor'){
                     return
                 }
                 else{
-                    $('#like').attr('class','fa fa-thumbs-up');
-                    $('#dislike').attr('class','fa fa-thumbs-o-down');
+                    $('#like').attr('class','fa fa-thumbs-up whiteColor');
+                    $('#dislike').attr('class','fa fa-thumbs-o-down whiteColor');
                     //add to the db
                     if(vm.selectedSong!= 'Please Select a Song'){
                     LikeService.updateLikebyUserAndSong(vm.userId,vm.selectedSong,true)

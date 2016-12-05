@@ -1096,7 +1096,7 @@ li.active a, li.active a:hover {
     padding-top: 103px;
 }
 .searchbarcolor{
-    background-color: black;
+    background-color: #00A4E4;
     font-size: 31px;
     height: 71px;
 }
@@ -1391,4 +1391,7 @@ li.active a, li.active a:hover {
 }
 .thumbnailSize {
     height: 44px;
+}
+.whiteColor{
+    color: white;
 }
