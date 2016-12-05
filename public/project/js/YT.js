@@ -120,7 +120,7 @@ function updateNextThumbnails(count) {
                 if(snippet.items[0].snippet.thumbnails.default.url) {
                     var image = snippet.items[0].snippet.thumbnails.default.url;
                     document.getElementById("next").innerHTML =
-                        '<img id="next" src=' + image + ' alt="...">';
+                        '<img id="next" src=' + image + ' alt="..." class="heightPlayerImage">';
                 }
             }
         );
