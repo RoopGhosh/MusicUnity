@@ -99,8 +99,11 @@ module.exports = function (app,model) {
             .then(
                 function (user) {
                     var recentSongList = user._doc.recent;
-                    recentSongList.push(song);
-                    console.log(recentSongList.json);
+                    var flag = true;
+                    flag = isDuplicate(recentSongList,song);
+                    if(!flag){
+                        recentSongList.push(song);
+                    }
                     model.userModel.addsong2Recent(user._id.toString(),recentSongList)
                         .then(
                             function (response) {
@@ -116,6 +119,16 @@ module.exports = function (app,model) {
                 }
             )
     }
+
+    function isDuplicate(recentSongs,song) {
+        for(var i in recentSongs){
+            if(recentSongs[i].videoId==song.videoId){
+                return true;
+            }
+        }
+        return false;
+    }
+
     function findUserById(req,res){
         var id = req.params.uid;
         model.userModel.findUserById(id)

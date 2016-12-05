@@ -35,7 +35,7 @@
                             console.log("while creating playlsit");
                         })
                 })
-            $.notify("Your song added to queue",
+            $.notify("Playlist created",
                 {   className:'info',
                     style: 'bootstrap',
                     globalPosition: 'top center',
@@ -171,9 +171,9 @@
             if(searchText){
                 search(searchText);
                 vm.searchText = searchText;
-                if(YT.loaded){
-                    onYouTubePlayerAPIReady();
-                }
+            }
+            if(YT.loaded){
+                onYouTubePlayerAPIReady();
             }
         }
         init();
@@ -184,12 +184,18 @@
             YouTubeService.searchResult(searchText)
                 .success(function (response){
                     $('#searchResults').show();
-                    vm.youtubeResults = response.items;
-                    vm.song = "https://www.youtube.com/watch?v=fuYR5rPADrA";
+                    vm.youtubeResults = []
+                    for(i in response.items){
+                        if(response.items[i].id.kind=="youtube#video"){
+                            vm.youtubeResults.push(response.items[i]);
+                        }
+                    }
+                    console.log(vm.youtubeResults.length);
+                    /*vm.song = "https://www.youtube.com/watch?v=fuYR5rPADrA";
                     vm.songsObj = {'skin':'skins/tunes/skin.css','volume':50,'autoplay':false,
                         'shuffle':false,'repeat':1,'placement':'bottom','showplaylist':true,
                         'playlist':[{'title':'','url':'{{model.song}}'},
-                            {'title':'','url':'https://www.youtube.com/watch?v=uuK2BnzKGNU'}]};
+                            {'title':'','url':'https://www.youtube.com/watch?v=uuK2BnzKGNU'}]};*/
                 })
                 .error(function (error) {
                     console.log(error);
