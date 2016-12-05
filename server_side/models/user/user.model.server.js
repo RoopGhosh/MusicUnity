@@ -40,7 +40,7 @@ module.exports = function () {
     }
 
     function createUser(user) {
-        user.url="";
+        user.url="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png";
          return UserModel.create(user);
     }
 
