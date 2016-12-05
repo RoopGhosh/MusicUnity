@@ -32,7 +32,7 @@
 <div class="intro-text coverImage">
     <div class="team-member  ">
         <img src="{{model.user.url}}" class="img-responsive img-circle team-member-sizeAdjust" alt="">
-        <h4>{{model.user.firstName}}</h4>
+        <h4 class="displayName">{{model.user.firstName}}</h4>
         <br>
         <ul class="list-inline social-buttons ">
             <li><a href="#"><i class="fa fa-twitter"></i></a>
@@ -40,8 +40,8 @@
             <li><a href="#"><i class="fa fa-facebook"></i></a>
             </li>
             <li>
-                <a href="javascript:void(0)"><i class=" abc fa fa-pencil" aria-hidden="true" data-toggle="modal"
-                                                onclick="openLoginModal();"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal"
+                   onclick="openLoginModal();"><i class=" abc fa fa-pencil" aria-hidden="true" ></i></a>
                 <div class="modal fade login" id="loginModal">
                     <div class="modal-dialog login animated">
                         <div class="modal-content">
@@ -110,63 +110,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="modal fade" id="myModal" role="dialog">
-                        <!-- <div class="modal-dialog">
-
-                             <!-- Modal content-->
-                    <!--  <div class="modal-content">
-                          <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title">Update Profile</h4>
-                          </div>
-                          <div class="modal-body">
-                              <input type="text "
-                                     ng-model="model.user.firstName"
-                                     class="form-control incSize "
-                                     placeholder="FirstName"/>
-                              <br>
-                              <input type="text "
-                                     ng-model="model.user.lastName"
-                                     class="form-control incSize "
-                                     placeholder="LastName"/>
-                              <br>
-                              <input type="email "
-                                     ng-model="model.user.username"
-                                     class="form-control incSize "
-                                     placeholder="Email"/>
-                              <br>
-                              <input type="password "
-                                     ng-model="model.user.password"
-                                     class="form-control incSize "
-                                     placeholder="Current Passowrd"/>
-                              <br>
-                              <input type="password "
-                                     ng-model="model.user.newPassword"
-                                     class="form-control incSize "
-                                     placeholder="New Password"/>
-                              <br>
-                              <input type="text "
-                                     ng-model="model.user.url"
-                                     class="form-control incSize "
-                                     placeholder="DP URl"/>
-                              <br>
-                              <form action="/api/upload" method="post" enctype="multipart/form-data">
-                                  <input name="myFile" type="file" class="incSize form-control"/>
-                                  <input name="userId" value="{{model._id}}" style="display: none"/>
-                                  <input name="url" value="{{model.user.url}}" style="display: none">
-                                  <!-- <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
-                                  <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
-                              </form>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-success" data-dismiss="modal"
-                                      ng-click="model.updateUser(model.user)">Update
-                              </button>
-                          </div>
-                      </div>-->
-
-                    <!--  </div>
-                  </div>-->
             </li>
         </ul>
 
@@ -184,40 +127,30 @@
             </li>
         </ul>
     </header>
-</div>
+
 
 
 
 
 <!-- Services -->
 <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-<div class="container ">
-    <div id="video-wrapper" class="video-wrapper">
-        <video autoplay loop muted id="bgvid">
-            <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunxxxny.webm" type="video/webm">
-            <source src="http://download1500.mediafire.com/66c3i3o5hfeg/pkp7mukmb78468c/Tomorrowland+2013++official+aftermovie.mp4"
-                    type="video/mp4">
-        </video>
-    </div>
-</div>
-
 
 <!-- Recent Played -->
-<section id="portfolio" class="portfolio bg-light-gray ">
+<section id="portfolio" class="portfolio backgroundRecents ">
     <div class="container">
         <div class="row ">
-            <div class="col-sm-6 Content bg-light-gray backgroundRecents">
+            <div class="col-sm-6 Content  backgroundRecents">
                 <h3 class="allgntoCenter">Recently Played</h3>
                 <div class="row">
-                    <div class="col-xs-9">
-                        <div class="container ">
-                            <div ng-repeat="song in model.recentSongs">
+                    <div class="col-xs-12">
+                        <div class="container list-group backgroundBlue">
+                            <div class="list-group-item backgroundBlue" ng-repeat="song in model.recentSongs">
                                 <div class="list-group active">
-                                    <a href="#" class="list-group-item active">
+                                    <a href="#" class="list-group-item  active">
                                         <h5 class="list-group-item-heading">
                                             <ul class="list-inline">
                                                 <li>
-                                                    <img class="media-object" src={{song.url}} alt="...">
+                                                    <img class="media-object thumbnailSize" src={{song.url}} alt="...">
                                                 </li>
 
                                                 <li>
@@ -325,7 +258,7 @@
 
 
 </section>
-
+</div>
 </body>
 
 <!-- Call to Action -->
