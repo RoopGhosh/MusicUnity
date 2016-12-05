@@ -172,6 +172,7 @@
         }
         function init() {
             //YouTubeService.initService();
+
             var searchText = $routeParams.search;
             if(searchText){
                 search(searchText);
@@ -186,6 +187,7 @@
 
 
         function search(searchText) {
+            $('#searchResults').css('visibility','visible')
             YouTubeService.searchResult(searchText)
                 .success(function (response){
                     $('#searchResults').show();
