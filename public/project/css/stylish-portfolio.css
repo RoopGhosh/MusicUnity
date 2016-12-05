@@ -1395,3 +1395,6 @@ li.active a, li.active a:hover {
 .whiteColor{
     color: white;
 }
+.heightPlayerImage{
+    height: 50px;
+}

@@ -29,8 +29,8 @@ var player;
 var uid;
 function onYouTubePlayerAPIReady() {
     player = new YT.Player('player', {
-        height: '340',
-        width: '500',
+        height: '0',
+        width: '0',
         videoId: '',
         events: {
             'onReady': onPlayerReady,
@@ -92,7 +92,7 @@ function updateThumbnails(count) {
                 if(snippet.items[0].snippet.thumbnails.default.url) {
                     var image = snippet.items[0].snippet.thumbnails.default.url;
                     document.getElementById("prev").innerHTML =
-                        '<img id="prev" src=' + image + ' alt="...">';
+                        '<img id="prev" src=' + image + ' alt="..." class="heightPlayerImage">';
                 }
                 if(snippet.items[0].snippet.title){
                     title  = snippet.items[0].snippet.title;

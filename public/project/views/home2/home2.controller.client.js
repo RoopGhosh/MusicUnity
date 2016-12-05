@@ -10,7 +10,7 @@
         vm.getSongName=getSongName;
         vm.selectedSong="Please Select a Song";
         vm.clear=clear;
-        vm.setArtWork="";
+        vm.setArtWork="http://bobjames.com/wp-content/themes/soundcheck/images/default-album-artwork.png";
         vm.videoId="";
         vm.playPause = playPause;
         vm.changeLikeState=changeLikeState;
@@ -134,12 +134,12 @@
 
             }
             else if(state==='dislike'){
-                if($('#dislike').attr('class')==='fa fa-thumbs-down'){
+                if($('#dislike').attr('class')==='fa fa-thumbs-down whiteColor'){
                     return
                 }
                 else{
-                    $('#like').attr('class','fa fa-thumbs-o-up');
-                    $('#dislike').attr('class','fa fa-thumbs-down');
+                    $('#like').attr('class','fa fa-thumbs-o-up whiteColor');
+                    $('#dislike').attr('class','fa fa-thumbs-down whiteColor');
                     //if present in DB remove it(like schema) else do nothing
                     if(vm.selectedSong!= 'Please Select a Song'){
                         LikeService.updateLikebyUserAndSong(vm.userId,vm.selectedSong,false)
@@ -167,7 +167,7 @@
             vm.selectedSong=songName
             vm.setArtWork=artWork;
             vm.videoId=videoId;
-            $('#play').attr('class','fa fa-pause');
+            $('#play').attr('class','fa fa-pause whiteColor');
             reloadFunc(videoId,vm.userId);
         }
         function init() {

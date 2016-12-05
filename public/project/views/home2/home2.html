@@ -274,49 +274,48 @@
     </div>
     <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
 </footer>-->
-
+<button type="button" class="btn btn-primary" ng-click = "model.getQueue()" data-toggle="modal" data-target=".bs-example-modal-sm">Queue</button>
+<button type="button" class="btn btn-primary" ng-click = "model.save2Playlist(true,'my playlist')" >Create Playlist</button>
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container ">
         <div class="container-fluid">
         <div class="row " style="text-align: center">
-            <div id = "prev" class="col-sm-4 hidden-xs">
-                <img   src={{model.setArtWork}} alt="...">
+            <div id = "prev" class="col-sm-4 hidden-xs heightPlayerImage">
+                <img style="height: 50px" class="heightPlayerImage" src={{model.setArtWork}} alt="...">
             </div>
             <div class="col-xs-12 col-sm-4">
                 <div class="row">
                     <div class="col-xs-3">
-                    <h3 ><i id="like" class="fa fa-thumbs-o-up whiteColor" aria-hidden="true" ng-click="model.changeLikeState('like')"></i></h3>
+                    <h4 ><i id="like" class="fa fa-thumbs-o-up whiteColor" aria-hidden="true" ng-click="model.changeLikeState('like')"></i></h4>
                     </div>
                     <div class="col-xs-6 ">
-                        <marquee class="whiteColor" behavior="scroll" direction="left"> <h4 id = "currentTrack">{{model.selectedSong}}</h4></marquee>
+                        <marquee class="whiteColor" behavior="scroll" direction="left"> <h5 id = "currentTrack">{{model.selectedSong}}</h5></marquee>
                     </div>
                     <div class="col-xs-3">
-                        <h3 ><i id="dislike" class="fa fa-thumbs-o-down whiteColor" aria-hidden="true" ng-click="model.changeLikeState('dislike')"></i></i></h3>
+                        <h4 ><i id="dislike" class="fa fa-thumbs-o-down whiteColor" aria-hidden="true" ng-click="model.changeLikeState('dislike')"></i></i></h4>
                     </div>
                 </div>
-
             </div>
-            <div id = "next" class="col-sm-4 hidden-xs">
-                <img   src={{model.setArtWork}} alt="...">
+            <div id = "next" class="col-sm-4 hidden-xs heightPlayerImage">
+                <img class="heightPlayerImage" src={{model.setArtWork}} alt="...">
             </div>
         </div>
         </div>
         <div class="row " style="text-align: center">
             <div class="col-xs-4 ">
-        <h2> <i class="fa fa-step-backward whiteColor" aria-hidden="true"></i></h2>
+        <h3> <i class="fa fa-step-backward whiteColor" aria-hidden="true"></i></h3>
             </div>
             <div class="col-xs-4 ">
 
 
-                <h2> <i id="play" ng-click = "model.playPause()" class="fa fa-play whiteColor" aria-hidden="true"></i></h2>
-                <button type="button" class="btn btn-primary" ng-click = "model.getQueue()" data-toggle="modal" data-target=".bs-example-modal-sm">Queue</button>
-                <button type="button" class="btn btn-primary" ng-click = "model.save2Playlist(true,'my playlist')" >Create Playlist</button>
+                <h3> <i id="play" ng-click = "model.playPause()" class="fa fa-play whiteColor" aria-hidden="true"></i></h3>
+
 
             </div>
 
             <div class="col-xs-4 ">
 
-                <h2> <i class="fa fa-step-forward whiteColor" aria-hidden="true"></i></i></h2>
+                <h3> <i class="fa fa-step-forward whiteColor" aria-hidden="true"></i></i></h3>
             </div>
         </div>
 
