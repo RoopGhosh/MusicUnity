@@ -1443,3 +1443,7 @@ li.active a, li.active a:hover {
 .paddingContent{
     padding-top: 300px;
 }
+.leftallign{
+    text-align: left
+;
+}
