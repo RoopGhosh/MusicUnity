@@ -821,7 +821,7 @@ section h3.section-subheading {
 }
 .team-member img {
     margin: 0 auto;
-    border: 7px solid white;
+
 }
 .team-member h4 {
     margin-top: 25px;
@@ -1087,7 +1087,7 @@ li.active a, li.active a:hover {
     display:block;
 }
 .coverImage{
-    background: url("http://monkeyviral.com/img/background.png");
+    background-image: url("http://monkeyviral.com/img/background.png");
 }
 .noBackGround{
     background: white;
@@ -1370,7 +1370,7 @@ li.active a, li.active a:hover {
     height:520px;
     overflow-x: hidden ;
     overflow-y:auto;
-    background:#fff;
+
 }
 .allgntoCenter{
     text-align: center;
@@ -1398,4 +1398,13 @@ li.active a, li.active a:hover {
 .heightPlayerImage{
     height: 50px;
 
+}
+.backgroundSearch{
+    background-image: url("http://revealthetech.com/wp-content/uploads/2015/08/music-speakers.jpg");
+}
+.Content::-webkit-scrollbar {
+    display: none;
+}
+.noBorder{
+    border: 0px solid white;
 }

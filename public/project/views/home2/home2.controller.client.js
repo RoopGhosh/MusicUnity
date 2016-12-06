@@ -160,7 +160,7 @@
         function clear() {
             // var element= document.getElementById('searchResults')
             // element.style.visibility="hidden";
-            $('#searchResults').hide();
+            $('#searchResults').css('visibility','hidden');
             $('#searchtext').val(null);
         }
         function getSongName (songName,artWork,videoId) {
