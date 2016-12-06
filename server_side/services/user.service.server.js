@@ -54,6 +54,7 @@ module.exports = function (app,model) {
                 }
             )
     }
+
     function addSong2UserQueue(req,res) {
         var userId=req.params.uid;
         var song=req.query.song;
