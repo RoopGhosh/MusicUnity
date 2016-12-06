@@ -63,9 +63,9 @@ module.exports = function () {
         });
     }
 
-    function getLikeBySong(songId) {
+    function getLikeBySong(song) {
         return LikeModel.find({
-            _song:songId
+            song:song
         });
     }
 }

@@ -2,10 +2,10 @@
  * Created by roopghosh on 11/29/16.
  */
 module.exports = function (app,model) {
+    app.get("/api/song/:songName/likes", getLikeBySong);
     app.get("/api/user/:uid/song/:songName/", findLikeByUserAndSong);
     app.get("/api/user/:uid/song/:songName/:like", updateLikebyUserAndSong);
     app.get("/api/user/:uid/likes", getLikeByUser);
-    app.put("/api/user/:uid/song/:songName/likes", getLikeBySong);
     //app.delete("/api/user/:uid/comm", deleteComment);
     //app.post("/api/user/:uid/comm/new", createComment);
 

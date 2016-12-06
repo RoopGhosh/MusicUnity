@@ -20,8 +20,38 @@
         var playing = true;
         qObj = ['bBhUcCCqkBo','vXcFGgwP1J4'];
         vm.save2Playlist= save2Playlist;
-        vm.shareVideoId=shareVideoId
+        vm.shareVideoId=shareVideoId;
+        vm.nextSong = nextSong;
+        vm.prevSong = prevSong;
+        vm.playPlayList = playPlayList;
 
+        function playPlayList() {
+            //onYouTubePlayerAPIReady();
+            var list = [];
+            UserService.getUserQueue(vm.userId)
+                .then(function (userQueue) {
+                    var queue=userQueue.data.queue;
+                    for(item in queue){
+                        YouTubeService.snippetData(queue[item])
+                            .success(function (response) {
+                                pushtoQueue(response.items[0].id);
+                            })
+                            .error(function (error) {
+                                console.log("while retriving snippet data for queue");
+                            })
+                    }
+
+                })
+        }
+
+        function nextSong() {
+            ytNextSong();
+        }
+        
+        function prevSong() {
+            ytPrevSong();
+        }
+        
         function shareVideoId(videoId) {
             vm.shareVideoid = videoId;
         }
@@ -51,13 +81,12 @@
 
         function getQueue() {
             vm.queue=[];
-            UserService.getUserQueue(vm.userId)
-                .then(function (userQueue) {
-                    var queue=userQueue.data.queue;
+             UserService.getUserQueue(vm.userId)
+                .success(function (Userqueue) {
+                    var queue = Userqueue.queue;
                     for(item in queue){
                        YouTubeService.snippetData(queue[item])
                            .success(function (response) {
-                               console.log(response);
                                var obj = {
                                    thumbnail : response.items[0].snippet.thumbnails.default,
                                    title : response.items[0].snippet.title,
@@ -69,6 +98,11 @@
                            })
                     }
                 })
+                 .error(
+                     function (error) {
+                         console.log("something bad happened");
+                     }
+                 )
         }
 
 
@@ -172,13 +206,13 @@
         }
         function init() {
             //YouTubeService.initService();
-
+            playPlayList();
             var searchText = $routeParams.search;
             if(searchText){
                 search(searchText);
                 vm.searchText = searchText;
             }
-            if(YT.loaded){
+            if(YT.loaded ){
                 onYouTubePlayerAPIReady();
             }
         }

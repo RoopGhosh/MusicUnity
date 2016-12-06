@@ -1,6 +1,8 @@
 
 var videoArray = [];
 var forced = false;
+var previous = false;
+var nextButton=false;
 var count=0;
 function reloadFunc(videoId,userId) {
    // videoID[1]= 'N21u1bMhHyQ';
@@ -12,12 +14,27 @@ function reloadFunc(videoId,userId) {
     onPlayerStateChange('onStateChange');
 }
 
+function ytNextSong() {
+    nextButton=true;
+    onPlayerStateChange('onStateChange');
+}
+
+function ytPrevSong() {
+    previous = true;
+    onPlayerStateChange('onStateChange');
+}
+
 function pausePlayer() {
     player.pauseVideo();
 }
 
 function cueFromUser(song){
     videoArray.push(song);
+}
+
+function pushtoQueue(song) {
+    videoArray.push(song);
+    count++;
 }
 
 function playPlayer() {
@@ -27,10 +44,11 @@ function playPlayer() {
 // create youtube player
 var player;
 var uid;
+
 function onYouTubePlayerAPIReady() {
     player = new YT.Player('player', {
-        height: '0',
-        width: '0',
+        height: '340',
+        width: '500',
         videoId: '',
         events: {
             'onReady': onPlayerReady,
@@ -47,16 +65,29 @@ function onPlayerReady(event) {
 
 // when video ends
 function onPlayerStateChange(event) {
-    if(event.data === 0 || forced){
-        if (event.data === 0 ) {
-            event.target.cueVideoById(videoArray[count]);
-            var videoid = videoArray[count];
-        }
-        if(forced){
+    if((event.data === 0 || forced ||nextButton|| previous)&&(previous||count<videoArray.length)){
+
+        if(nextButton || forced || event.data===0){
+            if(forced){
+                count = videoArray.length-1;
+            }else{
+                count++;
+            }
             player.stopVideo();
-            event.target.cueVideoById(videoArray[count]);
-            player.nextVideo();
-            forced = false;
+            player.loadVideoById(videoArray[count], 0,"large");
+            nextButton= false;
+            forced=false;
+        }
+
+        if(previous){
+            if(count<2){
+                count=0;
+            }else{
+                count--;
+            }
+            player.stopVideo();
+            player.loadVideoById(videoArray[count], 0,"large");
+            previous= false;
         }
         updateThumbnails(count)
             .done(
@@ -68,17 +99,42 @@ function onPlayerStateChange(event) {
                         videoId :response.items[0].id
                     }
 
+
+                    //isLike(recent.title);
+
                     angular.injector(['ng', 'MusicUnity']).invoke(function (UserService) {
                         UserService.addSong2Recent(recent,uid);
                     });
                 }
             );
+
+
+
+
         if(count<videoArray.length-1) {
             updateNextThumbnails(count + 1);
         }
-        event.target.playVideo();
-        count++;
+        player.playVideo();
     }
+}
+
+
+function isLike(videoId) {
+    angular.injector(['ng', 'MusicUnity']).invoke(function (LikeService) {
+        LikeService.getLikeBySong(videoId)
+            .then(
+                function (response) {
+                    for(var i in response.data){
+                        if(response.data[i]._user==uid){
+                            $('#like').attr('class','fa fa-thumbs-up whiteColor');
+                        }
+                    }
+                },
+                function (error) {
+
+                }
+            );
+    });
 }
 
 function updateThumbnails(count) {
@@ -92,7 +148,7 @@ function updateThumbnails(count) {
                 if(snippet.items[0].snippet.thumbnails.default.url) {
                     var image = snippet.items[0].snippet.thumbnails.default.url;
                     document.getElementById("prev").innerHTML =
-                        '<img id="prev" src=' + image + ' alt="..." class="heightPlayerImage">';
+                        '<img id="prev" src=' + image + ' alt="..." class="heightPlayerImage noBorder">';
                 }
                 if(snippet.items[0].snippet.title){
                     title  = snippet.items[0].snippet.title;
@@ -120,7 +176,7 @@ function updateNextThumbnails(count) {
                 if(snippet.items[0].snippet.thumbnails.default.url) {
                     var image = snippet.items[0].snippet.thumbnails.default.url;
                     document.getElementById("next").innerHTML =
-                        '<img id="next" src=' + image + ' alt="..." class="heightPlayerImage">';
+                        '<img id="next" src=' + image + ' alt="..." class="heightPlayerImage noBorder">';
                 }
             }
         );

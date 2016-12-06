@@ -199,7 +199,6 @@
         <!-- </div>
          <!-- /.container -->
         <!--</section>
-
         <!-- Services -->
         <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
         <!--<section id="services" class="services bg-primary">
@@ -428,7 +427,7 @@
                 </div>
                 <div class="row " style="text-align: center">
                     <div class="col-xs-4 ">
-                        <h3><i class="fa fa-step-backward whiteColor" aria-hidden="true"></i></h3>
+                        <h3><i class="fa fa-step-backward whiteColor" ng-click = "model.prevSong()" aria-hidden="true"></i></h3>
                     </div>
                     <div class="col-xs-4 ">
 
@@ -441,7 +440,7 @@
 
                     <div class="col-xs-4 ">
 
-                        <h3><i class="fa fa-step-forward whiteColor" aria-hidden="true"></i></i></h3>
+                        <h3><i class="fa fa-step-forward whiteColor" ng-click = "model.nextSong()" aria-hidden="true"></i></i></h3>
                     </div>
                 </div>
 
@@ -465,7 +464,7 @@
                     </div>
                     <div class="box">
                         <div class="content registerBox" style="display:none;">
-                            <div class="container   " ng-repeat="" ng-repeat="q in model.queue">
+                            <div class="container"  ng-repeat="q in model.queue">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="  ">

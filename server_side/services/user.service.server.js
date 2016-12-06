@@ -215,6 +215,8 @@ module.exports = function (app,model) {
         model.userModel.getUserQueue(id)
             .then(
                 function (response) {
+                    //reverse the array
+                    response.queue.reverse();
                     res.send(response)
                 },
                 function (error) {

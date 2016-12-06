@@ -28,7 +28,7 @@
         }
         
         function getLikeBySong(song) {
-            return $http.get("/api/user/:uid/song/"+song+"/likes");
+            return $http.get("/api/song/"+song+"/likes");
         }
     }
 })();
