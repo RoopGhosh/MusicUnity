@@ -319,7 +319,7 @@
                             <div class="   ">
                                 <br>
                                 <a href=""
-                                   ng-click="model.getSongName(model.youtubeResults[$index+1].snippet.title,model.youtubeResults[$index+1].snippet.thumbnails.default.url,model.youtubeResults[$index+1].id.videoId)">
+                                   ng-click="model.getSongName(model.queue[$index].title,model.queue[$index].thumbnail,model.queue[$index].videoId)">
                                     <img class="media-object pull-left"
                                          src={{q.thumbnail.url}}
                                          alt="...">

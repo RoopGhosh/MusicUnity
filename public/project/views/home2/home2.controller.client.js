@@ -24,24 +24,26 @@
         vm.nextSong = nextSong;
         vm.prevSong = prevSong;
         vm.playPlayList = playPlayList;
-
+        var getQueueLoadedStatus = false;
         function playPlayList() {
             //onYouTubePlayerAPIReady();
             var list = [];
-            UserService.getUserQueue(vm.userId)
-                .then(function (userQueue) {
-                    var queue=userQueue.data.queue;
-                    for(item in queue){
-                        YouTubeService.snippetData(queue[item])
-                            .success(function (response) {
-                                pushtoQueue(response.items[0].id);
-                            })
-                            .error(function (error) {
-                                console.log("while retriving snippet data for queue");
-                            })
-                    }
-
-                })
+            if(!getQueueLoadedStatus) {
+                UserService.getUserQueue(vm.userId)
+                    .then(function (userQueue) {
+                        var queue = userQueue.data.queue;
+                        for (item in queue) {
+                            YouTubeService.snippetData(queue[item])
+                                .success(function (response) {
+                                    pushtoQueue(response.items[0].id);
+                                })
+                                .error(function (error) {
+                                    console.log("while retriving snippet data for queue");
+                                })
+                        }
+                    })
+                getQueueLoadedStatus = true;
+            }
         }
 
         function nextSong() {
@@ -90,6 +92,7 @@
                                var obj = {
                                    thumbnail : response.items[0].snippet.thumbnails.default,
                                    title : response.items[0].snippet.title,
+                                   videoId:response.items[0].id
                                }
                                vm.queue.push(obj);
                            })

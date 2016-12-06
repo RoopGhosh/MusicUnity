@@ -4,6 +4,7 @@ var forced = false;
 var previous = false;
 var nextButton=false;
 var count=0;
+var queueLoaded = false;
 function reloadFunc(videoId,userId) {
    // videoID[1]= 'N21u1bMhHyQ';
     if(!uid){
@@ -31,6 +32,7 @@ function pausePlayer() {
 function cueFromUser(song){
     videoArray.push(song);
 }
+
 
 function pushtoQueue(song) {
     videoArray.push(song);
@@ -98,18 +100,13 @@ function onPlayerStateChange(event) {
                         url :response.items[0].snippet.thumbnails.default.url,
                         videoId :response.items[0].id
                     }
-
-
-                    //isLike(recent.title);
-
+                    isLike(recent.title);
                     angular.injector(['ng', 'MusicUnity']).invoke(function (UserService) {
                         UserService.addSong2Recent(recent,uid);
                     });
                 }
             );
-
-
-
+        $('#like').attr('fa fa-thumbs-o-up');
 
         if(count<videoArray.length-1) {
             updateNextThumbnails(count + 1);
@@ -127,11 +124,12 @@ function isLike(videoId) {
                     for(var i in response.data){
                         if(response.data[i]._user==uid){
                             $('#like').attr('class','fa fa-thumbs-up whiteColor');
+                            return;
                         }
                     }
                 },
                 function (error) {
-
+                    console.log(error);
                 }
             );
     });
