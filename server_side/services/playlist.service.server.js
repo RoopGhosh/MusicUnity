@@ -5,7 +5,7 @@ module.exports = function (app,model) {
     app.get("/api/user/:uid/pls/:pid", findPlaylistbyId);
     app.get("/api/user/:uid/pls", findPlaylistbyUser);
     app.put("/api/user/:uid/pls/:pid", udpatePlaylist);
-    app.delete("/api/user/:uid/pls", deletePlaylist);
+    app.delete("/api/user/:uid/pls/:pid", deletePlaylist);
     app.post("/api/user/:uid/pls/new", createPlaylist);
     app.post("/api/user/:uid/pls/:pid/addSong", addSongtoPlaylist);
 

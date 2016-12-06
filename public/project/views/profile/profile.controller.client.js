@@ -7,13 +7,43 @@
         .controller("ProfileController", ProfileController)
         .controller("ProfileEditController", ProfileEditController)
 
-    function ProfileController($routeParams,$http,UserService,PlaylistService,CommentService,LikeService) {
+    function ProfileController($routeParams,$http,UserService,PlaylistService,CommentService,LikeService,$location) {
         $('body').attr('class',"");
         $('.modal-backdrop').attr('class',"");
         var userid = $routeParams['uid'];
         var vm = this;
         vm._id=userid;
         vm.updateUser=updateUser;
+        vm.deletePlayList = deletePlayList;
+        vm.replaceQwithPls=replaceQwithPls
+
+
+        function replaceQwithPls(pid) {
+            console.log("I was here");
+            PlaylistService.findPlaylistbyId(userid,pid)
+                .success(
+                function (playlist) {
+                                UserService.updateUserQueue(userid,playlist.songs)
+                                    .success(
+                                        function (response) {
+                                            $location.url("/user/"+userid+"/home2");
+                                        }
+                                    )
+                            }
+                        )
+        }
+
+        function deletePlayList(pid) {
+            PlaylistService.deletePlaylist(userid,pid)
+                .success(
+                    function (response) {
+                        playlistByUser(userid);
+                    }
+                )
+                .error(function (error) {
+                    console.log(error+"at profile controller inti");
+                })
+        }
         function init() {
 
             UserService.findUserById(userid)

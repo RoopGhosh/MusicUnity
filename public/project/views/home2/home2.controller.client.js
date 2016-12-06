@@ -3,7 +3,7 @@
         .module("MusicUnity")
         .controller("Home2Controller",Home2Controller)
 
-    function Home2Controller($routeParams,YouTubeService,UserService,LikeService,PlaylistService,$q) {
+    function Home2Controller($routeParams,YouTubeService,UserService,LikeService,PlaylistService) {
         var vm = this;
         vm.userId=$routeParams['uid'];
         vm.search = search;
@@ -24,26 +24,21 @@
         vm.nextSong = nextSong;
         vm.prevSong = prevSong;
         vm.playPlayList = playPlayList;
+        vm.detail=""
+        vm.getVideoIdforDetail=getVideoIdforDetail;
         var getQueueLoadedStatus = false;
-        vm.deleteSongQueue= deleteSongQueue
 
-
-        function deleteSongQueue(videoId) {
-            UserService.deleteSongFromQueue(vm.userId,videoId)
-                .success(
-                    function (response) {
-                        getQueue();
-                    }
-                )
-                .error(
-                    function (error) {
-                        console.log("error while deleting song from queue");
-                    }
-                )
-
+        function getVideoIdforDetail(youTubeItem) {
+            vm.detail=youTubeItem;
+            var temp=vm.detail.snippet.description;
+            vm.description=temp.substring(0,temp.length-3);
+            vm.publishTime=vm.detail.snippet.publishedAt.split('T')[0];
+            vm.url=vm.detail.snippet.thumbnails.default.url;
+            vm.channelTitle=vm.detail.snippet.channelTitle;
+            setTimeout(function(){
+                $('#detailsModal').modal('show');
+            }, 230);
         }
-
-
         function playPlayList() {
             //onYouTubePlayerAPIReady();
             var list = [];
@@ -53,12 +48,12 @@
                         var queue = userQueue.data.queue;
                         for (item in queue) {
                             YouTubeService.snippetData(queue[item])
-                                .then(function (response) {
+                                .success(function (response) {
                                     pushtoQueue(response.items[0].id);
-                                })/*
+                                })
                                 .error(function (error) {
                                     console.log("while retriving snippet data for queue");
-                                })*/
+                                })
                         }
                     })
                 getQueueLoadedStatus = true;
@@ -68,11 +63,11 @@
         function nextSong() {
             ytNextSong();
         }
-        
+
         function prevSong() {
             ytPrevSong();
         }
-        
+
         function shareVideoId(videoId) {
             vm.shareVideoid = videoId;
         }
@@ -102,30 +97,30 @@
 
         function getQueue() {
             vm.queue=[];
-             UserService.getUserQueue(vm.userId)
+            UserService.getUserQueue(vm.userId)
                 .success(function (Userqueue) {
                     var queue = Userqueue.queue;
                     for(item in queue){
-                       YouTubeService.snippetData(queue[item])
-                           .success(function (response) {
-                               var obj = {
-                                   thumbnail : response.items[0].snippet.thumbnails.default,
-                                   title : response.items[0].snippet.title,
-                                   videoId:response.items[0].id
-                               }
-                               vm.queue.push(obj);
-                           })
-                           .error(function (error) {
-                               console.log("while retriving snippet data for queue");
-                           })
+                        YouTubeService.snippetData(queue[item])
+                            .success(function (response) {
+                                var obj = {
+                                    thumbnail : response.items[0].snippet.thumbnails.default,
+                                    title : response.items[0].snippet.title,
+                                    videoId:response.items[0].id
+                                }
+                                vm.queue.push(obj);
+                            })
+                            .error(function (error) {
+                                console.log("while retriving snippet data for queue");
+                            })
                     }
 
                 })
-                 .error(
-                     function (error) {
-                         console.log("something bad happened");
-                     }
-                 )
+                .error(
+                    function (error) {
+                        console.log("something bad happened");
+                    }
+                )
         }
 
 
@@ -176,17 +171,17 @@
                     $('#dislike').attr('class','fa fa-thumbs-o-down whiteColor');
                     //add to the db
                     if(vm.selectedSong!= 'Please Select a Song'){
-                    LikeService.updateLikebyUserAndSong(vm.userId,vm.selectedSong,true)
-                        .success(
-                            function (response) {
-                                console.log("like updated");
-                            }
-                        )
-                        .error(
-                            function (error) {
-                                console.error("like update failed");
-                            }
-                        )
+                        LikeService.updateLikebyUserAndSong(vm.userId,vm.selectedSong,true)
+                            .success(
+                                function (response) {
+                                    console.log("like updated");
+                                }
+                            )
+                            .error(
+                                function (error) {
+                                    console.error("like update failed");
+                                }
+                            )
                     }
                 }
 
@@ -239,7 +234,6 @@
             if(YT.loaded ){
                 onYouTubePlayerAPIReady();
             }
-            initYT(vm.userId);
         }
         init();
 
@@ -258,10 +252,10 @@
                     }
                     console.log(vm.youtubeResults.length);
                     /*vm.song = "https://www.youtube.com/watch?v=fuYR5rPADrA";
-                    vm.songsObj = {'skin':'skins/tunes/skin.css','volume':50,'autoplay':false,
-                        'shuffle':false,'repeat':1,'placement':'bottom','showplaylist':true,
-                        'playlist':[{'title':'','url':'{{model.song}}'},
-                            {'title':'','url':'https://www.youtube.com/watch?v=uuK2BnzKGNU'}]};*/
+                     vm.songsObj = {'skin':'skins/tunes/skin.css','volume':50,'autoplay':false,
+                     'shuffle':false,'repeat':1,'placement':'bottom','showplaylist':true,
+                     'playlist':[{'title':'','url':'{{model.song}}'},
+                     {'title':'','url':'https://www.youtube.com/watch?v=uuK2BnzKGNU'}]};*/
                 })
                 .error(function (error) {
                     console.log(error);

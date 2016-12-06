@@ -17,8 +17,8 @@
         }
         return api;
 
-        function findPlaylistbyId(userId) {
-            $http.get("/api/user/"+userId+"/pls");
+        function findPlaylistbyId(userId,pid) {
+            return $http.get("/api/user/"+userId+"/pls/"+pid);
         }
 
         function findPlaylistbyUser(uid){
@@ -29,12 +29,13 @@
             return $http.put("/api/user/"+uid+"/pls/"+pid,pls);
         }
 
-        function deletePlaylist(){
+        function deletePlaylist(uid,pid){
             return $http.delete("/api/user/"+uid+"/pls/"+pid);
         }
 
         function createPlaylist(queue,uid,private,name){
             var pls = {
+                _user:uid,
                 songs:queue,
                 private:private,
                 name : name

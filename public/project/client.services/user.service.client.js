@@ -21,10 +21,15 @@
             getrecentSongByUser: getrecentSongByUser,
             addSong2UserQueue: addSong2UserQueue,
             addSong2Recent:addSong2Recent,
-            deleteSongFromQueue:deleteSongFromQueue
+            deleteSongFromQueue:deleteSongFromQueue,
+            updateUserQueue:updateUserQueue
         }
         return api;
 
+
+        function updateUserQueue(uid,queue) {
+            return $http.get( "/api/user/"+uid+"/updateQueue",queue);
+        }
 
         function deleteSongFromQueue(uid,videoId){
             return $http.get("/api/user/"+uid+"/deleteSong/"+videoId);

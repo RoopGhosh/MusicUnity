@@ -236,10 +236,21 @@
                                                 <ul class="list-inline">
                                                     <li>
                                                         <h5 id="Playlist">{{playObj.name}}</h5>
-
+                                                        <!--roop start-->
+                                                        <a href=""
+                                                           ng-click = "model.deletePlayList(playObj._id)">
+                                                            delete ME
+                                                        </a>
+                                                        <!--roop end-->
                                                     </li>
 
                                                 </ul>
+                                                <!--roop start-->
+                                                <a href=""
+                                                   ng-click = "model.replaceQwithPls(playObj._id)">
+                                                    play ME
+                                                </a>
+                                                <!--roop end-->
                                             </h5>
                                         </a>
                                     </div>

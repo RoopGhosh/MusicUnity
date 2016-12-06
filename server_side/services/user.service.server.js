@@ -25,6 +25,23 @@ module.exports = function (app,model) {
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
     app.get("/api/user/:uid/queue1",addSong2UserQueue);
     app.get("/api/user/:uid/deleteSong/:videoId",deleteSongFromQueue);
+    app.post("/api/user/:uid/updateQueue",updateUserQueue);
+
+
+    function updateUserQueue(req,res) {
+        var userId=req.params.uid;
+        var queue=req.body;
+        model.userModel.updateSongQueue(userId,queue)
+                .then(
+                    function (response) {
+                        res.send(200);
+                    },
+                    function (error) {
+                        console.error("while adding song to queue");
+                    }
+                )
+    }
+
 
     function deleteSongFromQueue(req,res) {
         var userId=req.params.uid;
