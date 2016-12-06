@@ -97,6 +97,7 @@
                                console.log("while retriving snippet data for queue");
                            })
                     }
+
                 })
                  .error(
                      function (error) {
@@ -104,6 +105,7 @@
                      }
                  )
         }
+
 
 
         function add2Queue(song) {

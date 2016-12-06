@@ -291,7 +291,10 @@ body {
     color: #777777;
 }
 .text-primary {
-    color: #fed136;
+    color: #00A4E4
+
+
+;
     color: orangered;
 }
 p {
@@ -315,7 +318,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-    color: #fec503;
+    color: #00A4E4;
 }
 h1,
 h2,
@@ -373,8 +376,8 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-    background-color: #fed136;
-    border-color: #fed136;
+    background-color: #00A4E4;
+    border-color: white;
 }
 .btn-primary .badge {
     color: #fed136;
@@ -1093,7 +1096,7 @@ li.active a, li.active a:hover {
     background: white;
 }
 .searchBarPadding{
-    padding-top: 103px;
+    padding-top: 73px;
 }
 .searchbarcolor{
     background-color: #00A4E4;
@@ -1397,7 +1400,7 @@ li.active a, li.active a:hover {
 }
 .heightPlayerImage{
     height: 50px;
-
+    margin-top: 10px;
 }
 .backgroundSearch{
     background-image: url("http://revealthetech.com/wp-content/uploads/2015/08/music-speakers.jpg");
@@ -1405,6 +1408,23 @@ li.active a, li.active a:hover {
 .Content::-webkit-scrollbar {
     display: none;
 }
-.noBorder{
+.noBorder {
     border: 0px solid white;
 }
+.center{
+    text-align: center;
+}
+.ContentQueue{
+    height:720px;
+    overflow-x: hidden ;
+    overflow-y:auto;
+
+}
+.logohome2{
+    height: 107px;
+    padding-top: 7px;
+}
+.trending{
+    margin-left: -72px;
+}
+
