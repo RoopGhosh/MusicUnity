@@ -43,7 +43,13 @@ function openRegisterModal(){
     }, 230);
     
 }
+function openLoginModal1(){
+    showLoginForm();
+    setTimeout(function(){
+        $('#loginModal1').modal('show');
+    }, 230);
 
+}
 function loginAjax(){
     /*   Remove this comments when moving to server
     $.post( "/login", function( data ) {
