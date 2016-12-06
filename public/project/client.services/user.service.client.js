@@ -20,10 +20,15 @@
             getUserQueue: getUserQueue,
             getrecentSongByUser: getrecentSongByUser,
             addSong2UserQueue: addSong2UserQueue,
-            addSong2Recent:addSong2Recent
+            addSong2Recent:addSong2Recent,
+            deleteSongFromQueue:deleteSongFromQueue
         }
         return api;
 
+
+        function deleteSongFromQueue(uid,videoId){
+            return $http.get("/api/user/"+uid+"/deleteSong/"+videoId);
+        }
 
         function addSong2Recent(recentObj,uid) {
             //recentObj= {title,url,videoId}

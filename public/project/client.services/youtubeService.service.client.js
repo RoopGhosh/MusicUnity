@@ -3,7 +3,7 @@
         .module("MusicUnity")
         .factory("YouTubeService",YouTubeService);
 
-    function YouTubeService($http) {
+    function YouTubeService($http,$q) {
         var api = {
             initService:initService,
             searchResult:searchResult,

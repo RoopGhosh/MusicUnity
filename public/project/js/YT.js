@@ -4,12 +4,18 @@ var forced = false;
 var previous = false;
 var nextButton=false;
 var count=0;
-var queueLoaded = false;
-function reloadFunc(videoId,userId) {
-   // videoID[1]= 'N21u1bMhHyQ';
+// create youtube player
+var player;
+var uid;
+
+function initYT(userId) {
     if(!uid){
         uid  = userId;
     }
+}
+function reloadFunc(videoId,userId) {
+   // videoID[1]= 'N21u1bMhHyQ';
+
     videoArray.push(videoId);
     forced = true;
     onPlayerStateChange('onStateChange');
@@ -42,10 +48,6 @@ function pushtoQueue(song) {
 function playPlayer() {
     player.playVideo();
 }
-
-// create youtube player
-var player;
-var uid;
 
 function onYouTubePlayerAPIReady() {
     player = new YT.Player('player', {

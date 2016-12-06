@@ -10,7 +10,7 @@ module.exports = function () {
         updateUser: updateUser,
         deleteUser: deleteUser,
         getUserQueue:getUserQueue,
-        addsong2Queue:addsong2Queue,
+        updateSongQueue:updateSongQueue,
         addsong2Recent:addsong2Recent
     };
     return api;
@@ -27,7 +27,7 @@ module.exports = function () {
             );
     }
 
-    function addsong2Queue(userId,queue) {
+    function updateSongQueue(userId,queue) {
         return UserModel
             .update(
                 {

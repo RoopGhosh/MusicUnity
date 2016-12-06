@@ -24,6 +24,36 @@ module.exports = function (app,model) {
     app.get("/api/user/:uid/recent",getRecentSongByUser);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
     app.get("/api/user/:uid/queue1",addSong2UserQueue);
+    app.get("/api/user/:uid/deleteSong/:videoId",deleteSongFromQueue);
+
+    function deleteSongFromQueue(req,res) {
+        var userId=req.params.uid;
+        var song=req.params.videoId;
+        model.userModel.findUserById(userId)
+            .then(
+                function (user) {
+                    var queue = user.queue;
+                    for(item in queue){
+                        if(queue[item]==song){
+                            queue.splice(item,1);
+                        }
+                    }
+                    model.userModel.updateSongQueue(userId,queue)
+                        .then(
+                            function (response) {
+                                res.send(200);
+                            },
+                            function (error) {
+                                console.error("while adding song to queue");
+                            }
+                        )
+
+                },
+                function (error) {
+                    console.log(error + "error adding sont ot queue in server user service")
+                }
+            )
+    }
 
     function addSong2UserQueue(req,res) {
         var userId=req.params.uid;
@@ -33,7 +63,7 @@ module.exports = function (app,model) {
                 function (user) {
                     var queue = user.queue;
                     queue.push(song);
-                    model.userModel.addsong2Queue(user._id,queue)
+                    model.userModel.updateSongQueue(user._id,queue)
                         .then(
                             function (response) {
                                 res.send(200);

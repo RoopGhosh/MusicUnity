@@ -3,7 +3,7 @@
         .module("MusicUnity")
         .controller("Home2Controller",Home2Controller)
 
-    function Home2Controller($routeParams,YouTubeService,UserService,LikeService,PlaylistService) {
+    function Home2Controller($routeParams,YouTubeService,UserService,LikeService,PlaylistService,$q) {
         var vm = this;
         vm.userId=$routeParams['uid'];
         vm.search = search;
@@ -25,6 +25,25 @@
         vm.prevSong = prevSong;
         vm.playPlayList = playPlayList;
         var getQueueLoadedStatus = false;
+        vm.deleteSongQueue= deleteSongQueue
+
+
+        function deleteSongQueue(videoId) {
+            UserService.deleteSongFromQueue(vm.userId,videoId)
+                .success(
+                    function (response) {
+                        getQueue();
+                    }
+                )
+                .error(
+                    function (error) {
+                        console.log("error while deleting song from queue");
+                    }
+                )
+
+        }
+
+
         function playPlayList() {
             //onYouTubePlayerAPIReady();
             var list = [];
@@ -34,12 +53,12 @@
                         var queue = userQueue.data.queue;
                         for (item in queue) {
                             YouTubeService.snippetData(queue[item])
-                                .success(function (response) {
+                                .then(function (response) {
                                     pushtoQueue(response.items[0].id);
-                                })
+                                })/*
                                 .error(function (error) {
                                     console.log("while retriving snippet data for queue");
-                                })
+                                })*/
                         }
                     })
                 getQueueLoadedStatus = true;
@@ -220,6 +239,7 @@
             if(YT.loaded ){
                 onYouTubePlayerAPIReady();
             }
+            initYT(vm.userId);
         }
         init();
 
