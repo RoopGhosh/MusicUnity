@@ -13,7 +13,7 @@
             </a>
         </li>
         <li class="sizeIncSidebar moveSidebarElementsDown">
-            <a href="#" onclick=$("#menu-close").click();>Logout</a>
+            <a href="" onclick=$("#menu-close").click();>Logout</a>
         </li>
         <li class="sizeIncSidebar">
             <a href="#about" onclick=$("#menu-close").click();>Search Music</a>
@@ -42,8 +42,6 @@
             <li>
                 <a href="javascript:void(0)" data-toggle="modal"
                    onclick="openLoginModal();"><i class=" abc fa fa-pencil" aria-hidden="true"></i></a>
-                </li>
-            </ul>
                 <div class="modal fade login" id="loginModal">
                     <div class="modal-dialog login animated">
                         <div class="modal-content">
@@ -112,7 +110,8 @@
                             </div>
                         </div>
                     </div>
-
+            </li>
+        </ul>
 
     </div>
     <header>
@@ -127,7 +126,7 @@
 
             </li>
             <li>
-                <a class="btn big-register" href="#/user/{{model._id}}/home1">Discover Music</a>
+                <a class="btn big-register" href="#/{{mode}}">Discover Music</a>
 
             </li>
         </ul>
