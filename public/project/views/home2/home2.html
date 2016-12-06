@@ -69,7 +69,7 @@
                                 <div>
                                     <a href=""
                                        ng-click="model.getSongName(model.youtubeResults[$index].snippet.title,model.youtubeResults[$index].snippet.thumbnails.default.url,model.youtubeResults[$index].id.videoId)">
-                                        <img class="media-object  "
+                                        <img class="media-object pull-left"
                                              src={{model.youtubeResults[$index].snippet.thumbnails.default.url}}
                                              alt="...">
                                     </a>
@@ -104,6 +104,7 @@
 
                             </div>
                         </div>
+                        <br>
                     </div>
                     <div class="col-sm-6" ng-switch-when="0">
                         <div class="  ">
@@ -111,7 +112,7 @@
 
                                 <a href=""
                                    ng-click="model.getSongName(model.youtubeResults[$index+1].snippet.title,model.youtubeResults[$index+1].snippet.thumbnails.default.url,model.youtubeResults[$index+1].id.videoId)">
-                                    <img class="media-object "
+                                    <img class="media-object pull-left"
                                          src={{model.youtubeResults[$index+1].snippet.thumbnails.default.url}}
                                          alt="...">
                                 </a>
@@ -410,7 +411,7 @@
                                             <button type="button" class="btn btn-primary">
                                             <a data-toggle="modal" href="javascript:void(0)"
                                                onclick="openLoginModal();">
-                                                >Add Playlist
+                                                Add Playlist
                                             </a>
                                             </button>
 
