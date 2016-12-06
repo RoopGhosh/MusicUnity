@@ -1427,4 +1427,14 @@ li.active a, li.active a:hover {
 .trending{
     margin-left: -72px;
 }
+.ContentHome2
+{
+    height:1300px;
+    overflow-x: hidden ;
+    overflow-y:auto;
+
+}
+.over{
+    overflow: hidden;
+}
 
