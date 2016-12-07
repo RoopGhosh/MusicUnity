@@ -27,7 +27,23 @@
         vm.detail=""
         vm.getVideoIdforDetail=getVideoIdforDetail;
         var getQueueLoadedStatus = false;
+        vm.deleteSongQueue= deleteSongQueue
 
+
+                        function deleteSongQueue(videoId) {
+                               UserService.deleteSongFromQueue(vm.userId,videoId)
+                                   .success(
+                                          function (response) {
+                                                   getQueue();
+                                                }
+                                      )
+                                   .error(
+                                          function (error) {
+                                                  console.log("error while deleting song from queue");
+                                               }
+                                     )
+
+                           }
         function getVideoIdforDetail(youTubeItem) {
             vm.detail=youTubeItem;
             var temp=vm.detail.snippet.description;
@@ -234,6 +250,7 @@
             if(YT.loaded ){
                 onYouTubePlayerAPIReady();
             }
+            initYT(vm.userId);
         }
         init();
 

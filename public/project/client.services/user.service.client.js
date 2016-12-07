@@ -28,7 +28,7 @@
 
 
         function updateUserQueue(uid,queue) {
-            return $http.get( "/api/user/"+uid+"/updateQueue",queue);
+            return $http.post( "/api/user/"+uid+"/updateQueue",queue);
         }
 
         function deleteSongFromQueue(uid,videoId){
