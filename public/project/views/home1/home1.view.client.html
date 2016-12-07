@@ -5,7 +5,7 @@
         $(".feedScroll").attr("class", "feedScroll feedScrollpause");
     });
     $("#feed").mouseleave(function(){
-        $(".feedScroll").attr("class", "feedScroll ");
+        $(".feedScroll").attr("class", "feedScroll");
     });
 </script>
 <script src="js/main.js"></script>
@@ -75,7 +75,16 @@
                 <div ng-repeat="user in model.users">
                     <div class="row">
                         <div class="col-xs-8">
-                            <h4 class="whiteColor ">{{user.username}}</h4>
+                            <ul class="list-inline">
+                                <li>
+                                    <img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
+                                </li>
+                                <li>
+                                    <h4 class="whiteColor ">{{user.username}}</h4>
+                                </li>
+
+                            </ul>
+
                         </div>
                         <div class="col-xs-4">
                             <h6 id="follow{{$index}}" class="show">

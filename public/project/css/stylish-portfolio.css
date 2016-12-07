@@ -1469,3 +1469,7 @@ li.active a, li.active a:hover {
     -webkit-animation-play-state: paused; /* Safari 4.0 - 8.0 */
     animation-play-state: paused;
 }
+.heightFollowImage{
+    height: 54px;
+
+}
