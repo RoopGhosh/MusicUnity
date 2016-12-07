@@ -1,5 +1,13 @@
 <!-- Navigation -->
 <body>
+<script>
+    $("#feed").mouseover(function(){
+        $(".feedScroll").attr("class", "feedScroll feedScrollpause");
+    });
+    $("#feed").mouseleave(function(){
+        $(".feedScroll").attr("class", "feedScroll ");
+    });
+</script>
 <script src="js/main.js"></script>
 <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
 <nav id="sidebar-wrapper">
@@ -29,7 +37,7 @@
 
 
 <div class="intro-text">
-    <div class="team-member backgroundgrey ">
+    <div class="team-member container  ">
         <div class="container searchBarPadding">
 
             <input id="searchtext" ng-model=model.searchText type="text"
@@ -48,82 +56,72 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+            <div class="col-xs-6 col-sm-8 whiteColor  ">
+                <h3>User</h3>
+            </div>
+            <div class="col-xs-6 col-sm-4 whiteColor">
+                <h3>Follow</h3>
+            </div>
+                </div>
+            </div>
+            <div class="col-sm-6 whiteColor hidden-xs">
+                <h3>Feeds</h3>
+            </div>
+        </div>
+        <div class="row ">
             <div class="col-sm-6 Content">
                 <div ng-repeat="user in model.users">
-
                     <div class="row">
-                        <div class="col-sm-9">
-                            <h4 class="whiteColor">{{user.username}}</h4>
+                        <div class="col-xs-8">
+                            <h4 class="whiteColor ">{{user.username}}</h4>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-xs-4">
                             <h6 id="follow{{$index}}" class="show">
                                 <a href="" class=" whiteColor" ng-click="model.followUser(user,$index)">
-                                    <ul class="list-inline">
-                                        <li>
-                                            <p>Follow</p>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </li>
-                                    </ul>
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
                                 </a>
                             </h6>
                             <h6 id="unfollow{{$index}}" class="hide">
                                 <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)">
-                                    <ul class="list-inline">
-                                        <li>
-                                            <p>Following</p>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-check" aria-hidden="true"></i>
-                                        </li>
-                                    </ul>
+                                    <i class="fa fa-check" aria-hidden="true"></i>
                                 </a>
                             </h6>
                         </div>
                     </div>
                 </div>
             </div>
+            <h3 class="visible-xs whiteColor">Feeds</h3>
+            <div class="col-sm-6 Content">
+                <div id="feed"class="feedScroll">
+                    <a href=""><h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4></a>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+                    <h4 class="whiteColor">RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h4>
+
+                </div>
+            </div>
         </div>
-
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="feedgrabbr_widget" id="fgid_15a0d5c69f97f163de93f17ed"></div>
-                <script> if (typeof(fg_widgets) === "undefined") fg_widgets = new Array();
-                fg_widgets.push("fgid_15a0d5c69f97f163de93f17ed");</script>
-                <script src="http://www.feedgrabbr.com/widget/fgwidget.js"></script>
-            </div>
-            <div class="col-sm-6">
-                <script src="https://www.reddit.com/.embed?limit=5" type="text/javascript"></script>
-            </div>
-            <div id="itemconfiguration" class="col-sm-6">
-                <a class="twitter-timeline" href="https://twitter.com/vh1">Tweets by vh1</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-            <div class="col-sm-6">
-                <div ng-include ="'views/home1/userCommentFeed.view.client.html'"></div>
-            </div>
         </div>
-    </div>
 </div>
-
-<!-- Services -->
-<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-<div class="container">
-    <div id="video-wrapper" class="video-wrapper">
-        <video autoplay loop muted id="bgvid">
-            <!--<source src="http://clips.vorwaerts-gmbh.de/big_buck_bunxxxny.webm" type="video/webm">-->
-            <source src="http://download1500.mediafire.com/66c3i3o5hfeg/pkp7mukmb78468c/Tomorrowland+2013++official+aftermovie.mp4"
-                    type="video/mp4">
-        </video>
-    </div>
-</div>
-
-</div>
-
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-
-</nav>
 
 </body>
 

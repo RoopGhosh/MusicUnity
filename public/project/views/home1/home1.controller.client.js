@@ -11,6 +11,7 @@
         vm.search = search;
         vm.followUser=followUser;
         vm.unfollowUser=unfollowUser;
+        vm.feeds="";
         function followUser(user,index) {
             var follow='#follow'+ index;
             $(follow).attr('class','hide');
