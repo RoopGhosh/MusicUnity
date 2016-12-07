@@ -1100,8 +1100,8 @@ li.active a, li.active a:hover {
 }
 .searchbarcolor{
     background-color: #00A4E4;
-    font-size: 31px;
-    height: 71px;
+    font-size: 17px;
+    height: 36px;
 }
 .searchbar{
     font-size: 31px;
@@ -1473,3 +1473,11 @@ li.active a, li.active a:hover {
     height: 54px;
 
 }
+.borderRound{
+    border-radius: 10px;
+    border-color: #4D4D4d;
+}
+.statusUpdateButton{
+    margin-top: 5px;
+}
+

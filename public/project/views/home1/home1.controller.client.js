@@ -12,6 +12,7 @@
         vm.followUser=followUser;
         vm.unfollowUser=unfollowUser;
         vm.feeds="";
+        vm.status=[{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""}]
         function followUser(user,index) {
             var follow='#follow'+ index;
             $(follow).attr('class','hide');
