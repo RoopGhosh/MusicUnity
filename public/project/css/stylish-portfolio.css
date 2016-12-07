@@ -1447,3 +1447,9 @@ li.active a, li.active a:hover {
     text-align: left
 ;
 }
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}

@@ -1,5 +1,6 @@
 <!-- Navigation -->
 <body>
+<script src="js/main.js"></script>
 <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
 <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
@@ -28,7 +29,7 @@
 
 
 <div class="intro-text">
-    <div class="team-member  ">
+    <div class="team-member backgroundgrey ">
         <div class="container searchBarPadding">
 
             <input id="searchtext" ng-model=model.searchText type="text"
@@ -46,6 +47,45 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-6 Content">
+                <div ng-repeat="user in model.users">
+
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <h4 class="whiteColor">{{user.username}}</h4>
+                        </div>
+                        <div class="col-sm-3">
+                            <h6 id="follow{{$index}}" class="show">
+                                <a href="" class=" whiteColor" ng-click="model.followUser(user,$index)">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <p>Follow</p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </li>
+                                    </ul>
+                                </a>
+                            </h6>
+                            <h6 id="unfollow{{$index}}" class="hide">
+                                <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <p>Following</p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                        </li>
+                                    </ul>
+                                </a>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-sm-6">
                 <div class="feedgrabbr_widget" id="fgid_15a0d5c69f97f163de93f17ed"></div>
