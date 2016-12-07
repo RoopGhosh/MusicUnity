@@ -1,4 +1,5 @@
 <!-- Navigation -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <body>
 <!--<script>
     $("#feed").mouseover(function(){
@@ -70,6 +71,8 @@
                 <h3>Feeds</h3>
             </div>
         </div>
+
+        <!--User Follow Pane-->
         <div class="row ">
             <div class="col-sm-6 Content ">
                 <div ng-repeat="user in model.users">
@@ -88,14 +91,14 @@
 
                         </div>
                         <div class="col-xs-4">
-                            <h6 id="follow{{$index}}" class="show">
+                            <h6 id="follow{{$index}}" class="show followIconHeight">
                                 <a href="" class=" whiteColor" ng-click="model.followUser(user,$index)">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <i class="fa fa-plus " aria-hidden="true"></i>
                                 </a>
                             </h6>
-                            <h6 id="unfollow{{$index}}" class="hide">
+                            <h6 id="unfollow{{$index}}" class="hide followIconHeight">
                                 <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <i class="fa fa-check statusUpdateButton" aria-hidden="true"></i>
                                 </a>
                             </h6>
                         </div>
@@ -104,87 +107,81 @@
                 </div>
             </div>
             <h3 class="visible-xs whiteColor">Feeds</h3>
-            <div class="col-sm-6 Content ">
-                <div id="feed" class="">
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                           ATEST PUNJABI SONG 2016</h5>
-                    </a>
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                            RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h5>
-                    </a>
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                            RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h5>
-                    </a>
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                            RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h5>
-                    </a>
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                            RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h5>
-                    </a>
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                            RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h5>
-                    </a>
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                            RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h5>
-                    </a>
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                            RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h5>
-                    </a>
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                            RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h5>
-                    </a>
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                            RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h5>
-                    </a>
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                            RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h5>
-                    </a>
-                    <a href="">
-                        <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                            RANJIT BAWA: SHER MARNA (FULL VIDEO SONG) DESI ROUTZ | LATEST PUNJABI SONG 2016</h5>
-                    </a>
+
+            <!-- Feeds-->
+
+                <div class="col-sm-6 Content">
+                    <div ng-repeat="r in model.recentPlayedforFollowingUser">
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-2 leftallign col-sm-2">
+                                <!-- this should be the url of the profile image-->
+                                <img class=" heightFollowImage " src="uploads/myFile-1480893251559.png">
+                            </div>
+                            <div class="col-xs-10 col-sm-10">
+                                <h6 class="whiteColor text-justify">{{r.recent}}</h6>
+                            </div>
+                        </div>
+
+                        <!-- <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
+                             {{s.stauts}}</h5>-->
+                    </div>
+                </div>
+
+            <br>
+            <!-- Status-->
+            <div class="row">
+                <div class="col-sm-6 ">
+                    <h3 class="whiteColor">Status Update</h3>
+                </div>
+                <div class="col-sm-6 whiteColor hidden-xs">
+                    <h3>More Music News</h3>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 ">
-                <h3 class="whiteColor">Status Updates</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="col-xs-9">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                    <div class="col-xs-7  ">
                     <textarea rows="2" id="statusBar" ng-model=model.searchText
-                           class="form-control "
-                           placeholder="Update Status"></textarea>
+                              class="form-control leftallign "
+                              placeholder="Update Status"></textarea>
+                    </div>
+                    <div class="col-xs-5 ">
+                        <a id="updateStatus" class="btn  btn-block searchbarcolor statusUpdateButton "
+                        >Update</a>
+                    </div>
+                    </div>
                 </div>
-                <div class="col-xs-3">
-                    <a id="updateStatus" class="btn  btn-block searchbarcolor statusUpdateButton"
-                      >Update</a>
+                <div class="col-sm-6 whiteColor hidden-xs">
+                    <h4>VH1 Twitter Feed</h4>
                 </div>
             </div>
-        </div>
-        <div class="row ">
-            <div class="col-sm-6 Content ">
-                <div ng-repeat="s in model.status">
-                    <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
-                        {{s.stauts}}</h5>
+            <div class="row ">
+                <div class="col-sm-6 Content">
+                    <div ng-repeat="s in model.status">
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-2 leftallign col-sm-2">
+                                <img class=" heightFollowImage " src="uploads/myFile-1480893251559.png">
+                            </div>
+                            <div class="col-xs-10 col-sm-10">
+                                <h6 class="whiteColor text-justify">{{s.stauts}}</h6>
+                            </div>
+                        </div>
+
+                        <!-- <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
+                             {{s.stauts}}</h5>-->
+                    </div>
+                </div>
+                <div class="col-sm-6 whiteColor Content hidden-xs "> 
+                    <div class="row">
+                        <a class="twitter-timeline" href="https://twitter.com/MTV">Tweets by MTV</a>
+                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 </body>
 
