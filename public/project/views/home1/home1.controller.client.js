@@ -24,6 +24,7 @@
         vm.createMyComment = createMyComment;
 
         function createMyComment (text) {
+            vm.searchText="";
             CommentService.createComment(vm.userid,text)
                 .success(
                     function (response) {
@@ -41,6 +42,7 @@
                         console.log("something bad happened when saving your comment");
                     }
                 )
+            vm.FollowerStatus.push(text);
         }
 
         function followUser(followUser,index) {  //userId i need
@@ -207,10 +209,5 @@
 
             return array;
         }
-
-
-
-
-
     }
 })();

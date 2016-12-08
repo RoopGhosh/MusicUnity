@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-xs-5 ">
                         <a id="updateStatus" class="btn  btn-block searchbarcolor statusUpdateButton "
-                        >Update</a>
+                        ng-click="model.createMyComment(model.searchText)">Update</a>
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@
         <!--User Follow Pane-->
         <div class="row ">
             <div class="col-sm-6 Content ">
-                <div ng-repeat="user in model.allUser" ng-switch="model.allUser.following">
+                <div ng-repeat="user in model.allUser" ng-switch="user.following">
                     <div class="row ">
                         <div class="col-xs-8">
                             <ul class="list-inline leftallign">
@@ -155,7 +155,7 @@
                                 </h6>
                             </div>
                             <div ng-switch-when="true">
-                                <h6 id="unfollow{{$index}}" class="hide followIconHeight">
+                                <h6 id="unfollow{{$index}}" class="followIconHeight">
                                     <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)">
                                         <i class="fa fa-check statusUpdateButton" aria-hidden="true"></i>
                                     </a>
