@@ -100,15 +100,17 @@
                 </div>
             </div>
             <div class="col-sm-6 whiteColor Content  hidden-xs "> 
-                    <div>
-                        <a  data-height="220"  data-chrome="nofooter noscrollbar" class="twitter-timeline " href="https://twitter.com/MTV"></a>
-                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                        <br>
-                    </div>
-                    <div>
-                        <a  data-height="250"  data-chrome="nofooter noscrollbar"class="twitter-timeline  " href="https://twitter.com/vh1"></a>
-                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </div>
+                <div>
+                    <a data-height="220" data-chrome="nofooter noscrollbar" class="twitter-timeline "
+                       href="https://twitter.com/MTV"></a>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <br>
+                </div>
+                <div>
+                    <a data-height="250" data-chrome="nofooter noscrollbar" class="twitter-timeline  "
+                       href="https://twitter.com/vh1"></a>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -130,7 +132,7 @@
         <!--User Follow Pane-->
         <div class="row ">
             <div class="col-sm-6 Content ">
-                <div ng-repeat="user in model.allUser">
+                <div ng-repeat="user in model.allUser" ng-switch="model.allUser.following">
                     <div class="row ">
                         <div class="col-xs-8">
                             <ul class="list-inline leftallign">
@@ -145,16 +147,20 @@
 
                         </div>
                         <div class="col-xs-4">
-                            <h6 id="follow{{$index}}" class="show followIconHeight">
-                                <a href="" class=" whiteColor" ng-click="model.followUser(user,$index)">
-                                    <i class="fa fa-plus " aria-hidden="true"></i>
-                                </a>
-                            </h6>
-                            <h6 id="unfollow{{$index}}" class="hide followIconHeight">
-                                <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)">
-                                    <i class="fa fa-check statusUpdateButton" aria-hidden="true"></i>
-                                </a>
-                            </h6>
+                            <div ng-switch-when="false">
+                                <h6 id="follow{{$index}}" class="show followIconHeight">
+                                    <a href="" class=" whiteColor" ng-click="model.followUser(user,$index)">
+                                        <i class="fa fa-plus " aria-hidden="true"></i>
+                                    </a>
+                                </h6>
+                            </div>
+                            <div ng-switch-when="true">
+                                <h6 id="unfollow{{$index}}" class="hide followIconHeight">
+                                    <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)">
+                                        <i class="fa fa-check statusUpdateButton" aria-hidden="true"></i>
+                                    </a>
+                                </h6>
+                            </div>
                         </div>
                     </div>
 
