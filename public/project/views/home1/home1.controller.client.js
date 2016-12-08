@@ -150,7 +150,7 @@
                         UserService.findUserById(user.following[i])
                             .success(
                                     function (followingUser) {
-                                        var recentSongArray = createRecentSongArray(followingUser.recent.splice(0,10),followingUser.username);
+                                        var recentSongArray = createRecentSongArray(followingUser.recent.reverse().splice(0,10),followingUser.username);
                                         vm.FollowerrecentSong= vm.FollowerrecentSong.concat(recentSongArray); //splicing to show last 10 only
                                         vm.FollowerrecentSong  = shuffle(vm.FollowerrecentSong );
                                         //this is bad shuffle placement..

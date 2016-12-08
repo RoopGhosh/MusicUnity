@@ -47,7 +47,7 @@ module.exports = function (app,model) {
         model.userModel.updateSongQueue(userId,queue)
                 .then(
                     function (response) {
-                        res.send(200);
+                        res.sendStatus(200);
                     },
                     function (error) {
                         console.error("while adding song to queue");
@@ -96,7 +96,7 @@ module.exports = function (app,model) {
                     model.userModel.updateSongQueue(user._id,queue)
                         .then(
                             function (response) {
-                                res.send(200);
+                                res.sendStatus(200);
                             },
                             function (error) {
                                 console.error("while adding song to queue");

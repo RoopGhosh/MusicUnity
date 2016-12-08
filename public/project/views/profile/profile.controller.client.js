@@ -19,7 +19,6 @@
 
 
         function replaceQwithPls(pid) {
-            console.log("I was here");
             PlaylistService.findPlaylistbyId(userid,pid)
                 .success(
                 function (playlist) {
