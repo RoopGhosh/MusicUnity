@@ -84,14 +84,14 @@
         </div>
         <div class="row ">
             <div class="col-sm-6 Content">
-                <div ng-repeat="s in model.status">
+                <div ng-repeat="status in model.FollowerStatus">
                     <br>
                     <div class="row">
                         <div class="col-xs-2 leftallign col-sm-2">
-                            <img class=" heightFollowImage " src="uploads/myFile-1480893251559.png">
+                            <img class=" img-circle heightFollowImage " src={{status.url}}>
                         </div>
                         <div class="col-xs-10 col-sm-10">
-                            <h5 class="whiteColor text-justify">{{s.stauts}}</h5>
+                            <h5 class="whiteColor text-justify">{{status.username}} says {{status.status}}</h5>
                         </div>
                     </div>
 
@@ -130,18 +130,17 @@
         <!--User Follow Pane-->
         <div class="row ">
             <div class="col-sm-6 Content ">
-                <div ng-repeat="user in model.users">
+                <div ng-repeat="user in model.allUser">
                     <div class="row ">
                         <div class="col-xs-8">
                             <ul class="list-inline leftallign">
                                 <li>
                                     <!-- src here should be user.url-->
-                                    <img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
+                                    <img class=" img-circle heightFollowImage" src={{user.user.url}}>
                                 </li>
                                 <li>
-                                    <h4 class="whiteColor ">{{user.username}}</h4>
+                                    <h4 class="whiteColor ">{{user.user.username}}</h4>
                                 </li>
-
                             </ul>
 
                         </div>
@@ -166,15 +165,15 @@
             <!-- Feeds-->
 
             <div class="col-sm-6 Content">
-                <div ng-repeat="r in model.recentPlayedforFollowingUser">
+                <div ng-repeat="song in model.FollowerrecentSong">
                     <br>
                     <div class="row">
                         <div class="col-xs-2 leftallign col-sm-2">
                             <!-- this should be the url of the profile image-->
-                            <img class=" heightFollowImage " src="uploads/myFile-1480893251559.png">
+                            <img class=" img-circle heightFollowImage " src="{{song.song.url}}">
                         </div>
                         <div class="col-xs-10 col-sm-10">
-                            <h6 class="whiteColor text-justify">{{r.recent}}</h6>
+                            <h6 class="whiteColor text-justify">{{song.username}} listened to {{song.song.title}}</h6>
                         </div>
                     </div>
 

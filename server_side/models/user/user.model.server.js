@@ -11,9 +11,14 @@ module.exports = function () {
         deleteUser: deleteUser,
         getUserQueue:getUserQueue,
         updateSongQueue:updateSongQueue,
-        addsong2Recent:addsong2Recent
+        addsong2Recent:addsong2Recent,
+        getAllUser:getAllUser
     };
     return api;
+
+    function getAllUser() {
+        return UserModel.find({}).select("username url");
+    }
 
     function addsong2Recent(userId,recentSongList) {
         return UserModel
@@ -57,7 +62,8 @@ module.exports = function () {
                 {
                     firstName:user.firstName,
                     lastName:user.lastName,
-                    url:user.url
+                    url:user.url,
+                    following:user.following
                     //todo more values HERE
                 }
                 // new value

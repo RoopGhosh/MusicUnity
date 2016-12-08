@@ -156,7 +156,7 @@ function updateThumbnails(count) {
                     $.notify("Playing "+title,
                         {   className:'info',
                             style: 'bootstrap',
-                            globalPosition: 'top center',
+                            globalPosition: 'top left',
                             autoHideDelay: 5000,
                             autoHide: true,
                             hideAnimation: 'slideUp'});

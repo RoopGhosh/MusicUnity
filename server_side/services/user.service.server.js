@@ -26,6 +26,19 @@ module.exports = function (app,model) {
     app.get("/api/user/:uid/queue1",addSong2UserQueue);
     app.get("/api/user/:uid/deleteSong/:videoId",deleteSongFromQueue);
     app.post("/api/user/:uid/updateQueue",updateUserQueue);
+    app.get("/api/user",allUser);
+
+    function allUser(req,res) {
+        model.userModel.getAllUser()
+            .then(
+                function (response) {
+                    res.send(response)
+                },
+                function (error) {
+                    console.log("while retriving all users");
+                }
+            )
+    }
 
 
     function updateUserQueue(req,res) {

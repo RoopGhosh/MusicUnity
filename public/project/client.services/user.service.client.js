@@ -22,10 +22,15 @@
             addSong2UserQueue: addSong2UserQueue,
             addSong2Recent:addSong2Recent,
             deleteSongFromQueue:deleteSongFromQueue,
-            updateUserQueue:updateUserQueue
+            updateUserQueue:updateUserQueue,
+            allUser:allUser
         }
         return api;
 
+
+        function allUser() {
+            return $http.get("/api/user");
+        }
 
         function updateUserQueue(uid,queue) {
             return $http.post( "/api/user/"+uid+"/updateQueue",queue);

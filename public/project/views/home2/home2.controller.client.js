@@ -105,7 +105,7 @@
             $.notify("Playlist created",
                 {   className:'info',
                     style: 'bootstrap',
-                    globalPosition: 'top center',
+                    globalPosition: 'top left',
                     autoHideDelay: 5000,
                     autoHide: true,
                     hideAnimation: 'slideUp'});
@@ -159,7 +159,7 @@
             $.notify("Your song added to queue",
                 {   className:'info',
                     style: 'bootstrap',
-                    globalPosition: 'top center',
+                    globalPosition: 'top left',
                     autoHideDelay: 5000,
                     autoHide: true,
                     hideAnimation: 'slideUp'});
