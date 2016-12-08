@@ -50,8 +50,14 @@
             $(follow).attr('class','hide,followIconHeight');
             var unfollow='#unfollow'+index
             $(unfollow).attr('class','show,followIconHeight')
-            user.following.push(followUser._id);
-            UserService.updateUser(user._id,user)
+            vm.user.following.push(followUser.user._id);
+
+            var found = vm.user.following.indexOf(vm.user._id);
+            if(found!=-1){
+                vm.user.following.splice(found,1);
+            }
+
+            UserService.updateUser(vm.user._id,vm.user)
                 .success(function (response) {
                     console.log("updated Successfully");
                 })
@@ -67,13 +73,16 @@
             $(follow).attr('class','show,followIconHeight');
             var unfollow='#unfollow'+index;
             $(unfollow).attr('class','hide,followIconHeight');
-            for(var i in user.following){
-                if(user.following[i]==user._id){
-                    user.following.splice(item,1);
-                    break;
-                }
+
+            var found = vm.user.following.indexOf(vm.user._id);
+            if(found!=-1){
+                vm.user.following.splice(found,1);
             }
-            UserService.updateUser(user._id,followUser);
+            var found = vm.user.following.indexOf(followUser.user._id);
+            if(found!=-1){
+                vm.user.following.splice(found,1);
+            }
+            UserService.updateUser(vm.user._id,vm.user);
         }
         function init() {
             getFollowerCommentsAndRecentSongList();
