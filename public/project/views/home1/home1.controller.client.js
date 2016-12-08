@@ -42,7 +42,12 @@
                         console.log("something bad happened when saving your comment");
                     }
                 )
-            vm.FollowerStatus.push(text);
+            var item = {
+                status:text,
+                url : vm.user.url,
+                username:vm.user.username
+            }
+            vm.FollowerStatus.push(item);
         }
 
         function followUser(followUser,index) {  //userId i need

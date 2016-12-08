@@ -1487,3 +1487,40 @@ li.active a, li.active a:hover {
 .twitterHeignt{
     height: 260px;
 }
+
+
+.box {
+    margin: 0px auto;
+    background: #222222;
+    width: 50px;
+    height: 50px;
+}
+
+.box:hover {
+    -webkit-transform: rotate(360deg);
+    background: rgba(0, 164, 228, 0.91);
+    border-radius: 50%;
+}
+
+.rotate {
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.rotate:hover {
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+#backButton{
+    font-size: 2.0em;
+    color: white
+}
+#backButtonDiv{
+    padding-top: 10px;
+    padding-left: 10px;
+}
