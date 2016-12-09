@@ -3,7 +3,7 @@
         .module("MusicUnity")
         .controller("Home2Controller",Home2Controller)
 
-    function Home2Controller($routeParams,YouTubeService,UserService,LikeService,PlaylistService) {
+    function Home2Controller($routeParams,YouTubeService,UserService,LikeService,PlaylistService,DailyMotionService) {
         var vm = this;
         vm.userId=$routeParams['uid'];
         vm.search = search;
@@ -30,20 +30,20 @@
         vm.deleteSongQueue= deleteSongQueue
 
 
-                        function deleteSongQueue(videoId) {
-                               UserService.deleteSongFromQueue(vm.userId,videoId)
-                                   .success(
-                                          function (response) {
-                                                   getQueue();
-                                                }
-                                      )
-                                   .error(
-                                          function (error) {
-                                                  console.log("error while deleting song from queue");
-                                               }
-                                     )
+        function deleteSongQueue(videoId) {
+               UserService.deleteSongFromQueue(vm.userId,videoId)
+                   .success(
+                          function (response) {
+                                   getQueue();
+                                }
+                      )
+                   .error(
+                          function (error) {
+                                  console.log("error while deleting song from queue");
+                               }
+                     )
 
-                           }
+           }
         function getVideoIdforDetail(youTubeItem) {
             vm.detail=youTubeItem;
             var temp=vm.detail.snippet.description;
@@ -63,7 +63,7 @@
                     .then(function (userQueue) {
                         var queue = userQueue.data.queue;
                         for (item in queue) {
-                            YouTubeService.snippetData(queue[item])
+                            YouTubeService.snippetData(queue[item].song)
                                 .success(function (response) {
                                     pushtoQueue(response.items[0].id);
                                 })
@@ -117,7 +117,8 @@
                 .success(function (Userqueue) {
                     var queue = Userqueue.queue;
                     for(item in queue){
-                        YouTubeService.snippetData(queue[item])
+                        if(queue[item].service=='youtube'){
+                        YouTubeService.snippetData(queue[item].song)
                             .success(function (response) {
                                 var obj = {
                                     thumbnail : response.items[0].snippet.thumbnails.default,
@@ -129,6 +130,20 @@
                             .error(function (error) {
                                 console.log("while retriving snippet data for queue");
                             })
+                    }else{
+                            DailyMotionService.snippetData(queue[item].song)
+                                .success(function (response) {
+                                    var obj = {
+                                        thumbnail : response.thumbnail_url,
+                                        title : response.title,
+                                        videoId:response.id
+                                    }
+                                    vm.queue.push(obj);
+                                })
+                                .error(function (error) {
+                                    console.log("while retriving snippet data for queue");
+                                })
+                        }
                     }
 
                 })
@@ -143,7 +158,7 @@
 
         function add2Queue(song) {
             var uid = $routeParams['uid'];
-            UserService.addSong2UserQueue(uid,song)
+            UserService.addSong2UserQueue(uid,{service:'youtube',song:song})
                 .success(
                     function (response) {
                         vm.queue = response;//response;
@@ -243,7 +258,8 @@
             //YouTubeService.initService();
             playPlayList();
             var searchText = $routeParams.search;
-            if(searchText){
+            if(searchText!="" && searchText!="undefined" && searchText!=null){
+                console.log(searchText);
                 search(searchText);
                 vm.searchText = searchText;
             }
@@ -264,7 +280,7 @@
                     vm.youtubeResults = []
                     for(i in response.items){
                         if(response.items[i].id.kind=="youtube#video"){
-                            vm.youtubeResults.push(response.items[i]);
+                            vm.youtubeResults.push({type:'Youtube',obj:response.items[i]});
                         }
                     }
                     console.log(vm.youtubeResults.length);
@@ -277,6 +293,22 @@
                 .error(function (error) {
                     console.log(error);
                 });
+
+
+            ////////DM related
+            vm.dailymotionResults=[];
+            var handleAPIResponse = function(response) {
+                console.log("hello from DM"+response);
+                for(i in response.list){
+                    vm.dailymotionResults.push({type:'Dailymotion',obj:response.list[i]});
+                }
+            };
+            console.log("read this from text box"+ searchText);
+            DM.api('/videos', {
+                search: searchText ,
+                fields: 'title,id,thumbnail_url',
+                limit:50
+            }, handleAPIResponse);
         }
     }
 })();

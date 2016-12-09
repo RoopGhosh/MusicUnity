@@ -23,7 +23,7 @@ module.exports = function (app,model) {
     app.post("/api/user/:uid/recent",addRecentSongByUser);
     app.get("/api/user/:uid/recent",getRecentSongByUser);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
-    app.get("/api/user/:uid/queue1",addSong2UserQueue);
+    app.post("/api/user/:uid/queue1",addSong2UserQueue);
     app.get("/api/user/:uid/deleteSong/:videoId",deleteSongFromQueue);
     app.post("/api/user/:uid/updateQueue",updateUserQueue);
     app.get("/api/user",allUser);
@@ -87,7 +87,7 @@ module.exports = function (app,model) {
 
     function addSong2UserQueue(req,res) {
         var userId=req.params.uid;
-        var song=req.query.song;
+        var song=req.body;
         model.userModel.findUserById(userId)
             .then(
                 function (user) {

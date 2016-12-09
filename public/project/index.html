@@ -29,15 +29,17 @@
   <script src="views/home2/home2.controller.client.js"></script>
   <script src="views/home1/home1.controller.client.js"></script>
   <script src="client.services/youtubeService.service.client.js"></script>
+  <script src="client.services/dailymotionService.service.client.js"></script>
   <script src="client.services/user.service.client.js"></script>
   <script src="client.services/comment.service.client.js"></script>
   <script src="client.services/like.service.client.js"></script>
   <script src="client.services/playlist.service.client.js"></script>
   <script src="js/login-register.js"></script>
   <script src="views/profile/profile.controller.client.js"></script>
-
   <script src="js/main.js"></script>
-  <script src="http://www.youtube.com/player_api"></script>
+
+  <!--DM Related-->
+  <!---->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,6 +69,12 @@
 
 
 <body class="backgroundgrey">
+
+<div id="parent">
+  <div id="youtube"></div>
+  <div id="dailymotion"style="visibility: hidden;"></div> <!--hidden as dialymotion detects display none and unloads video-->
+</div>
+</body>
 <div class="box rotate pull-left hidden-xs hidden-sm">
   <div id="backButtonDiv">
     <i id = "backButton" onclick="goBack()" class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -74,7 +82,9 @@
   </div>
 <div ng-view>
 </div>
-</body>
 
 
 </html>
+<script src="https://api.dmcdn.net/all.js"></script>
+<script src="js/DM.js"></script>
+<script src="http://www.youtube.com/player_api"></script>

@@ -2,7 +2,7 @@
 <script src="../../js/jquery.js"></script>
 
 <script src="https://api.dmcdn.net/all.js"></script>
-<div id="player"></div>
+<div id="dailymotion"></div>
 
 <button onclick="clickme()">nextSong</button>
 <button onclick="playPause()">play/pause</button>
@@ -22,7 +22,7 @@
     videoArray.push("x3d9s44");
     videoArray.push("x3eoon7");
 
-    var player = DM.player(document.getElementById("player"), {
+    var dailymotion = DM.player(document.getElementById("dailymotion"), {
         video: "xwr14q",
         width: "640",
         height: "500",
@@ -30,8 +30,8 @@
             autoplay: true
         }
     });
-    player.addEventListener('video_end', function(event) {
-        player = DM.player(document.getElementById("player"), {
+    dailymotion.addEventListener('video_end', function(event) {
+        dailymotion = DM.player(document.getElementById("dailymotion"), {
             video: videoArray[1],
             width: "640",
             height: "500",
@@ -43,7 +43,7 @@
 var count =-1
     function clickme() {
         count++;
-        player.load(videoArray[count], {
+        dailymotion.load(videoArray[count], {
             autoplay: true,
             params: {
                 autoplay: true
@@ -54,9 +54,9 @@ var count =-1
     var pause= false;
     function playPause() {
         if(pause)
-            player.play();
+            dailymotion.play();
         else
-            player.pause();
+            dailymotion.pause();
         pause = !pause;
     }
 

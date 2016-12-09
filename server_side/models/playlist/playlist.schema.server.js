@@ -4,7 +4,7 @@ module.exports = function () {
         private:{type:Boolean,default:false},
         _user:{type:mongoose.Schema.Types.ObjectId,ref:"UserModel"},
         name:String,
-        songs:[String]
+        songs:[{service:String,song:String}]
     }, {collection: "playlist"});
     return PlaylistSchema;
 };
