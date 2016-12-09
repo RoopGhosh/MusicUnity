@@ -1,454 +1,455 @@
-<!-- Navigation -->
-<body>
 <script src="js/main.js"></script>
-<script src="http://www.youtube.com/player_api"></script>
-
 <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
 <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-        <li class="sidebar-brand">
-            <a href="#top" onclick=$("#menu-close").click();>Music Unity</a>
+        <li class="sidebar-brand hidden-xs">
+            <a href="#top" onclick=$("#menu-close").click();>
+                <div class="container ">
+                    <img class="logoHeight" src="img/musisUnity.png">
+                </div>
+            </a>
         </li>
-        <li>
-            <a href="#top" onclick=$("#menu-close").click();>Home</a>
+        <li class="sizeIncSidebar moveSidebarElementsDown">
+            <a href="#" onclick=$("#menu-close").click();>Logout</a>
         </li>
-        <li>
-            <a href="#about" onclick=$("#menu-close").click();>Whats Music Unity</a>
+        <li class="sizeIncSidebar">
+            <a href="#about" onclick=$("#menu-close").click();>Search Music</a>
         </li>
-        <li>
-            <a href="#services" onclick=$("#menu-close").click();>My Services</a>
+        <li class="sizeIncSidebar">
+            <a data-toggle="modal" href="javascript:void(0)"
+               onclick="openLoginModal();" onclick=$("#menu-close").click();>Add PlayLists</a>
         </li>
-        <li>
-            <a href="#portfolio" onclick=$("#menu-close").click();>My Recent Music</a>
-        </li>
-        <li>
-            <a href="#team" onclick=$("#menu-close").click();>My Playlists</a>
+
+        <li class="sizeIncSidebar">
+            <a ng-click="model.getQueue()"
+               data-toggle="modal" data-target=".bs-example-modal-lg" onclick=$("#menu-close").click();>Queue</a>
         </li>
     </ul>
 </nav>
 
-
-<div class="intro-text coverImage">
-    <div class="team-member  ">
-        <div class="container searchBarPadding">
-
-            <input id="searchtext" ng-model = model.searchText type="text"
-                   class="form-control searchbar"
-                   placeholder="youtube search text"/>
-            <br>
-            <div class="row">
-                <div class="col-xs-6">
-            <a id = "search" class="btn btn-primary btn-block searchbarcolor"
-               ng-click= "model.search(model.searchText)">Search</a>
-                </div>
-                <div class="col-xs-6">
-                    <a id = "clear" class="btn btn-primary btn-block searchbarcolor"
-                       ng-click= "model.clear()">Clear</a>
-                </div>
-            </div>
-        </div>
-
-        <div id="searchResults">
-        <div class = "container list-group" ng-repeat="item in model.youtubeResults">
-            <!--ng-repeat start-->
-            <!--<a target="_blank" class="list-group-item active" href='https://www.youtube.com/watch?v={{item.id.videoId}}'>-->
-                <!--<p class="list-group-item-text">{{item.snippet.thumbnails.medium.url}}-->
-                <!--<button type="button" class="btn pull-right" data-toggle="modal" data-target="#myModal">Share</button>-->
-                <!--<button type="button" class="btn pull-right"  ng-click="model.getSongName(item.snippet.title)">Play</button>-->
-                <!--</p>-->
-            <!--</a>-->
-            <div class="media">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="media-object" src={{item.snippet.thumbnails.default.url}} alt="...">
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h5 class="media-heading">{{item.snippet.title}}</h5>
-                    <button type="button" class="btn pull-right" data-toggle="modal" data-target="#myModal">Share</button>
-                    <button type="button" class="btn pull-right"  ng-click="model.getSongName(item.snippet.title,item.snippet.thumbnails.default.url,item.id.videoId)">Play</button>
-                </div>
-            </div>
-
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Copy Content</h4>
-                        </div>
-                        <div class="modal-body">
-                            <textarea class="form-control" id='text-{{$index}}'>https://www.youtube.com/watch?v={{item.id.videoId}}</textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn" data-dismiss="modal"
-                                    data-clipboard-action="copy" data-clipboard-target='#text-{{$index}}'>Copy To Clipboard.</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        </div>
-      <!--  <div ifrm id="tabs2">
-            <iframe id = "ifrm" width="640"height="390"frameborder="0" title="YouTube video player"type="text/html"
-                    src="http://www.youtube.com/embed/u1zgFlCw8Aw?enablejsapi=1"></iframe></div>-->
-
-     <!--   <header>
-        <ul class="list-inline">
-            <li>
-                <a href="#portfolio"  class=" page-scroll btn btn-xl">Recent </a>
-            </li>
-            <li>
-                <a href="#portfolio" class="page-scroll btn btn-xl">PlayLists</a>
-            </li>
-        </ul>
-    </header>-->
-</div>
-
-
-<!-- Header -->
-<!-- <header id="top" class="header">
-     <div class="text-vertical-center intro-text">
-         <h1>Home To All Your Music</h1>
-         <h3>Cause Music Unites Us</h3>
-         <br>
-         <a href="#about" class="btn btn-dark btn-lg ">Sign Up</a>
-         <a href="#about" class="btn btn-dark btn-lg">Already a member? Sign in</a>
-     </div>
- </header>-->
-
-<!-- About -->
-<!--<section id="about" class="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-                <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
-            </div>
-        </div>
-        <!-- /.row -->
-<!-- </div>
- <!-- /.container -->
-<!--</section>
-
-<!-- Services -->
-<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-<div class="container">
-    <div id="video-wrapper" class="video-wrapper">
-        <video autoplay loop muted id="bgvid">
-            <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunxxxny.webm" type="video/webm">
-            <source src="http://download1500.mediafire.com/66c3i3o5hfeg/pkp7mukmb78468c/Tomorrowland+2013++official+aftermovie.mp4" type="video/mp4">
-        </video>
-    </div>
-</div>
-
-<!--<section id="services" class="services bg-primary">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-lg-10 col-lg-offset-1">
-                <h2>Your Services</h2>
-                <hr class="small">
-                <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-soundcloud fa-stack-1x text-primary"></i>
-                            </span>
-                            <h4>
-                                <strong>SoundCloud</strong>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-light">Learn More</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-youtube fa-stack-1x text-primary"></i>
-                            </span>
-                            <h4>
-                                <strong>YouTube</strong>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-light">Learn More</a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-plus fa-stack-1x text-primary"></i>
-                            </span>
-                            <h4>
-                                <strong>Add More</strong>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-light">Learn More</a>
-                        </div>
-                    </div>
-
-                    <!-- /.row (nested) -->
-               <!-- </div>
-                <!-- /.col-lg-10 -->
-           <!-- </div>-->
-            <!-- /.row -->
-    <!--</div>-->
-        <!-- /.container -->
-<!--</section> -->
-
-<!-- Signin/Signup -->
-<section id="portfolio" class="portfolio">
-    <div class="container">
-        <div class="row ">
-            <div class="col-sm-6">
-                <div class="container">
-                    <h3>Recently Played</h3>
-                </div>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
-                    </a>
-                    <br>
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name1</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
-                    </a>
-                    <br>
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name1</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
-                    </a>
-                    <br>
-                    <button class="btn-dark">Show More</button>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="container">
-                    <h3>Most Played</h3>
-                </div>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
-                    </a>
-                    <br>
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name1</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
-                    </a>
-                    <br>
-                    <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Song Name1</h4>
-                        <p class="list-group-item-text">Service Name</p>
-                        <p class="list-group-item-text">Sharable Link</p>
-                    </a>
-                    <br>
-                    <button class="btn-dark">Show More</button>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</section>
-
-<!-- Callout
- <aside class="callout">
-     <div class="text-vertical-center">
-         <h1>Vertically Centered Text</h1>
-     </div>
- </aside>-->
-<!-- Team Section -->
-<section id="team" class="bg-light-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">My PlayLists</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="team-member">
-                    <img src="img/1.png" class="img-responsive img-circle" alt="">
-                    <h4>Amardeep Singh</h4>
-                    <p class="text-muted">Position</p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="team-member">
-                    <img src="img/1.png" class="img-responsive img-circle" alt="">
-                    <h4>Roop</h4>
-                    <p class="text-muted">Position</p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-                </div>
-            </div>
-        </div>
-</section>
-
-</div>
-
-<!-- Call to Action -->
-<!--<aside class="call-to-action bg-primary">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h3>The buttons below are impossible to resist.</h3>
-                <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-                <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
-            </div>
-        </div>
-    </div>
-</aside>-->
-
-<!-- Map -->
-<!--<section id="contact" class="map">
-    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-    <br />
-    <small>
-        <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-    </small>
-    </iframe>
-</section>
-
-<!-- Footer -->
-<!--<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 text-center">
-                <h4><strong>Start Bootstrap</strong>
-                </h4>
-                <p>3481 Melrose Place
-                    <br>Beverly Hills, CA 90210</p>
-                <ul class="list-unstyled">
-                    <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                    <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
-                    </li>
-                </ul>
-                <br>
-                <ul class="list-inline">
-                    <li>
-                        <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                    </li>
-                </ul>
-                <hr class="small">
-                <p class="text-muted">Copyright &copy; Your Website 2014</p>
-            </div>
-        </div>
-    </div>
-    <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
-</footer>-->
-<div id = "parent">
-    <div id="player"></div>
-</div>
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container ">
-        <div class="container-fluid">
-        <div class="row " style="text-align: center">
-            <div class="col-sm-4 hidden-xs">
-                <img  src={{model.setArtWork}} alt="...">
-            </div>
-            <div class="col-xs-12 col-sm-4">
-                <div class="row">
-                    <div class="col-xs-3">
-                    <h3 ><i id="like" class="fa fa-thumbs-o-up" aria-hidden="true" ng-click="model.changeLikeState('like')"></i></h3>
-                    </div>
-                    <div class="col-xs-6 ">
-                        <marquee behavior="scroll" direction="left"> <h4>{{model.selectedSong}}</h4></marquee>
-                    </div>
-                    <div class="col-xs-3">
-                        <h3 ><i id="dislike" class="fa fa-thumbs-o-down" aria-hidden="true" ng-click="model.changeLikeState('dislike')"></i></i></h3>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-sm-4 hidden-xs">
-                <img  src={{model.setArtWork}} alt="...">
-            </div>
-           <!-- <div class="col-xs-3">
-                <marquee behavior="scroll" direction="left"> <h4>{{model.selectedSong}}</h4></marquee>
-            </div>
-            <div class="col-xs-3">
-                <h2><i class="fa fa-thumbs-up" aria-hidden="true"></i></h2>
-            </div>
-            <div class="col-xs-4">
-                <img  src={{model.setArtWork}} alt="...">
+<div class="backgroundgrey ">
+    <div class="intro-text  ">
+        <div class="team-member ">
+            <!--<div class=" container-fluid pull-left ">
+                <img class="logohome2" src="img/musisUnity.png">
             </div>-->
 
-            <!--<ul class="list-inline">
-                <li class="hidden-xs">
-                    <img  src={{model.setArtWork}} alt="...">
+            <div class="container ">
 
-                </li>
-                <li class="hidden-xs">
-                    <marquee behavior="scroll" direction="left"> <h4>{{model.selectedSong}}</h4></marquee>
-                </li>
-            </ul>-->
-        </div>
-        </div>
-        <div class="row " style="text-align: center">
-            <div class="col-xs-4 ">
-        <h2> <i class="fa fa-backward" aria-hidden="true"></i></h2>
-            </div>
-            <div class="col-xs-4 ">
-
-
-                <h2> <i class="fa fa-play-circle-o" aria-hidden="true"></i></h2>
-
-
+                <input id="searchtext" ng-model=model.searchText type="text"
+                       class="form-control searchbar"
+                       placeholder="youtube search text"/>
+                <br>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <a id="search" class="btn btn-primary btn-block searchbarcolor"
+                           ng-click="model.search(model.searchText)">Search</a>
+                    </div>
+                    <div class="col-xs-6">
+                        <a id="clear" class="btn btn-primary btn-block searchbarcolor"
+                           ng-click="model.clear()">Clear</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-xs-4 ">
+            <div id="searchResults" class="ContentHome2 container" style="visibility: hidden">
+                <style type="text/css">
+                    .bgimg {
+                        background-image: url('../../img/1.png');
+                    }
+                </style>
+                <div ng-if="!model.youtubeResults"class="bgimg">
+                    div with background
+                </div>
+                <div class="container   " ng-repeat="item in model.youtubeResults" ng-switch="$index %3">
+                    <div class="row">
+                        <div class="col-sm-6" ng-switch-when="0">
+                            <div class="  ">
+                                <div class="  ">
+                                    <div>
+                                        <a href=""
+                                           ng-click="model.getSongName(model.youtubeResults[$index].obj.snippet.title,
+                                           model.youtubeResults[$index].obj.snippet.thumbnails.default.url,
+                                           model.youtubeResults[$index].obj.id.videoId)">
+                                            <img class="media-object pull-left"
+                                                 src={{model.youtubeResults[$index].obj.snippet.thumbnails.default.url}}
+                                                 alt="...">
+                                        </a>
+                                    </div>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <h3>
+                                                <a href=""
+                                                   ng-click="model.add2Queue(model.youtubeResults[$index].obj.id.videoId)">
+                                                    <i class="fa fa-plus whiteColor" aria-hidden="true"></i>
+                                                </a>
+                                            </h3>
+                                        </li>
+                                        <li>
+                                            <h3>
+                                                <a href=""
+                                                   ng-click="model.shareVideoId(model.youtubeResults[$index].obj.id.videoId)"
+                                                   data-toggle="modal" data-target="#myModal">
+                                                    <i class="fa fa-share-alt whiteColor" aria-hidden="true"></i>
+                                                </a>
 
-                <h2> <i class="fa fa-step-forward" aria-hidden="true"></i></i></h2>
+                                            </h3>
+                                        </li>
+                                        <li>
+                                            <h3>
+                                                <a href=""
+                                                   ng-click="model.getVideoIdforDetail(model.youtubeResults[$index].obj)">
+                                                    <i class="fa fa-search-plus whiteColor" aria-hidden="true"></i>
+                                                </a>
+                                            </h3>
+                                        </li>
+                                    </ul>
+
+
+                                    <a href=""
+                                       ng-click="model.getSongName(model.youtubeResults[$index].obj.snippet.title,
+                                       model.youtubeResults[$index].obj.snippet.thumbnails.default.url,
+                                       model.youtubeResults[$index].obj.id.videoId)">
+                                        <h5 class="whiteColor">{{model.youtubeResults[$index].obj.snippet.title}}</h5>
+                                    </a>
+
+
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="col-sm-6" ng-switch-when="0">
+                            <div class="  ">
+                                <div class="   ">
+
+                                    <a href=""
+                                       ng-click="model.getSongName(model.youtubeResults[$index+1].obj.snippet.title,
+                                       model.youtubeResults[$index+1].obj.snippet.thumbnails.default.url,
+                                       model.youtubeResults[$index+1].obj.id.videoId)">
+                                        <img class="media-object pull-left"
+                                             src={{model.youtubeResults[$index+1].obj.snippet.thumbnails.default.url}}
+                                             alt="...">
+                                    </a>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <h3>
+                                                <a href=""
+                                                   ng-click="model.add2Queue(model.youtubeResults[$index+1].obj.id.videoId)">
+                                                    <i class="fa fa-plus whiteColor" aria-hidden="true"></i>
+                                                </a>
+                                            </h3>
+                                        </li>
+                                        <li>
+                                            <h3>
+                                                <a href=""
+                                                   ng-click="model.shareVideoId(model.youtubeResults[$index+1].obj.id.videoId)"
+                                                   data-toggle="modal" data-target="#myModal">
+                                                    <i class="fa fa-share-alt whiteColor" aria-hidden="true"></i>
+                                                </a>
+
+                                            </h3>
+                                        </li>
+                                        <li>
+                                            <h3>
+                                                <a href=""
+                                                   ng-click="model.getVideoIdforDetail(model.youtubeResults[$index+1].obj)">
+                                                    <i class="fa fa-search-plus whiteColor" aria-hidden="true"></i>
+                                                </a>
+                                            </h3>
+                                        </li>
+                                    </ul>
+                                    <a href=""
+                                       ng-click="model.getSongName(model.youtubeResults[$index+1].obj.snippet.title,
+                                       model.youtubeResults[$index+1].obj.snippet.thumbnails.default.url,
+                                       model.youtubeResults[$index+1].obj.id.videoId)">
+                                        <h5 class="whiteColor">{{model.youtubeResults[$index+1].obj.snippet.title}}</h5>
+                                    </a>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Copy Content</h4>
+                            </div>
+                            <div class="modal-body">
+                                <textarea readonly class="form-control" id='text'>https://www.youtube.com/watch?v={{model.shareVideoid}}</textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" data-clipboard-target="#text" data-dismiss="modal"
+                                        data-clipboard-action="copy">
+                                    Copy to clipboard
+                                </button>
+                            </div>
+                            <script>
+                                var btn = document.getElementsByClassName('btn');
+                                var clipboard = new Clipboard(btn);
+                            </script>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+            <!--Playlsit modal -->
+            <div class="modal fade login" id="loginModal">
+                <div class="modal-dialog login animated">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Add PlayList</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="box">
+                                <div class="content">
+                                    <div class=" alert alert-info ">
+                                        <strong>Info!</strong> Add PlayList Name and We will add your Cureent Queue to
+                                        the
+                                        Playlsit. Simple :)
+                                    </div>
+                                    <div class="error">{{model.errorLogin}}</div>
+                                    <div class="form loginBox">
+                                        <form>
+                                            <input id="playListName" ng-model="model.user.playlistName"
+                                                   class="form-control" type="text" placeholder="Name of the PlayList"
+                                                   name="email">
+                                            <input class="btn btn-default btn-login" type="button" value="ADD PLAYLIST"
+                                                   ng-click="model.save2Playlist(true,model.user.playlistName)"
+                                                   data-dismiss="modal">
+
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="forgot login-footer">
+
+                        </div>
+                        <div class="forgot register-footer" style="display:none">
+                            <span>Already have an account?</span>
+                            <a href="javascript: showLoginForm();">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-inverse navbar-fixed-bottom">
+                <div class="container ">
+                    <div class="container-fluid">
+                        <div class="row " style="text-align: center">
+                            <div id="prev" class="col-sm-2 hidden-xs heightPlayerImage">
+                                <img class="heightPlayerImage noBorder" src={{model.setArtWork}} alt="...">
+                            </div>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <button type="button" class="btn btn-primary hidden-xs hidden-sm"
+                                                        ng-click="model.getQueue()"
+                                                        data-toggle="modal" data-target=".bs-example-modal-lg">
+                                                    Queue
+                                                </button>
+
+                                            </li>
+                                            <li>
+                                                <h4><i id="like" class="fa fa-thumbs-o-up whiteColor" aria-hidden="true"
+                                                       ng-click="model.changeLikeState('like')"></i></h4>
+                                            </li>
+                                        </ul>
+
+
+                                    </div>
+                                    <div class="col-xs-4 ">
+                                        <marquee class="whiteColor" behavior="scroll" direction="left"><h5
+                                                id="currentTrack">
+                                            {{model.selectedSong}}</h5></marquee>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <h4><i id="dislike" class="fa fa-thumbs-o-down whiteColor"
+                                                       aria-hidden="true"
+                                                       ng-click="model.changeLikeState('dislike')"></i></i></h4>
+                                            </li>
+                                            <li>
+
+                                                <button type="button" class="btn btn-primary hidden-xs hidden-sm"
+                                                        data-toggle="modal" href="javascript:void(0)"
+                                                        onclick="openLoginModal();">
+                                                    Add Playlist
+                                                </button>
+
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="next" class="col-sm-2 hidden-xs heightPlayerImage">
+                                <img class="heightPlayerImage " style="border: 0px" src={{model.setArtWork}} alt="...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row " style="text-align: center">
+                        <div class="col-xs-4 ">
+                            <h3><i class="fa fa-step-backward whiteColor" ng-click="model.prevSong()"
+                                   aria-hidden="true"></i></h3>
+                        </div>
+                        <div class="col-xs-4 ">
+
+
+                            <h3><i id="play" ng-click="model.playPause()" class="fa fa-play whiteColor"
+                                   aria-hidden="true"></i></h3>
+
+
+                        </div>
+
+                        <div class="col-xs-4 ">
+
+                            <h3><i class="fa fa-step-forward whiteColor" ng-click="model.nextSong()"
+                                   aria-hidden="true"></i></i></h3>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
         </div>
 
+        <!-- Queue modal-->
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-auto" role="document">
+                <div class="modal-content">
+                    <div class="modal-header center">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Queue</h4>
+                    </div>
+
+                    <div class="modal-content ContentQueue">
+
+                        <div class="container " ng-repeat="q in model.queue">
+                            <div class="col-sm-6 ">
+                                <div class="  ">
+                                    <div class="   ">
+                                        <br>
+                                        <a href=""
+                                           ng-click="model.getSongName(model.queue[$index].title,model.queue[$index].thumbnail,model.queue[$index].videoId)">
+                                            <img class="media-object pull-left"
+                                                 src={{q.thumbnail.url}}
+                                                 alt="...">
+                                        </a>
+                                        <ul class="list-inline center">
+                                            <li class="">
+                                                <h3>
+                                                    <a href=""
+                                                       ng-click="model.deleteSongQueue(model.queue[$index].videoId)">
+                                                        <i class="fa fa-trash  " aria-hidden="true"></i>
+                                                    </a>
+                                                </h3>
+                                            </li>
+                                            <li class="">
+                                                <h3>
+                                                    <a href=""
+                                                       ng-click="model.shareVideoId(model.youtubeResults[$index+1].id.videoId)"
+                                                       data-toggle="modal" data-target="#myModal">
+                                                        <i class="fa fa-share-alt " aria-hidden="true"></i>
+                                                    </a>
+
+                                                </h3>
+                                            </li>
+                                        </ul>
+                                        <a href=""
+                                           ng-click="model.getSongName(model.youtubeResults[$index+1].snippet.title,model.youtubeResults[$index+1].snippet.thumbnails.default.url,model.youtubeResults[$index+1].id.videoId)">
+                                            <h5 class="center">{{q.title}}</h5>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Custom Theme JavaScript -->
+
+        </div>
     </div>
-</nav>
+</div>
+<!-- Modal for Details-->
+<div id="detailsModal"class="modal fade detailsView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Eagle's View</h4>
+            </div>
+            <div class="modal-content ">
+                <div class="row">
+                    <div class="col-sm-3 center">
+                        <h5 >ALBUM ART</h5>
+                    </div>
+                    <div class="col-sm-9">
+                        <img class=" media-middle  "
+                             src={{model.url}}
+                             alt="...">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-3 center">
+                        <h5 >TITLE</h5>
+                    </div>
+                    <div class="col-sm-9 center">
+                        <h5 class="leftallign">{{model.detail.snippet.title}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 center">
+                        <h5>Description</h5>
+                    </div>
+                    <div class="col-sm-9 center">
 
-</body>
+                        <h5 class="leftallign">{{model.description}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 center">
+                        <h5>CHANNEL NAME</h5>
+                    </div>
+                    <div class="col-sm-9 center">
+                        <h5 class="leftallign">{{model.channelTitle}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 center">
+                        <h5>Publish Time</h5>
+                    </div>
+                    <div class="col-sm-9 center">
+                        <h5 class="leftallign">{{model.publishTime}}</h5>
+                    </div>
+                </div>
 
-
-<!-- Custom Theme JavaScript -->
-
+            </div>
+        </div>
+    </div>
+</div>
 

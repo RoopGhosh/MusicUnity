@@ -1,0 +1,423 @@
+<!-- Navigation -->
+<script src="js/main.js"></script>
+
+<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+        <li class="sidebar-brand ">
+            <a href="#top" onclick=$("#menu-close").click();>
+                <div class="container ">
+                <img class="logoHeight" src="img/musisUnity.png">
+                </div>
+            </a>
+        </li>
+        <li class="sizeIncSidebar moveSidebarElementsDown">
+            <a href="#top" onclick=$("#menu-close").click();>Home</a>
+        </li>
+        <li class="sizeIncSidebar">
+            <a href="#about" onclick=$("#menu-close").click();>Whats Music Unity</a>
+        </li>
+        <li class="sizeIncSidebar">
+            <a href="#services" onclick=$("#menu-close").click();>Services</a>
+        </li>
+
+        <li class="sizeIncSidebar">
+            <a href="#team" onclick=$("#menu-close").click();>Our Awesome Team</a>
+        </li>
+    </ul>
+</nav>
+<header>
+    <div id="top"class="container">
+        <div class="intro-text">
+            <div class="intro-lead-in"> <img alt="Brand" src="img/musisUnity.png"></div>
+
+            <div class="intro-lead-in">All Your Music at One Place</div>
+            <div class="intro-heading">Because Music has to be UNIFIED</div>
+            <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a>
+            <a class="btn big-register" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a></div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!--Modal for Signin/Signup -->
+<div class="modal fade login" id="loginModal">
+    <div class="modal-dialog login animated">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Login with</h4>
+            </div>
+            <div class="modal-body">
+                <div class="box">
+                    <div class="content">
+                        <div class="social">
+                            <a class="circle github" href="/auth/github">
+                                <i class="fa fa-github fa-fw"></i>
+                            </a>
+                            <a id="google_login" class="circle google" href="/auth/google_oauth2">
+                                <i class="fa fa-google-plus fa-fw"></i>
+                            </a>
+                            <a id="facebook_login" class="circle facebook" href="/auth/facebook">
+                                <i class="fa fa-facebook fa-fw"></i>
+                            </a>
+                        </div>
+                        <div class="division">
+                            <div class="line l"></div>
+                            <span>or</span>
+                            <div class="line r"></div>
+                        </div>
+                        <div class="error">{{vm.errorLogin}}</div>
+                        <div class="form loginBox">
+                            <form >
+                                <input id="username_login" ng-model="model.user.loginUserName" class="form-control" type="text" placeholder="Username" name="email">
+                                <input id="password_login" ng-model="model.user.loginPassword" class="form-control" type="password" placeholder="Password" name="password">
+                                <input class="btn btn-default btn-login" type="button" value="Login" ng-click="model.login(model.user)"  >
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="content registerBox" style="display:none;">
+                        <div class="form">
+                            <form >
+                                <input id="usernameRegister" ng-model="model.user.username" class="form-control" type="text" placeholder="Username" name="email">
+                                <input id="emailRegister" ng-model="model.user.email" class="form-control" type="text" placeholder="Email" name="email">
+                                <input id="firstName" ng-model="model.user.firstName" class="form-control" type="text" placeholder="FirstName" name="email">
+                                <input id="lastName" ng-model="model.user.lastName" class="form-control" type="text" placeholder="LastName" name="email">
+                                <input id="passwordRegister" ng-model="model.user.password" class="form-control" type="password" placeholder="Password" name="password">
+                                <input id="password_confirmation" ng-model="model.user.verifyPassword"class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                                <input class="btn btn-default btn-register" type="button" value="Create account" ng-click="model.register(model.user)">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="forgot login-footer">
+                            <span>Looking to
+                                 <a href="javascript: showRegisterForm();">create an account</a>
+                            ?</span>
+                </div>
+                <div class="forgot register-footer" style="display:none">
+                    <span>Already have an account?</span>
+                    <a href="javascript: showLoginForm();">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- About -->
+<!--<section id="about" class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
+                <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+            </div>
+        </div>
+        <!-- /.row -->
+<!-- </div>
+ <!-- /.container -->
+<!--</section>
+
+<!-- Services -->
+<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+<div class="container">
+<div id="video-wrapper" class="video-wrapper">
+    <video autoplay loop muted id="bgvid">
+        <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunxxxny.webm" type="video/webm">
+        <source src="img/Tomorrowland2013officialaftermovie.mp4" type="video/mp4">
+    </video>
+</div>
+</div>
+<section id="about" class="about bg-primary">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+                <h2>What Is Music Unity</h2>
+                <hr class="small">
+               <p style="text-justify: auto">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+                   The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+</section>
+<section id="services" class="about bg-primary">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+                <h2>Streaming Services</h2>
+                <hr class="small">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-soundcloud fa-stack-1x text-primary"></i>
+                            </span>
+                            <h4>
+                                <strong>SoundCloud</strong>
+                            </h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <a href="#" class="btn btn-light">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-youtube fa-stack-1x text-primary"></i>
+                            </span>
+                            <h4>
+                                <strong>YouTube</strong>
+                            </h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <a href="#" class="btn btn-light">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                            </span>
+                            <h4>
+                                <strong>Saavn</strong>
+                            </h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <a href="#" class="btn btn-light">Learn More</a>
+                        </div>
+                    </div>
+
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+</section>
+
+<!-- Signin/Signup
+<section id="portfolio" class="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h2>Join The Fun</h2>
+                <hr class="small">
+                <div class="row">
+                    <div class="container-fluid">
+                    <div class="col-sm-6 " style="text-align: center">
+                        <div class="container-fluid ">
+                            <h3 class="section-subheading text-muted">Already a Member? Welcome Back !!!! </h3>
+                            <div ng-show="model.errorLogin" class="alert alert-danger" role ="alert">
+                                {{model.errorLogin}}
+                            </div>
+                            <br>
+                            <br>
+                            <input type="text"
+                                   ng-model="model.user.loginUserName"
+                                   class="form-control  "
+                                   placeholder="username"/>
+                            <br>
+
+                            <input type="password"
+                                   ng-model="model.user.loginPassword"
+                                   class="form-control  "
+                                   placeholder="password"/>
+                            <br>
+
+
+                            <a ng-click="model.login(model.user)" class="btn btn-success btn-block"
+                               href="">Login</a>
+                        </div>
+                    </div>
+                        <div class="col-sm-6">
+
+                            <div class="container-fluid">
+                                <div ng-show="model.errorRegister" class="alert alert-danger" role ="alert">
+                                    {{model.errorRegister}}
+                                </div>
+                                <h3 class=" section-subheading text-muted">Never Too Late to Start !!!</h3>
+                                <input type="text"
+                                       ng-model="model.user.username"
+                                       class="form-control  "
+                                       placeholder="username"/>
+                                <br>
+                                <input type="text"
+                                       ng-model="model.user.firstName"
+                                       class="form-control  "
+                                       placeholder="firstName"/>
+                                <br>
+                                <input type="text"
+                                       ng-model="model.user.lastName"
+                                       class="form-control  "
+                                       placeholder="lastName"/>
+                                <br>
+                                <input type="email"
+                                       ng-model="model.user.email"
+                                       class="form-control  "
+                                       placeholder="Email"/>
+                                <br>
+                                <input type="password"
+                                       ng-model="model.user.password"
+                                       class="form-control  "
+                                       placeholder="password"/>
+                                <br>
+                                <input type="password"
+                                       ng-model="model.user.verifyPassword"
+                                       class="form-control"
+                                       placeholder="Verify Password"/>
+                                <br>
+
+                                <a ng-click="model.register(model.user)" class="btn btn-success btn-block "
+                                   href="">Register</a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+
+                <!-- /.row (nested) -->
+
+            </div>
+            <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
+    </div>
+        </div>
+    <!-- /.container -->
+</section>
+
+<!-- Callout
+ <aside class="callout">
+     <div class="text-vertical-center">
+         <h1>Vertically Centered Text</h1>
+     </div>
+ </aside>-->
+<!-- Team Section -->
+<section id="team" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Our Amazing Team</h2>
+                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="team-member">
+                    <img src="img/1.png" class="img-responsive img-circle team-member-sizeAdjust" alt="">
+                    <h4>Amardeep Singh</h4>
+                    <p class="text-muted">Position</p>
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="http://www.facebook.com/saibi0070"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="http://www.linkedin.com/in/amardeep0070"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="team-member">
+                    <img src="img/roop.png" class="img-responsive img-circle team-member-sizeAdjust" alt="">
+                    <h4>Roop</h4>
+                    <p class="text-muted">Position</p>
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="" ><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href=""><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+                </div>
+            </div>
+        </div>
+</section>
+
+
+
+<!-- Call to Action -->
+<!--<aside class="call-to-action bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h3>The buttons below are impossible to resist.</h3>
+                <a href="#" class="btn btn-lg btn-light">Click Me!</a>
+                <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
+            </div>
+        </div>
+    </div>
+</aside>-->
+
+<!-- Map -->
+<!--<section id="contact" class="map">
+    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
+    <br />
+    <small>
+        <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
+    </small>
+    </iframe>
+</section>
+
+<!-- Footer -->
+<!--<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h4><strong>Start Bootstrap</strong>
+                </h4>
+                <p>3481 Melrose Place
+                    <br>Beverly Hills, CA 90210</p>
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                    <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
+                    </li>
+                </ul>
+                <br>
+                <ul class="list-inline">
+                    <li>
+                        <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                    </li>
+                </ul>
+                <hr class="small">
+                <p class="text-muted">Copyright &copy; Your Website 2014</p>
+            </div>
+        </div>
+    </div>
+    <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+</footer>-->
+
+
+
+
+<!-- Custom Theme JavaScript -->
+

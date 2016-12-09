@@ -1,22 +1,100 @@
 
-    var videoID = ["u1zgFlCw8Aw","jdqsiFw74Jk"];
+var videoArray = [
+    {
+        type:'youtube',
+        id:'jDdKtWnFXFo'
+    },
+    {
+        type:'dailymotion',
+        id:'x3fzlp9'
+    },
+    {
+        type:'youtube',
+        id:'eXJFbsQBvLw'
+    },
+    {
+        type:'dailymotion',
+        id:'x54fw5y'
+    },{
+        type:'youtube',
+        id:'crLAqkUE-So'
+    }
+];
 var forced = false;
-function reloadFunc(videoId) {
+var previous = false;
+var nextButton=false;
+var count=0;
+// create youtube player
+var youtube;
+var uid;
+
+function initYT(userId) {
+    if(!uid){
+        uid  = userId;
+    }
+}
+function reloadFunc(videoId,userId) {
    // videoID[1]= 'N21u1bMhHyQ';
-    videoID[1]=videoId;
+
+    var service= 'youtube'
+    videoArray.push({type:service,id:videoId});
     forced = true;
     onPlayerStateChange('onStateChange');
 }
 
-// create youtube player
-var player;
-var count=0;
+function ytNextSong() {
+    nextButton=true;
+    if(videoArray[count].type=='youtube'){
+        youtube.pauseVideo();
+    }else{
+        dmPlaySong('pause');
+    }
+    onPlayerStateChange('onStateChange');
+}
+
+function ytPrevSong() {
+    previous = true;
+    if(videoArray[count].type=='youtube'){
+        youtube.pauseVideo();
+    }else{
+        dmPlaySong('pause');
+    }
+    onPlayerStateChange('onStateChange');
+}
+
+function pausePlayer() {
+    if(videoArray[count].type=='youtube'){
+        youtube.pauseVideo();
+    }else{
+        dmPlaySong('pause');
+    }
+}
+
+function cueFromUser(song){
+    var service = 'youtube'
+    videoArray.push({type:service,id:song});
+}
+
+
+function pushtoQueue(song) {
+    var service = 'youtube';
+    videoArray.push({type:service,id:song});
+    count++;
+}
+
+function playPlayer() {
+    if(videoArray[count].type=='youtube') {
+        youtube.playVideo();
+    }else{
+        dmPlaySong('play');
+    }
+}
+
 function onYouTubePlayerAPIReady() {
-    console.log(count);
-    player = new YT.Player('player', {
+    youtube = new YT.Player('youtube', {
         height: '0',
         width: '0',
-        videoId: 'u1zgFlCw8Aw',
+        videoId: '',
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -30,17 +108,186 @@ function onPlayerReady(event) {
     event.target.playVideo();
 }
 
+
+
+////main resource function with DM
+////main resource function with DM
+////main resource function with DM
+
+function onPlayerStateChange(event,fromDM) {
+    if((fromDM==true||event.data === 0 || forced ||nextButton|| previous)&&(previous||count<videoArray.length)) {
+        //this is the wrapper for youtube player.
+        if(fromDM==true||event.data === 0 || forced ||nextButton){
+            count++;
+        }
+
+        if(previous){
+            if(count<2){
+                count=0;
+            }else{
+                count--;
+            }
+        }
+
+        if(forced){
+            count = videoArray.length-1;
+        }
+
+        if (videoArray[count].type == 'dailymotion') {
+            //playnext song at dailymotion
+            console.log("I was here in on player stat for dailymotion");
+            dmPlaySong();
+            updateThumbnails(count);
+            updateNextThumbnails(count+1);
+            nextButton= false;
+            forced=false;
+            previous= false;
+        } else {
+            nextAutoPlay(event,fromDM);
+        }
+}
+////main resource function with DM
+////main resource function with DM
+////main resource function with DM
+
 // when video ends
-function onPlayerStateChange(event) {
-    if (event.data === 0 ) {
-        event.target.cueVideoById(videoID[1]);
-        event.target.playVideo();
+function nextAutoPlay(event,fromDM) {
+    if((fromDM==true|| event.data === 0 || forced ||nextButton|| previous)&&(previous||count<videoArray.length)){
+            youtube.stopVideo();
+            youtube.loadVideoById(videoArray[count].id, 0,"large");
+            youtube.playVideo();
+            nextButton= false;
+            forced=false;
+            previous= false;
+        }
+        updateThumbnails(count)
+            .done(
+                function (response) {
+                    console.log("done updating thumbnail")
+                    var recent = {
+                        title : response.items[0].snippet.title,
+                        url :response.items[0].snippet.thumbnails.default.url,
+                        videoId :response.items[0].id
+                    }
+                    isLike(recent.title);
+                    angular.injector(['ng', 'MusicUnity']).invoke(function (UserService) {
+                        UserService.addSong2Recent(recent,uid);
+                    });
+                }
+            );
+        $('#like').attr('fa fa-thumbs-o-up');
+
+        if(count<videoArray.length-1) {
+            updateNextThumbnails(count + 1);
+        }
     }
-    if(forced){
-        player.stopVideo();
-        event.target.cueVideoById(videoID[1]);
-        player.nextVideo();
-        event.target.playVideo();
-        forced = false;
+}
+
+
+function isLike(videoId) {
+    angular.injector(['ng', 'MusicUnity']).invoke(function (LikeService) {
+        LikeService.getLikeBySong(videoId)
+            .then(
+                function (response) {
+                    for(var i in response.data){
+                        if(response.data[i]._user==uid){
+                            $('#like').attr('class','fa fa-thumbs-up whiteColor');
+                            return;
+                        }
+                    }
+                },
+                function (error) {
+                    console.log(error);
+                }
+            );
+    });
+}
+
+function updateThumbnails(count) {
+    var currentVideoId = videoArray[count].id;
+    if(videoArray[count].type=='youtube'){
+        var url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=VIDEOID&key=AIzaSyAqvaj33Z1ZRdiWP6vJ9IQ3EswflLRqqbA";
+        url = url.replace("VIDEOID",currentVideoId);
+        var title;
+        return $.getJSON(url,{async: false})
+            .done(
+                function (snippet) {
+                    if(snippet.items[0].snippet.thumbnails.default.url) {
+                        var image = snippet.items[0].snippet.thumbnails.default.url;
+                        document.getElementById("prev").innerHTML =
+                            '<img id="prev" src=' + image + ' alt="..." class="heightPlayerImage noBorder">';
+                    }
+                    if(snippet.items[0].snippet.title){
+                        title  = snippet.items[0].snippet.title;
+                        document.getElementById("currentTrack").innerHTML = '<h4 id="currentTrack" class="ng-binding">' + title + '</h4>';
+                        $.notify("Playing "+title,
+                            {   className:'info',
+                                style: 'bootstrap',
+                                globalPosition: 'top left',
+                                autoHideDelay: 5000,
+                                autoHide: true,
+                                hideAnimation: 'slideUp'});
+                    }
+                }
+            );
+        }else{
+        var url = "https://api.dailymotion.com/video/VIDEOID?fields=id,title,thumbnail_url";
+        url = url.replace("VIDEOID",currentVideoId);
+        var title;
+        return $.getJSON(url)
+            .done(
+                function (snippet) {
+                    if(snippet.thumbnail_url) {
+                        var image = snippet.thumbnail_url;
+                        document.getElementById("prev").innerHTML =
+                            '<img id="prev" src=' + image + ' alt="..." class="heightPlayerImage noBorder">';
+                    }
+                    if(snippet.title){
+                        title  = snippet.title;
+                        document.getElementById("currentTrack").innerHTML = '<h4 id="currentTrack" class="ng-binding">' + title + '</h4>';
+                        $.notify("Playing "+title,
+                            {   className:'info',
+                                style: 'bootstrap',
+                                globalPosition: 'top left',
+                                autoHideDelay: 5000,
+                                autoHide: true,
+                                hideAnimation: 'slideUp'});
+                    }
+                }
+            );
+    }
+}
+function updateNextThumbnails(count) {
+    var currentVideoId = videoArray[count].id;
+    if(videoArray[count].type=='youtube') {
+        var url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=VIDEOID&key=AIzaSyAqvaj33Z1ZRdiWP6vJ9IQ3EswflLRqqbA";
+        url = url.replace("VIDEOID", currentVideoId);
+        var title;
+        $.getJSON(url, {async: false})
+            .done(
+                function (snippet) {
+                    if (snippet.items[0].snippet.thumbnails.default.url) {
+                        var image = snippet.items[0].snippet.thumbnails.default.url;
+                        document.getElementById("next").innerHTML =
+                            '<img id="next" src=' + image + ' alt="..." class="heightPlayerImage noBorder">';
+                    }
+                }
+            );
+        return;
+    }else{
+        var url = "https://api.dailymotion.com/video/VIDEOID?fields=id,title,thumbnail_url";
+        url = url.replace("VIDEOID", currentVideoId);
+        var title;
+        $.getJSON(url)
+            .done(
+                function (snippet) {
+                    if (snippet.thumbnail_url) {
+                        var image = snippet.thumbnail_url;
+                        document.getElementById("next").innerHTML =
+                            '<img id="next" src=' + image + ' alt="..." class="heightPlayerImage noBorder">';
+                    }
+                }
+            );
+        return;
     }
 }

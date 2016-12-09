@@ -1,0 +1,200 @@
+<!-- Navigation -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<body>
+<!--<script>
+    $("#feed").mouseover(function(){
+        $(".feedScroll").attr("class", "feedScroll feedScrollpause");
+    });
+    $("#feed").mouseleave(function(){
+        $(".feedScroll").attr("class", "feedScroll");
+    });
+</script>-->
+<script src="js/main.js"></script>
+<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+        <li class="sidebar-brand">
+            <a href="#top" onclick=$("#menu-close").click();>Music Unity</a>
+        </li>
+        <li>
+            <a href="#top" onclick=$("#menu-close").click();>Home</a>
+        </li>
+        <li>
+            <a href="#about" onclick=$("#menu-close").click();>Whats Music Unity</a>
+        </li>
+        <li>
+            <a href="#services" onclick=$("#menu-close").click();>My Services</a>
+        </li>
+        <li>
+            <a href="#portfolio" onclick=$("#menu-close").click();>My Recent Music</a>
+        </li>
+        <li>
+            <a href="#team" onclick=$("#menu-close").click();>My Playlists</a>
+        </li>
+
+    </ul>
+</nav>
+
+
+<div class="intro-text">
+    <div class="team-member container">
+        <div class="container searchBarPadding">
+
+            <input id="searchtext" ng-model=model.searchText type="text"
+                   class="form-control searchbar"
+                   placeholder="youtube search text"/>
+            <br>
+            <div class="row">
+                <div class="col-xs-6">
+                    <a id="search" class="btn btn-primary btn-block searchbarcolor"
+                       ng-click="model.search(model.searchText)">Search</a>
+                </div>
+                <div class="col-xs-6">
+                    <a id="clear" class="btn btn-primary btn-block searchbarcolor"
+                       ng-click="model.clear()">Clear</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 ">
+                <h3 class="whiteColor">Status Update</h3>
+            </div>
+            <div class="col-sm-6 whiteColor hidden-xs">
+                <h3> Music News</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-xs-7">
+                    <textarea rows="2" id="statusBar" ng-model=model.searchText
+                              class="form-control leftallign "
+                              placeholder="Update Status"></textarea>
+                    </div>
+                    <div class="col-xs-5 ">
+                        <a id="updateStatus" class="btn  btn-block searchbarcolor statusUpdateButton "
+                        ng-click="model.createMyComment(model.searchText)">Update</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 whiteColor hidden-xs">
+                <h4> Twitter Feed</h4>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-6 Content">
+                <div ng-repeat="status in model.FollowerStatus">
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-2 leftallign col-sm-2">
+                            <img class=" img-circle heightFollowImage " src={{status.url}}>
+                        </div>
+                        <div class="col-xs-10 col-sm-10">
+                            <h5 class="whiteColor text-justify">{{status.username}} says {{status.status}}</h5>
+                        </div>
+                    </div>
+
+                    <!-- <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
+                         {{s.stauts}}</h5>-->
+                </div>
+            </div>
+            <div class="col-sm-6 whiteColor Content  hidden-xs "> 
+                <div>
+                    <a data-height="220" data-chrome="nofooter noscrollbar" class="twitter-timeline "
+                       href="https://twitter.com/MTV"></a>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <br>
+                </div>
+                <div>
+                    <a data-height="250" data-chrome="nofooter noscrollbar" class="twitter-timeline  "
+                       href="https://twitter.com/vh1"></a>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-8 whiteColor  ">
+                        <h3>User</h3>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 whiteColor">
+                        <h3>Follow</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 whiteColor hidden-xs">
+                <h3>Feeds</h3>
+            </div>
+        </div>
+
+        <!--User Follow Pane-->
+        <div class="row ">
+            <div class="col-sm-6 Content ">
+                <div ng-repeat="user in model.allUser" ng-switch="user.following">
+                    <div class="row ">
+                        <div class="col-xs-8">
+                            <ul class="list-inline leftallign">
+                                <li>
+                                    <!-- src here should be user.url-->
+                                    <img class=" img-circle heightFollowImage" src={{user.user.url}}>
+                                </li>
+                                <li>
+                                    <h4 class="whiteColor ">{{user.user.username}}</h4>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-4">
+                            <div ng-switch-when="false">
+                                <h6 id="follow{{$index}}" class="show followIconHeight">
+                                    <a href="" class=" whiteColor" ng-click="model.followUser(user,$index)">
+                                        <i class="fa fa-plus " aria-hidden="true"></i>
+                                    </a>
+                                </h6>
+                            </div>
+                            <div ng-switch-when="true">
+                                <h6 id="unfollow{{$index}}" class="followIconHeight">
+                                    <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)">
+                                        <i class="fa fa-check statusUpdateButton" aria-hidden="true"></i>
+                                    </a>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 class="visible-xs whiteColor">Feeds</h3>
+
+            <!-- Feeds-->
+
+            <div class="col-sm-6 Content">
+                <div ng-repeat="song in model.FollowerrecentSong">
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-2 leftallign col-sm-2">
+                            <!-- this should be the url of the profile image-->
+                            <img class=" img-circle heightFollowImage " src="{{song.song.url}}">
+                        </div>
+                        <div class="col-xs-10 col-sm-10">
+                            <h6 class="whiteColor text-justify">{{song.username}} listened to {{song.song.title}}</h6>
+                        </div>
+                    </div>
+
+                    <!-- <h5 class="whiteColor leftallign"><img class=" heightFollowImage" src="uploads/myFile-1480893251559.png">
+                         {{s.stauts}}</h5>-->
+                </div>
+            </div>
+
+            <br>
+            <!-- Status-->
+
+        </div>
+    </div>
+
+</body>
+
+
+<!-- Custom Theme JavaScript -->
+
+

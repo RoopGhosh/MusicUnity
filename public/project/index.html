@@ -3,6 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
   <!--  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>-->
   <!--<script src="js/angular.min.js"></script>-->
   <!-- jQuery -->
@@ -12,16 +13,33 @@
 
   <!-- Bootstrap Core JavaScript -->
   <script src="js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.13/clipboard.min.js"></script>
+  <script src="js/clipboard.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+<!--  <script src="js/bootstrap.js"></script>-->
   <script src="app.js"></script>
   <script src="config.js"></script>
   <script src = "directives/utility.js"></script>
   <script src = "js/YT.js"></script>
-  <script src="views/mainPage.controller.client.js"></script>
+  <script src = "js/notify.js"></script>
+  <script src="client.services/user.service.client.js"></script>
+  <script src="views/landingPage/mainPage.controller.client.js"></script>
   <script src="views/home2/home2.controller.client.js"></script>
+  <script src="views/home1/home1.controller.client.js"></script>
   <script src="client.services/youtubeService.service.client.js"></script>
+  <script src="client.services/dailymotionService.service.client.js"></script>
+  <script src="client.services/user.service.client.js"></script>
+  <script src="client.services/comment.service.client.js"></script>
+  <script src="client.services/like.service.client.js"></script>
+  <script src="client.services/playlist.service.client.js"></script>
+  <script src="js/login-register.js"></script>
+  <script src="views/profile/profile.controller.client.js"></script>
+  <script src="js/main.js"></script>
+
+  <!--DM Related-->
+  <!---->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,12 +67,24 @@
   <![endif]-->
 </head>
 
-<body>
 
+<body class="backgroundgrey">
+
+<div id="parent">
+  <div id="youtube"></div>
+  <div id="dailymotion"style="visibility: hidden;"></div> <!--hidden as dialymotion detects display none and unloads video-->
+</div>
+</body>
+<div class="box rotate pull-left hidden-xs hidden-sm">
+  <div id="backButtonDiv">
+    <i id = "backButton" onclick="goBack()" class="fa fa-arrow-left" aria-hidden="true"></i>
+  </div>
+  </div>
 <div ng-view>
-
 </div>
 
-</body>
 
 </html>
+<script src="https://api.dmcdn.net/all.js"></script>
+<script src="js/DM.js"></script>
+<script src="http://www.youtube.com/player_api"></script>

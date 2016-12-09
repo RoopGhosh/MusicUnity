@@ -3,10 +3,11 @@
         .module("MusicUnity")
         .factory("YouTubeService",YouTubeService);
 
-    function YouTubeService($http) {
+    function YouTubeService($http,$q) {
         var api = {
             initService:initService,
-            searchResult:searchResult
+            searchResult:searchResult,
+            snippetData:snippetData
         }
         return api;
 
@@ -22,5 +23,15 @@
             url = url.replace("SEARCHTEXT",searchText);
             return $http.get(url);
         }
+
+        function snippetData(videoId) {
+            var url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=VIDEOID&key=AIzaSyAqvaj33Z1ZRdiWP6vJ9IQ3EswflLRqqbA";
+            url = url.replace("VIDEOID",videoId);
+            return $http.get(url);
+        }
     }
 })();
+
+
+
+
