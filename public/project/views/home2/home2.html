@@ -31,15 +31,15 @@
 <div class="backgroundgrey ">
     <div class="intro-text  ">
         <div class="team-member ">
-            <!--<div class=" container-fluid pull-left ">
+            <div class=" container-fluid pull-left ">
                 <img class="logohome2" src="img/musisUnity.png">
-            </div>-->
+            </div>
 
             <div class="container ">
 
                 <input id="searchtext" ng-model=model.searchText type="text"
                        class="form-control searchbar"
-                       placeholder="youtube search text"/>
+                       placeholder="Search universal!"/>
                 <br>
                 <div class="row">
                     <div class="col-xs-6">
@@ -80,7 +80,7 @@
                                         <li>
                                             <h3>
                                                 <a href=""
-                                                   ng-click="model.shareVideoId(item.obj.id.videoId)"
+                                                   ng-click="model.shareVideoId('youtube',item.obj.id.videoId)"
                                                    data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-share-alt whiteColor" aria-hidden="true"></i>
                                                 </a>
@@ -90,7 +90,7 @@
                                         <li>
                                             <h3>
                                                 <a href=""
-                                                   ng-click="model.getVideoIdforDetail(item.obj)">
+                                                   ng-click="model.getVideoIdforDetail('youtube',item.obj)">
                                                     <i class="fa fa-youtube-play whiteColor" aria-hidden="true"></i>
                                                 </a>
                                             </h3>
@@ -132,7 +132,7 @@
                                         <li>
                                             <h3>
                                                 <a href=""
-                                                   ng-click="model.shareVideoId(dm.obj.id)"
+                                                   ng-click="model.shareVideoId('dailymotion',dm.obj.id)"
                                                    data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-share-alt whiteColor" aria-hidden="true"></i>
                                                 </a>
@@ -142,7 +142,7 @@
                                         <li>
                                             <h3>
                                                 <a href=""
-                                                   ng-click="model.getVideoIdforDetail(dm.obj.id)">
+                                                   ng-click="model.getVideoIdforDetail('dailymotion',dm.obj.id)">
                                                     <i class="fa fa-search-plus whiteColor" aria-hidden="true"></i>
                                                 </a>
                                             </h3>
@@ -172,7 +172,7 @@
                                 <h4 class="modal-title">Copy Content</h4>
                             </div>
                             <div class="modal-body">
-                                <textarea readonly class="form-control" id='text'>https://www.youtube.com/watch?v={{model.shareVideoid}}</textarea>
+                                <textarea readonly class="form-control" id='text'>{{model.shareVideoLink}}</textarea>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn" data-clipboard-target="#text" data-dismiss="modal"
@@ -243,7 +243,7 @@
                                     <div class="col-xs-4">
                                         <ul class="list-inline">
                                             <li>
-                                                <button type="button" class="btn btn-primary hidden-xs hidden-sm"
+                                                <button id ="queueHome2" type="button" class="btn btn-primary hidden-xs hidden-sm"
                                                         ng-click="model.getQueue()"
                                                         data-toggle="modal" data-target=".bs-example-modal-lg">
                                                     Queue
@@ -272,7 +272,7 @@
                                             </li>
                                             <li>
 
-                                                <button type="button" class="btn btn-primary hidden-xs hidden-sm"
+                                                <button id = "addPlaylistHome2" type="button" class="btn btn-primary hidden-xs hidden-sm"
                                                         data-toggle="modal" href="javascript:void(0)"
                                                         onclick="openLoginModal();">
                                                     Add Playlist
@@ -291,7 +291,7 @@
                     </div>
                     <div class="row " style="text-align: center">
                         <div class="col-xs-4 ">
-                            <h3><i class="fa fa-step-backward whiteColor" ng-click="model.prevSong()"
+                            <h3><i id = "previousHome2" class="fa fa-step-backward whiteColor" ng-click="model.prevSong()"
                                    aria-hidden="true"></i></h3>
                         </div>
                         <div class="col-xs-4 ">
@@ -305,7 +305,7 @@
 
                         <div class="col-xs-4 ">
 
-                            <h3><i class="fa fa-step-forward whiteColor" ng-click="model.nextSong()"
+                            <h3><i id = "forwardHome2" class="fa fa-step-forward whiteColor" ng-click="model.nextSong()"
                                    aria-hidden="true"></i></i></h3>
                         </div>
                     </div>
@@ -372,7 +372,7 @@
         <div class="modal-content">
             <div class="modal-header center">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Eagle's View</h4>
+                <h4 class="modal-title">Details</h4>
             </div>
             <div class="modal-content ">
                 <div class="row">
@@ -380,7 +380,7 @@
                         <h5 >ALBUM ART</h5>
                     </div>
                     <div class="col-sm-9">
-                        <img class=" media-middle  "
+                        <img class=" media-middle dailymotionImageSize "
                              src={{model.url}}
                              alt="...">
                     </div>
@@ -391,7 +391,7 @@
                         <h5 >TITLE</h5>
                     </div>
                     <div class="col-sm-9 center">
-                        <h5 class="leftallign">{{model.detail.snippet.title}}</h5>
+                        <h5 class="leftallign">{{model.title}}</h5>
                     </div>
                 </div>
                 <div class="row">

@@ -18,15 +18,14 @@
             });*/
         }
 
-        //not using
         function searchResult(searchText) {
-            var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=SEARCHTEXT&maxResults=50&key=AIzaSyAqvaj33Z1ZRdiWP6vJ9IQ3EswflLRqqbA";
+            var url = "https://api.dailymotion.com/videos?fields=id,thumbnail_url,title,&search=SEARCHTEXT&limit=50";
             url = url.replace("SEARCHTEXT",searchText);
             return $http.get(url);
         }
 
         function snippetData(videoId) {
-            var url = "https://api.dailymotion.com/video/VIDEOID?fields=id,title,thumbnail_url";
+            var url = "https://api.dailymotion.com/video/VIDEOID?fields=id,title,thumbnail_url,description,owner.username,channel.updated_time";
             url = url.replace("VIDEOID",videoId);
             return $http.get(url);
         }

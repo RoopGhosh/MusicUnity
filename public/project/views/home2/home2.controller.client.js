@@ -44,13 +44,30 @@
                      )
 
            }
-        function getVideoIdforDetail(youTubeItem) {
-            vm.detail=youTubeItem;
-            var temp=vm.detail.snippet.description;
-            vm.description=temp.substring(0,temp.length-3);
-            vm.publishTime=vm.detail.snippet.publishedAt.split('T')[0];
-            vm.url=vm.detail.snippet.thumbnails.default.url;
-            vm.channelTitle=vm.detail.snippet.channelTitle;
+        function getVideoIdforDetail(type,obj) {
+            vm.detail=obj;
+                if(type=='youtube'){
+                var temp=vm.detail.snippet.description;
+                vm.title = vm.detail.snippet.title;
+                vm.description=temp.substring(0,temp.length-3);
+                vm.publishTime=vm.detail.snippet.publishedAt.split('T')[0];
+                vm.url=vm.detail.snippet.thumbnails.default.url;
+                vm.channelTitle=vm.detail.snippet.channelTitle;
+            }else{
+                DailyMotionService.snippetData(obj)
+                    .success(
+                        function (response) {
+                            vm.title= response.title;
+                            vm.description=response.description;
+                            vm.publishTime=response["channel.updated_time"];// wtf dailymotion? who uses dot in name?
+                            vm.url=response.thumbnail_url;
+                            vm.channelTitle=response["owner.username"];
+                        },
+                        function (error) {
+                            console.log("something wel wrong while fetching details from DM");
+                        }
+                    )
+            }
             setTimeout(function(){
                 $('#detailsModal').modal('show');
             }, 230);
@@ -63,29 +80,46 @@
                     .then(function (userQueue) {
                         var queue = userQueue.data.queue;
                         for (item in queue) {
-                            YouTubeService.snippetData(queue[item].song)
-                                .success(function (response) {
-                                    pushtoQueue(response.items[0].id);
-                                })
-                                .error(function (error) {
-                                    console.log("while retriving snippet data for queue");
-                                })
+                            pushtoQueue(queue[item]);
                         }
-                    })
+                    });
                 getQueueLoadedStatus = true;
             }
         }
 
         function nextSong() {
+            if(vm.userId=='guest'){
+                $("#forwardHome2").notify("Login to use this feature",
+                    {   className:'warn',
+                        style: 'bootstrap',
+                        autoHideDelay: 2000,
+                        autoHide: true,
+                        position:"top left",
+                        hideAnimation: 'slideUp'});
+                return;
+            }
             ytNextSong();
         }
 
         function prevSong() {
+            if(vm.userId=='guest'){
+                $("#previousHome2").notify("Login to use this feature",
+                    {   className:'warn',
+                        autoHideDelay: 2000,
+                        autoHide: true,
+                        position:"top",
+                        hideAnimation: 'slideUp'});
+                return;
+            }
             ytPrevSong();
         }
 
-        function shareVideoId(videoId) {
-            vm.shareVideoid = videoId;
+        function shareVideoId(type,videoId) {
+            if(type=='youtube'){
+                vm.shareVideoLink= "https://www.youtube.com/watch?v="+videoId;
+            }else{
+                vm.shareVideoLink= "www.dailymotion.com/video/"+videoId;
+            }
         }
 
 
@@ -157,6 +191,15 @@
 
 
         function add2Queue(service,song) {
+            if(vm.userId=='guest'){
+                $.notify("Please login. Queues are registered user only feature.",
+                    {   className:'warn',
+                        style: 'bootstrap',
+                        autoHideDelay: 5000,
+                        autoHide: true,
+                        hideAnimation: 'slideUp'});
+                return;
+            }
             var uid = $routeParams['uid'];
             UserService.addSong2UserQueue(uid,{service:service,song:song})
                 .success(
@@ -262,11 +305,21 @@
             reloadFunc(type,videoId,vm.userId);
         }
         function init() {
+            if(vm.userId=='guest'){
+                //hiding UI STUFF
+                $("#queueHome2").hide();
+                $("#like").hide();
+                $("#dislike").hide();
+                $("#addPlaylistHome2").hide();
+                $("#menu-toggle").hide();
+                return;
+            }
+
             //YouTubeService.initService();
             playPlayList();
             var searchText = $routeParams.search;
             if(searchText!="" && searchText!="undefined" && searchText!=null){
-                console.log(searchText);
+                console.log("searched for "+searchText);
                 search(searchText);
                 vm.searchText = searchText;
             }
@@ -283,19 +336,22 @@
             $('#searchResults').css('visibility','visible')
 
             ////////DM related
+
             vm.dailymotionResults=[];
-            var handleAPIResponse = function(response) {
-                console.log("hello from DM"+response);
-                for(i in response.list){
-                    vm.dailymotionResults.push({type:'Dailymotion',obj:response.list[i]});
-                }
-            };
-            console.log("read this from text box"+ searchText);
-            DM.api('/videos', {
-                search: searchText ,
-                fields: 'title,id,thumbnail_url',
-                limit:50
-            }, handleAPIResponse);
+            DailyMotionService.searchResult(searchText)
+                .success(
+                    function (response) {
+                        for(i in response.list){
+                            vm.dailymotionResults.push({type:'Dailymotion',obj:response.list[i]});
+                        }
+                    }
+                )
+                .error(
+                    function (error) {
+                        console.log("while retriving from dailymotion");
+                    }
+                );
+            //youtube response.
             YouTubeService.searchResult(searchText)
                 .success(function (response){
                     $('#searchResults').show();
@@ -306,11 +362,6 @@
                         }
                     }
                     console.log(vm.youtubeResults.length);
-                    /*vm.song = "https://www.youtube.com/watch?v=fuYR5rPADrA";
-                     vm.songsObj = {'skin':'skins/tunes/skin.css','volume':50,'autoplay':false,
-                     'shuffle':false,'repeat':1,'placement':'bottom','showplaylist':true,
-                     'playlist':[{'title':'','url':'{{model.song}}'},
-                     {'title':'','url':'https://www.youtube.com/watch?v=uuK2BnzKGNU'}]};*/
                 })
                 .error(function (error) {
                     console.log(error);

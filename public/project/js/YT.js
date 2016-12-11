@@ -79,9 +79,8 @@ function cueFromUser(song){
 }
 
 
-function pushtoQueue(song) {
-    var service = 'youtube';
-    videoArray.push({type:service,id:song});
+function pushtoQueue(obj) {
+    videoArray.push({type:obj.service,id:obj.song});
     count++;
 }
 
@@ -135,21 +134,7 @@ function onPlayerStateChange(event,fromDM) {
         if(forced){
             count = videoArray.length-1;
         }
-
-        if (videoArray[count].type == 'dailymotion') {
-            //playnext song at dailymotion
-            console.log("I was here in on player stat for dailymotion");
-            dmPlaySong();
-            updateThumbnails(count);
-            if(count<videoArray.length-1) {
-                updateNextThumbnails(count + 1);
-            }
-            nextButton= false;
-            forced=false;
-            previous= false;
-        } else {
             nextAutoPlay(event,fromDM);
-        }
 }
 ////main resource function with DM
 ////main resource function with DM
@@ -158,9 +143,15 @@ function onPlayerStateChange(event,fromDM) {
 // when video ends`
 function nextAutoPlay(event,fromDM) {
     if((fromDM==true|| event.data === 0 || forced ||nextButton|| previous)&&(previous||count<videoArray.length)){
+        if (videoArray[count].type == 'dailymotion') {
+            //playnext song at dailymotion
+            console.log("I was here in on player stat for dailymotion");
+            dmPlaySong();
+        }else {
             youtube.stopVideo();
-            youtube.loadVideoById(videoArray[count].id, 0,"large");
+            youtube.loadVideoById(videoArray[count].id, 0, "large");
             youtube.playVideo();
+        }
             nextButton= false;
             forced=false;
             previous= false;
@@ -169,10 +160,18 @@ function nextAutoPlay(event,fromDM) {
             .done(
                 function (response) {
                     console.log("done updating thumbnail")
-                    var recent = {
-                        title : response.items[0].snippet.title,
-                        url :response.items[0].snippet.thumbnails.default.url,
-                        videoId :response.items[0].id
+                    if(videoArray[count]=='youtube') {
+                        var recent = {
+                            title: response.items[0].snippet.title,
+                            url: response.items[0].snippet.thumbnails.default.url,
+                            videoId: response.items[0].id
+                        }
+                    }else{
+                        var recent = {
+                            title: response.title,
+                            url: response.thumbnail_url,
+                            videoId: response.id
+                        }
                     }
                     isLike(recent.title);
                     angular.injector(['ng', 'MusicUnity']).invoke(function (UserService) {
