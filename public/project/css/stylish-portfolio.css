@@ -1348,6 +1348,8 @@ li.active a, li.active a:hover {
 }
 .sizeIncSidebar{
     font-size: 26px;
+}
+
 
 .big-guest{
     background-color: #ffc816;
@@ -1367,7 +1369,6 @@ li.active a, li.active a:hover {
     color: rgba(255, 255, 255, 0.95);
 }
 
-}
 .logoHeight{
     height: 93px;
     margin-top: -72px;
