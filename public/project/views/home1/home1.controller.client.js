@@ -6,22 +6,22 @@
     function Home1Controller($routeParams,UserService,LikeService,$http,$location,CommentService) {
         var vm = this;
         vm.userid = $routeParams['uid'];
-        //vm.users=[{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},{username:"amardeep0070"},];
-        vm.FollowerStatus=[];//{username,comment,imageSrc}
+         vm.FollowerStatus=[];//{username,comment,imageSrc}
         vm.search = search;
         vm.followUser=followUser;
         vm.unfollowUser=unfollowUser;
         vm.feeds="";
-        //vm.status=[{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""},{stauts:"am awesme",url:""}]
-        vm.allUser=[];//[user]
-        //all user {user,following:true}
-        //vm.FollowingUser = [] remove this
+        vm.allUser=[];
         vm.FollowerrecentSong = []; //[{song,username]{song:title,url}
         vm.user; // this is the current user object
-
+        vm.followingProfile=followingProfile;
         //merge mystatus and followers status
 
         vm.createMyComment = createMyComment;
+
+        function followingProfile(followingUser) {
+            $location.url("/user/"+vm.userid+"/profile?followerProfile="+followingUser);
+        }
 
         function createMyComment (text) {
             vm.searchText="";

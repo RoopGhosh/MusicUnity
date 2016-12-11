@@ -188,8 +188,6 @@
                 )
         }
 
-
-
         function add2Queue(service,song) {
             if(vm.userId=='guest'){
                 $.notify("Please login. Queues are registered user only feature.",
@@ -305,6 +303,7 @@
             reloadFunc(type,videoId,vm.userId);
         }
         function init() {
+            $("#backButtonParentDiv").css("display","block");
             if(vm.userId=='guest'){
                 //hiding UI STUFF
                 $("#queueHome2").hide();

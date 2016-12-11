@@ -40,7 +40,7 @@
             <li><a href="#"><i class="fa fa-facebook"></i></a>
             </li>
             <li>
-                <a href="javascript:void(0)" data-toggle="modal"
+                <a id= 'updateProfile' href="javascript:void(0)" data-toggle="modal"
                    onclick="openLoginModal();"><i class=" abc fa fa-pencil" aria-hidden="true"></i></a>
                 <div class="modal fade login" id="loginModal">
                     <div class="modal-dialog login animated">
@@ -126,7 +126,7 @@
 
             </li>
             <li>
-                <a class="btn big-register" href="#/user/{{model._id}}/home2">Discover Music</a>
+                <a id = "home2Redirect" class="btn big-register" href="#/user/{{model._id}}/home2">Discover Music</a>
 
             </li>
         </ul>
@@ -166,7 +166,7 @@
             </div>
 
             <h3 class="center whiteColor visible-xs">People I follow</h3>
-            <div class="col-sm-6  Content ">
+            <div id = 'peopleIFollow' class="col-sm-6  Content ">
                 <div ng-repeat="user in model.following">
                     <div class="row ">
                         <div class="col-xs-5">
@@ -202,15 +202,15 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="row">
+                            <div class="row"ng-repeat="playObj in model.playlist">
                                 <div class="col-xs-6">
-                            <div ng-repeat="playObj in model.playlist">
+                            <div >
                                 <h4 class="whiteColor">
                                     {{playObj.name}}
                                 </h4>
                             </div>
                             </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-6" ng-if="!playObj.private|| !model.guest">
                                     <h4 class="whiteColor pull-right">
                                         <i class="fa fa-trash whiteColor" ng-click="model.deletePlayList(playObj._id)"></i>
                                         <i class="fa fa-play whiteColor" ng-click="model.replaceQwithPls(playObj._id)"></i>

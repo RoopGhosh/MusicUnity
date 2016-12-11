@@ -45,6 +45,15 @@
         }
         function init() {
             $("#backButtonParentDiv").css("display","block");
+            vm.guest = false;
+            if($routeParams.followingProfile!=null){
+                userid = $routeParams.followingProfile;
+                vm.guest = true;
+                $("#updateProfile").hide();
+                $("#home2Redirect").hide();
+                $("#peopleIFollow").hide();
+                $(".fa-trash ").hide();
+            }
             UserService.findUserById(userid)
                 .success(
                     function (response) {
