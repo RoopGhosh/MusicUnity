@@ -51,10 +51,15 @@
         }
 
         function followUser(followUser,index) {  //userId i need
+           // followUser.following=false;
             var follow='#follow'+ index;
-            $(follow).attr('class','hide,followIconHeight');
+            $(follow).attr('class','hide followIconHeight');
+            var follow1='#follow1'+ index;
+            $(follow1).attr('class','hide followIconHeight');
             var unfollow='#unfollow'+index
-            $(unfollow).attr('class','show,followIconHeight')
+            $(unfollow).attr('class','show followIconHeight')
+            var unfollow1='#unfollow1'+index
+            $(unfollow1).attr('class','show followIconHeight')
             vm.user.following.push(followUser.user._id);
 
             var found = vm.user.following.indexOf(vm.user._id);
@@ -74,11 +79,15 @@
         }
 
         function unfollowUser (followUser,index) {
+           // followUser.following=true;
+            var follow1='#follow1'+ index;
+            $(follow1).attr('class','show followIconHeight');
             var follow='#follow'+ index;
-            $(follow).attr('class','show,followIconHeight');
+            $(follow).attr('class','show followIconHeight');
             var unfollow='#unfollow'+index;
-            $(unfollow).attr('class','hide,followIconHeight');
-
+             $(unfollow).attr('class','hide followIconHeight');
+            var unfollow1='#unfollow1'+index
+            $(unfollow1).attr('class','hide followIconHeight')
             var found = vm.user.following.indexOf(vm.user._id);
             if(found!=-1){
                 vm.user.following.splice(found,1);

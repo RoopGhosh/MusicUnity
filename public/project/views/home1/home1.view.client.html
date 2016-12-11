@@ -14,25 +14,26 @@
 <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-        <li class="sidebar-brand">
-            <a href="#top" onclick=$("#menu-close").click();>Music Unity</a>
+        <li class="sidebar-brand ">
+            <a href="#top" onclick=$("#menu-close").click();>
+                <div class="container ">
+                    <img class="logoHeight" src="img/musisUnity.png">
+                </div>
+            </a>
         </li>
-        <li>
-            <a href="#top" onclick=$("#menu-close").click();>Home</a>
+        <li class="sizeIncSidebar moveSidebarElementsDown">
+            <a href="#top" onclick=$("#menu-close").click();>Logout</a>
         </li>
-        <li>
-            <a href="#about" onclick=$("#menu-close").click();>Whats Music Unity</a>
+        <li class="sizeIncSidebar">
+            <a href="#/user/{{model.userid}}/profile" onclick=$("#menu-close").click();>My Profile</a>
         </li>
-        <li>
-            <a href="#services" onclick=$("#menu-close").click();>My Services</a>
-        </li>
-        <li>
-            <a href="#portfolio" onclick=$("#menu-close").click();>My Recent Music</a>
-        </li>
-        <li>
-            <a href="#team" onclick=$("#menu-close").click();>My Playlists</a>
+        <li class="sizeIncSidebar">
+            <a href="#follow" onclick=$("#menu-close").click();>Feeds</a>
         </li>
 
+        <li class="sizeIncSidebar">
+            <a href="#follow" onclick=$("#menu-close").click();>Discover Users</a>
+        </li>
     </ul>
 </nav>
 
@@ -68,13 +69,13 @@
             <div class="col-sm-6">
                 <div class="row">
                     <div class="col-xs-7">
-                    <textarea rows="2" id="statusBar" ng-model=model.searchText
+                    <textarea rows="2" id="statusBar" ng-model=model.updateTest
                               class="form-control leftallign "
                               placeholder="Update Status"></textarea>
                     </div>
                     <div class="col-xs-5 ">
                         <a id="updateStatus" class="btn  btn-block searchbarcolor statusUpdateButton "
-                        ng-click="model.createMyComment(model.searchText)">Update</a>
+                        ng-click="model.createMyComment(model.updateTest)">Update</a>
                     </div>
                 </div>
             </div>
@@ -128,7 +129,7 @@
                 <h3>Feeds</h3>
             </div>
         </div>
-
+<section id="follow" class="nopadding">
         <!--User Follow Pane-->
         <div class="row ">
             <div class="col-sm-6 Content ">
@@ -147,9 +148,14 @@
                         </div>
                         <div class="col-xs-4">
                             <div ng-switch-when="false">
-                                <h6 id="follow{{$index}}" class="show followIconHeight">
+                                <h6 id="follow{{$index}}" class=" followIconHeight">
                                     <a href="" class=" whiteColor" ng-click="model.followUser(user,$index)">
                                         <i class="fa fa-plus " aria-hidden="true"></i>
+                                    </a>
+                                </h6>
+                                <h6 id="unfollow1{{$index}}" class="followIconHeight hide">
+                                    <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)">
+                                        <i class="fa fa-check statusUpdateButton" aria-hidden="true"></i>
                                     </a>
                                 </h6>
                             </div>
@@ -157,6 +163,11 @@
                                 <h6 id="unfollow{{$index}}" class="followIconHeight">
                                     <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)">
                                         <i class="fa fa-check statusUpdateButton" aria-hidden="true"></i>
+                                    </a>
+                                </h6>
+                                <h6 id="follow1{{$index}}" class=" followIconHeight hide">
+                                    <a href="" class=" whiteColor" ng-click="model.followUser(user,$index)">
+                                        <i class="fa fa-plus " aria-hidden="true"></i>
                                     </a>
                                 </h6>
                             </div>
@@ -191,7 +202,7 @@
 
         </div>
     </div>
-
+    </section>
 </body>
 
 

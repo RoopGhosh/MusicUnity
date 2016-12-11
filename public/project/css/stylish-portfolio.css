@@ -74,6 +74,7 @@ hr.small {
     height: 100%;
     transform: translateX(250px);
     overflow-y: auto;
+    overflow-x: hidden;
     background: black;
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
@@ -1528,4 +1529,7 @@ li.active a, li.active a:hover {
     HEIGHT: 75PX;
     margin-top: 5px;
     width: 122px;
+}
+.nopadding{
+    padding: 0px;
 }
