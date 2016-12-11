@@ -328,7 +328,7 @@ h4,
 h5,
 h6 {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-transform: uppercase;
+
     font-weight: 700;
 }
 .img-centered {
@@ -1532,4 +1532,18 @@ li.active a, li.active a:hover {
 }
 .nopadding{
     padding: 0px;
+}
+.unfollow{
+   border-radius: 12px;
+    background-color: #00A4E4;
+}
+.unfollow:hover{
+    background-color: #449d44;
+    color: white;
+}
+.size21px{
+    font-size: 21px;
+}
+.blueColor{
+    color: #00bbff
 }

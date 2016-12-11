@@ -92,7 +92,7 @@
                             <img class=" img-circle heightFollowImage " src={{status.url}}>
                         </div>
                         <div class="col-xs-10 col-sm-10">
-                            <h5 class="whiteColor text-justify">{{status.username}} says {{status.status}}</h5>
+                            <p class="whiteColor text-justify size21px"><b class="blueColor">@{{status.username}}</b> <i>says</i> {{status.status}}</p>
                         </div>
                     </div>
 
@@ -148,28 +148,36 @@
                         </div>
                         <div class="col-xs-4">
                             <div ng-switch-when="false">
-                                <h6 id="follow{{$index}}" class=" followIconHeight">
+                                <h5 id="follow{{$index}}" class=" followIconHeight">
                                     <a href="" class=" whiteColor" ng-click="model.followUser(user,$index)">
-                                        <i class="fa fa-plus " aria-hidden="true"></i>
+                                        <button class="btn-success" style="border-radius: 12px">
+                                            <i class="fa fa-plus statusUpdateButton" aria-hidden="true"></i>Follow
+                                        </button>
                                     </a>
-                                </h6>
-                                <h6 id="unfollow1{{$index}}" class="followIconHeight hide">
-                                    <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)">
-                                        <i class="fa fa-check statusUpdateButton" aria-hidden="true"></i>
+                                </h5>
+                                <h5 id="unfollow1{{$index}}" class="followIconHeight hide">
+                                    <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)" >
+                                        <button class="" style="border-radius: 12px; background-color: #00A4E4;" >
+                                            <i class="fa fa-check statusUpdateButton" aria-hidden="true"></i>Following
+                                        </button>
                                     </a>
-                                </h6>
+                                </h5>
                             </div>
                             <div ng-switch-when="true">
-                                <h6 id="unfollow{{$index}}" class="followIconHeight">
-                                    <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)">
-                                        <i class="fa fa-check statusUpdateButton" aria-hidden="true"></i>
+                                <h5 id="unfollow{{$index}}" class="followIconHeight">
+                                    <a href="" class="whiteColor" ng-click="model.unfollowUser(user,$index)" >
+                                        <button class="unfollow" >
+                                            <i class="fa fa-check statusUpdateButton" aria-hidden="true"></i>Following
+                                        </button>
                                     </a>
-                                </h6>
-                                <h6 id="follow1{{$index}}" class=" followIconHeight hide">
+                                </h5>
+                                <h5 id="follow1{{$index}}" class=" followIconHeight hide">
                                     <a href="" class=" whiteColor" ng-click="model.followUser(user,$index)">
-                                        <i class="fa fa-plus " aria-hidden="true"></i>
+                                        <button class="btn-success" style="border-radius: 12px">
+                                            <i class="fa fa-plus statusUpdateButton" aria-hidden="true"></i>Follow
+                                        </button>
                                     </a>
-                                </h6>
+                                </h5>
                             </div>
                         </div>
                     </div>
@@ -188,7 +196,7 @@
                             <img class=" img-circle heightFollowImage " src="{{song.song.url}}">
                         </div>
                         <div class="col-xs-10 col-sm-10">
-                            <h6 class="whiteColor text-justify">{{song.username}} listened to {{song.song.title}}</h6>
+                            <p class="whiteColor text-justify size21px"><b class="blueColor">@{{song.username}}</b> <i>listened to</i> {{song.song.title}}</p>
                         </div>
                     </div>
 
