@@ -15,6 +15,10 @@
         vm.login=login;
         vm.register=register;
 
+        function init(){
+            $("#backButtonParentDiv").css("display","none");
+        }
+        init();
         function register(newUser) {
             var usernameAlreadyPresent=UserService.findUserByUsername(newUser.username);
             usernameAlreadyPresent
@@ -45,7 +49,9 @@
             UserService.findUserByCredentials(returningUser.loginUserName,returningUser.loginPassword)
                 .success(function (user) {
                     if(user!='0'){
-                        $location.url("/user/"+user._id+"/profile");
+                        $("div").remove(".modal-backdrop");
+                        $("#backButtonParentDiv").css("display","block");
+                        $location.url("/user/"+user._id+"/home1");
 
                     }
                     else{

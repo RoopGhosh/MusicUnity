@@ -121,7 +121,7 @@
                         YouTubeService.snippetData(queue[item].song)
                             .success(function (response) {
                                 var obj = {
-                                    thumbnail : response.items[0].snippet.thumbnails.default,
+                                    thumbnail : response.items[0].snippet.thumbnails.default.url,
                                     title : response.items[0].snippet.title,
                                     videoId:response.items[0].id
                                 }
@@ -156,9 +156,9 @@
 
 
 
-        function add2Queue(song) {
+        function add2Queue(service,song) {
             var uid = $routeParams['uid'];
-            UserService.addSong2UserQueue(uid,{service:'youtube',song:song})
+            UserService.addSong2UserQueue(uid,{service:service,song:song})
                 .success(
                     function (response) {
                         vm.queue = response;//response;
@@ -247,12 +247,19 @@
             $('#searchResults').css('visibility','hidden');
             $('#searchtext').val(null);
         }
-        function getSongName (songName,artWork,videoId) {
+        function getSongName (type,songName,artWork,videoId) {
+            if(type=='generate'){
+                if(videoId.charAt(0)=='x'){
+                    type='dailymotion';
+                }else{
+                    type = 'youtube';
+                }
+            }
             vm.selectedSong=songName
             vm.setArtWork=artWork;
             vm.videoId=videoId;
             $('#play').attr('class','fa fa-pause whiteColor');
-            reloadFunc(videoId,vm.userId);
+            reloadFunc(type,videoId,vm.userId);
         }
         function init() {
             //YouTubeService.initService();
@@ -274,6 +281,21 @@
 
         function search(searchText) {
             $('#searchResults').css('visibility','visible')
+
+            ////////DM related
+            vm.dailymotionResults=[];
+            var handleAPIResponse = function(response) {
+                console.log("hello from DM"+response);
+                for(i in response.list){
+                    vm.dailymotionResults.push({type:'Dailymotion',obj:response.list[i]});
+                }
+            };
+            console.log("read this from text box"+ searchText);
+            DM.api('/videos', {
+                search: searchText ,
+                fields: 'title,id,thumbnail_url',
+                limit:50
+            }, handleAPIResponse);
             YouTubeService.searchResult(searchText)
                 .success(function (response){
                     $('#searchResults').show();
@@ -295,20 +317,6 @@
                 });
 
 
-            ////////DM related
-            vm.dailymotionResults=[];
-            var handleAPIResponse = function(response) {
-                console.log("hello from DM"+response);
-                for(i in response.list){
-                    vm.dailymotionResults.push({type:'Dailymotion',obj:response.list[i]});
-                }
-            };
-            console.log("read this from text box"+ searchText);
-            DM.api('/videos', {
-                search: searchText ,
-                fields: 'title,id,thumbnail_url',
-                limit:50
-            }, handleAPIResponse);
         }
     }
 })();

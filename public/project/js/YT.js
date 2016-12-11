@@ -33,16 +33,16 @@ function initYT(userId) {
         uid  = userId;
     }
 }
-function reloadFunc(videoId,userId) {
+function reloadFunc(type,videoId,userId) {
    // videoID[1]= 'N21u1bMhHyQ';
-
-    var service= 'youtube'
-    videoArray.push({type:service,id:videoId});
+    videoArray.push({type:type,id:videoId});
     forced = true;
+    pausePlayer();
     onPlayerStateChange('onStateChange');
 }
 
 function ytNextSong() {
+    pausePlayer();
     nextButton=true;
     if(videoArray[count].type=='youtube'){
         youtube.pauseVideo();
@@ -53,6 +53,7 @@ function ytNextSong() {
 }
 
 function ytPrevSong() {
+    pausePlayer();
     previous = true;
     if(videoArray[count].type=='youtube'){
         youtube.pauseVideo();
@@ -63,11 +64,13 @@ function ytPrevSong() {
 }
 
 function pausePlayer() {
-    if(videoArray[count].type=='youtube'){
+    /*if(videoArray[count].type=='youtube'){
         youtube.pauseVideo();
     }else{
         dmPlaySong('pause');
-    }
+    }*/
+    youtube.pauseVideo();
+    dmPlaySong('pause');
 }
 
 function cueFromUser(song){
@@ -138,7 +141,9 @@ function onPlayerStateChange(event,fromDM) {
             console.log("I was here in on player stat for dailymotion");
             dmPlaySong();
             updateThumbnails(count);
-            updateNextThumbnails(count+1);
+            if(count<videoArray.length-1) {
+                updateNextThumbnails(count + 1);
+            }
             nextButton= false;
             forced=false;
             previous= false;
@@ -150,7 +155,7 @@ function onPlayerStateChange(event,fromDM) {
 ////main resource function with DM
 ////main resource function with DM
 
-// when video ends
+// when video ends`
 function nextAutoPlay(event,fromDM) {
     if((fromDM==true|| event.data === 0 || forced ||nextButton|| previous)&&(previous||count<videoArray.length)){
             youtube.stopVideo();

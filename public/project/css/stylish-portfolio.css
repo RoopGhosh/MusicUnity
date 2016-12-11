@@ -1489,14 +1489,14 @@ li.active a, li.active a:hover {
 }
 
 
-.box {
+.backBox {
     margin: 0px auto;
     background: #222222;
     width: 50px;
     height: 50px;
 }
 
-.box:hover {
+.backBox:hover {
     -webkit-transform: rotate(360deg);
     background: rgba(0, 164, 228, 0.91);
     border-radius: 50%;
@@ -1523,4 +1523,9 @@ li.active a, li.active a:hover {
 #backButtonDiv{
     padding-top: 10px;
     padding-left: 10px;
+}
+.dailymotionImageSize{
+    HEIGHT: 75PX;
+    margin-top: 5px;
+    width: 122px;
 }

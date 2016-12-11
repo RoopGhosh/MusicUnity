@@ -44,7 +44,7 @@
                 })
         }
         function init() {
-
+            $("#backButtonParentDiv").css("display","block");
             UserService.findUserById(userid)
                 .success(
                     function (response) {

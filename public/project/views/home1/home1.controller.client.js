@@ -90,6 +90,8 @@
             UserService.updateUser(vm.user._id,vm.user);
         }
         function init() {
+            $("body").removeClass("modal-open");
+            $("#backButtonParentDiv").css("display","block");
             getFollowerCommentsAndRecentSongList();
             getUserList();
 

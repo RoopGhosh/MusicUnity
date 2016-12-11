@@ -64,7 +64,7 @@ module.exports = function (app,model) {
                 function (user) {
                     var queue = user.queue;
                     for(item in queue){
-                        if(queue[item]==song){
+                        if(queue[item].song==song){
                             queue.splice(item,1);
                         }
                     }
