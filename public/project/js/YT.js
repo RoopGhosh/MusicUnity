@@ -1,25 +1,5 @@
 
-var videoArray = [
-    {
-        type:'youtube',
-        id:'jDdKtWnFXFo'
-    },
-    {
-        type:'dailymotion',
-        id:'x3fzlp9'
-    },
-    {
-        type:'youtube',
-        id:'eXJFbsQBvLw'
-    },
-    {
-        type:'dailymotion',
-        id:'x54fw5y'
-    },{
-        type:'youtube',
-        id:'crLAqkUE-So'
-    }
-];
+var videoArray = [];
 var forced = false;
 var previous = false;
 var nextButton=false;

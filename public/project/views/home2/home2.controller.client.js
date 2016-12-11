@@ -313,7 +313,6 @@
                 $("#menu-toggle").hide();
                 return;
             }
-
             //YouTubeService.initService();
             playPlayList();
             var searchText = $routeParams.search;
@@ -321,9 +320,6 @@
                 console.log("searched for "+searchText);
                 search(searchText);
                 vm.searchText = searchText;
-            }
-            if(YT.loaded ){
-                onYouTubePlayerAPIReady();
             }
             initYT(vm.userId);
         }

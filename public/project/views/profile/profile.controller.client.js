@@ -47,29 +47,48 @@
             $("#backButtonParentDiv").css("display","block");
             vm.guest = false;
             if($routeParams.followingProfile!=null){
-                userid = $routeParams.followingProfile;
+                var username = $routeParams.followingProfile;
+                UserService.findUserByUsername(username)
+                    .success(function (response) {
+                        userid = response._id;
+                        UserService.findUserById(userid)
+                            .success(
+                                function (response) {
+                                    vm.user = response;
+                                }
+                            )
+                            .error(function (error) {
+                                console.log(error+"at profile controller inti");
+                            })
+                        recentSongsByUser(userid);
+                        playlistByUser(userid);
+                        commentsByUser(userid);
+                        //commentsForUser(userid);
+                        getUserFollowing(userid);
+                        likeByUser(userid);
+                    })
                 vm.guest = true;
                 $("#updateProfile").hide();
                 $("#home2Redirect").hide();
                 $("#peopleIFollow").hide();
                 $(".fa-trash ").hide();
+            }else{
+                UserService.findUserById(userid)
+                    .success(
+                        function (response) {
+                            vm.user = response;
+                        }
+                    )
+                    .error(function (error) {
+                        console.log(error+"at profile controller inti");
+                    })
+                recentSongsByUser(userid);
+                playlistByUser(userid);
+                commentsByUser(userid);
+                //commentsForUser(userid);
+                getUserFollowing(userid);
+                likeByUser(userid);
             }
-            UserService.findUserById(userid)
-                .success(
-                    function (response) {
-                        vm.user = response;
-                    }
-                )
-                .error(function (error) {
-                    console.log(error+"at profile controller inti");
-                })
-
-             recentSongsByUser(userid);
-            playlistByUser(userid);
-           commentsByUser(userid);
-            //commentsForUser(userid);
-            getUserFollowing(userid);
-             likeByUser(userid);
         }
         init();
 
