@@ -16,8 +16,10 @@
         vm.updateUser=updateUser;
         vm.deletePlayList = deletePlayList;
         vm.replaceQwithPls=replaceQwithPls
-
-
+        vm.followingProfile=followingProfile;
+        function followingProfile(followingUser) {
+            $location.url("/user/"+vm._id+"/profile?followerProfile="+followingUser);
+        }
         function replaceQwithPls(pid) {
             PlaylistService.findPlaylistbyId(userid,pid)
                 .success(

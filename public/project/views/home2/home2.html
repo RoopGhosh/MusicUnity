@@ -14,7 +14,10 @@
             <a href="#" onclick=$("#menu-close").click();>Logout</a>
         </li>
         <li class="sizeIncSidebar">
-            <a href="#about" onclick=$("#menu-close").click();>Search Music</a>
+            <a href="#/user/{{model.userId}}/profile" onclick=$("#menu-close").click();>My Profile</a>
+        </li>
+        <li class="sizeIncSidebar">
+            <a href="#/user/{{model.userId}}/home1" onclick=$("#menu-close").click();>Socailize</a>
         </li>
         <li class="sizeIncSidebar">
             <a data-toggle="modal" href="javascript:void(0)"
@@ -52,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <div id="searchResults" class="ContentHome2 container" style="visibility: hidden">
+            <div id="searchResults" class="ContentHome2 container searchResultsMargin" style="visibility: hidden">
                 <div class="container " >
                     <div class="row">
                         <div class="col-sm-6" >
@@ -149,7 +152,7 @@
                                         </li>
                                     </ul>
                                     <a href=""
-                                       ng-click="model.getSongName(dm.obj.title,
+                                       ng-click="model.getSongName('dailymotion',dm.obj.title,
                                        dm.obj.thumbnail_url,
                                        dm.obj.id)">
                                         <h5 class="whiteColor">{{dm.obj.title}}</h5>
@@ -236,11 +239,11 @@
                     <div class="container-fluid">
                         <div class="row " style="text-align: center">
                             <div id="prev" class="col-sm-2 hidden-xs heightPlayerImage">
-                                <img class="heightPlayerImage noBorder" src={{model.setArtWork}} alt="...">
+                                <img class="heightPlayerImage noBorder" src={{model.setArtWork}} alt="PREV">
                             </div>
                             <div class="col-xs-12 col-sm-8">
                                 <div class="row">
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-3">
                                         <ul class="list-inline">
                                             <li>
                                                 <button id ="queueHome2" type="button" class="btn btn-primary hidden-xs hidden-sm"
@@ -258,12 +261,12 @@
 
 
                                     </div>
-                                    <div class="col-xs-4 ">
-                                        <marquee class="whiteColor" behavior="scroll" direction="left"><h5
+                                    <div class="col-xs-6 ">
+                                        <marquee class="whiteColor" behavior="scroll" direction="left"><h4
                                                 id="currentTrack">
-                                            {{model.selectedSong}}</h5></marquee>
+                                            {{model.selectedSong}}</h4></marquee>
                                     </div>
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-3">
                                         <ul class="list-inline">
                                             <li>
                                                 <h4><i id="dislike" class="fa fa-thumbs-o-down whiteColor"

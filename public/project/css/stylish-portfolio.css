@@ -1092,6 +1092,7 @@ li.active a, li.active a:hover {
 }
 .coverImage{
     background-image: url("http://monkeyviral.com/img/background.png");
+    background-repeat-y: no-repeat;
 }
 .noBackGround{
     background: white;
@@ -1378,7 +1379,7 @@ li.active a, li.active a:hover {
 
 }
 .team-member-sizeAdjust{
-    max-width: 350px;
+    width: 350px;
 }
 .FixedHeightContainer
 {
@@ -1491,6 +1492,7 @@ li.active a, li.active a:hover {
 }
 .heightFollowImage{
     height: 54px;
+    max-width: 72px;
 
 }
 .borderRound{
@@ -1503,6 +1505,7 @@ li.active a, li.active a:hover {
 
 .followIconHeight{
     margin-top: 24px;
+
 }
 .twitterHeignt{
     height: 260px;
@@ -1565,4 +1568,49 @@ li.active a, li.active a:hover {
 }
 .blueColor{
     color: #00bbff
+}
+.searchResultsMargin{
+    margin-top: 30px;
+}
+.padding10px{
+    padding: 10px;
+}
+.coverImageEq{
+    /*background-image: url("http://orig03.deviantart.net/8abd/f/2012/024/1/1/rainbow_graphic_equalizer_by_evolventity-d4ngnfi.png");*/
+    background-image: url("http://www.mytinyphone.com/uploads/users/jazziechik1/583614.jpg");
+
+}
+.heightFollowImageBig{
+     height: 72px;
+     max-width: 72px;
+
+ }
+.redColor{
+    color: gold;
+    border-color: gold;
+    font-size: 30px;
+}
+.fa.fa-star{
+    font-size: 47px;
+}
+.size40px{
+    font-size: 30px;
+}
+.fa.fa-play.color{
+    font-size: 40px;
+    color: deepskyblue;
+    padding: 10px;
+}
+.fa.fa-close.color{
+    font-size: 40px;
+    padding: 20px;
+
+}
+.fa.fa-close.color:hover{
+    color: red;;
+
+}
+.peopleIfillow{
+    height: 59px;
+    width: 441px;
 }
