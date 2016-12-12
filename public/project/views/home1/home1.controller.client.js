@@ -99,11 +99,24 @@
             UserService.updateUser(vm.user._id,vm.user);
         }
         function init() {
+            if(searchTextInHistory!=null || searchTextInHistory!=""){
+                vm.searchText = searchTextInHistory;
+            }
+            UserService.findUserById(vm.userid)
+                .success(function (user) {
+                    vm.user = user;
+                    getFollowerCommentsAndRecentSongList();
+                    getUserList();
+                })
+                .error(function (error) {
+                console.error("error while retriving user from userservice");
+                })
             $("body").removeClass("modal-open");
+            $("body").css("background-color","#222");
             $("#backButtonParentDiv").css("display","block");
-            pausePlayer();
-            getFollowerCommentsAndRecentSongList();
-            getUserList();
+            if(youtube!=null) {
+                pausePlayer();
+            }
 
         }
         init();
@@ -142,9 +155,7 @@
         }
 
         function getFollowerCommentsAndRecentSongList(){
-            UserService.findUserById(vm.userid)
-                .success(function (user) {
-                    vm.user = user;
+                    user = vm.user;
                     vm.FollowingUser = user.following;
                     vm.FollowingUser.push(user._id); //for retriving a users own comments;
                     for(var i in user.following){
@@ -173,13 +184,6 @@
                                 }
                             )
                     }
-
-                })
-                .error(
-                    function (error) {
-                        console.error("error while retriving user from userservice");
-                    }
-                )
         }
 
 

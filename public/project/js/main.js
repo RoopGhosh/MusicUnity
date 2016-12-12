@@ -75,3 +75,5 @@ $('.map').on('click', onMapClickHandler);
 function goBack() {
     window.history.back();
 }
+
+var searchTextInHistory;

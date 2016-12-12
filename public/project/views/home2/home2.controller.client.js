@@ -82,6 +82,7 @@
                         for (item in queue) {
                             pushtoQueue(queue[item]);
                         }
+                        count=0;
                     });
                 getQueueLoadedStatus = true;
             }
@@ -328,6 +329,7 @@
 
 
         function search(searchText) {
+            searchTextInHistory = searchText;
             $('#searchResults').css('visibility','visible')
 
             ////////DM related
