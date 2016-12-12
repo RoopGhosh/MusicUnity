@@ -18,6 +18,7 @@ module.exports = function (app,model) {
     var passport      = require('passport');
     var LocalStrategy    = require('passport-local').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+    var GithubStrategy = require('passport-github2').Strategy;
     var cookieParser  = require('cookie-parser');
     var session       = require('express-session');
     app.use(session({
@@ -49,6 +50,7 @@ module.exports = function (app,model) {
 
     app.post  ('/api/login', passport.authenticate('local'), login);
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email' ] }));
     app.post("/api/checkLogin",checkLogin);
     app.post("/api/logout",logout);
     app.get ('/api/loggedin', loggedin);
@@ -59,13 +61,28 @@ module.exports = function (app,model) {
             failureRedirect: '/project/#/home'
         }));
 
+    app.get("/auth/github/callback",
+        passport.authenticate('github', {
+            successRedirect: '/project/#/user/redirect',
+            failureRedirect: '/project/#/home'
+        }));
+
     var googleConfig = {
         clientID     : process.env.clientID||'386397546436-p05skr626rqua6lm3ht7la1ibniecebu.apps.googleusercontent.com',
         clientSecret : process.env.clientSecret||'wYd4R_LuiBQxGq-hgxrYkr_J',
         callbackURL  : process.env.callbackURL||'http://localhost:5000/auth/google/callback'
     };
 
+    var githubConfig = {
+        clientID: "f7e8722a314d7b02bb91",
+        clientSecret: 'cab68fddbf2537d042c8d5d02a5adaaba8355af1',
+        callbackURL: "http://localhost:5000/auth/github/callback"
+    };
+
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+    passport.use(new GithubStrategy(githubConfig,githubStrategy));
+
 
     function findCurrentUser(req,res) {
         var params = req.params;
@@ -79,9 +96,46 @@ module.exports = function (app,model) {
         }
     }
 
+    function githubStrategy(accessToken, refreshToken, profile, done) {
+        model.userModel
+            .findUserByThirdPartyId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var newGoogleUser = {
+                            username:  profile.username,
+                            firstName: profile.displayName,
+                            lastName:  profile.displayName,
+                            email:     profile.email,
+                            gender: profile.gender,
+                            url:profile._json.avatar_url,
+                            thirdParty: {
+                                id:    profile.id,
+                                token: profile.provider
+                            }
+                        };
+                        return model.userModel.createUser(newGoogleUser)
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+        }
+
     function googleStrategy(token, refreshToken, profile, done) {
         model.userModel
-            .findUserByGoogleId(profile.id)
+            .findUserByThirdPartyId(profile.id)
             .then(
                 function(user) {
                     if(user) {
@@ -96,7 +150,7 @@ module.exports = function (app,model) {
                             email:     email,
                             gender: profile.gender,
                             url:profile.photos[0].value,
-                            google: {
+                            thirdParty: {
                                 id:    profile.id,
                                 token: token
                             }

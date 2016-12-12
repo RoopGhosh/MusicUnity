@@ -13,13 +13,13 @@ module.exports = function () {
         updateSongQueue:updateSongQueue,
         addsong2Recent:addsong2Recent,
         getAllUser:getAllUser,
-        findUserByGoogleId:findUserByGoogleId
+        findUserByThirdPartyId:findUserByThirdPartyId
     };
     return api;
 
 
-    function findUserByGoogleId(googleId) {
-        return UserModel.findOne({'google.id': googleId});
+    function findUserByThirdPartyId(googleId) {
+        return UserModel.findOne({'thirdParty.id': googleId});
 
     }
 

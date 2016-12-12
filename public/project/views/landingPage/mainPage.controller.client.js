@@ -63,6 +63,7 @@
                             }
                         },
                         function (error) {
+                            shakeModal();
                             console.log("something bad happened while loging you in.")
                         }
                     );

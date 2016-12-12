@@ -7,7 +7,7 @@ module.exports = function () {
         firstName: String,
         lastName: String,
         email: String,
-        google: {
+        thirdParty: {     //saving github or google or anythign else here itself..
             id:    String,
             token: String,
         },
