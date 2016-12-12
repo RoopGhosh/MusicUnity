@@ -27,10 +27,7 @@
             .when("/user/:uid/profile", {
             templateUrl: "/project/views/profile/profile.view.client.html",
             controller:"ProfileController",
-            controllerAs :"model",
-            resolve:{
-                checkLogin:checkLogin
-            }
+            controllerAs :"model"
             })
             .when("/user/:uid/home2", {
                 templateUrl: "/project/views/home2/home2.html",
