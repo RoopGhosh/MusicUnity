@@ -14,6 +14,24 @@ module.exports = function (app,model) {
         }
     });
     var upload = multer({ storage: storage });
+
+    var passport      = require('passport');
+    var LocalStrategy    = require('passport-local').Strategy;
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+    var cookieParser  = require('cookie-parser');
+    var session       = require('express-session');
+    app.use(session({
+        secret: 'this is the secret',
+        resave: true,
+        saveUninitialized: true
+    }));
+    app.use(cookieParser());
+    app.use(passport.initialize());
+    app.use(passport.session());
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
     app.get("/api/user/:uid",findUserById);
     app.post("/api/user",findUser);
     app.put("/api/user",updateUser);
@@ -26,7 +44,139 @@ module.exports = function (app,model) {
     app.post("/api/user/:uid/queue1",addSong2UserQueue);
     app.get("/api/user/:uid/deleteSong/:videoId",deleteSongFromQueue);
     app.post("/api/user/:uid/updateQueue",updateUserQueue);
-    app.get("/api/user",allUser);
+    app.get("/api/alluser",allUser);
+    app.get("/api/user",findCurrentUser);
+
+    app.post  ('/api/login', passport.authenticate('local'), login);
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.post("/api/checkLogin",checkLogin);
+    app.post("/api/logout",logout);
+    app.get ('/api/loggedin', loggedin);
+
+    app.get("/auth/google/callback",
+        passport.authenticate('google', {
+            successRedirect: '/project/#/user/redirect',
+            failureRedirect: '/project/#/home'
+        }));
+
+    var googleConfig = {
+        clientID     : process.env.clientID||'386397546436-p05skr626rqua6lm3ht7la1ibniecebu.apps.googleusercontent.com',
+        clientSecret : process.env.clientSecret||'wYd4R_LuiBQxGq-hgxrYkr_J',
+        callbackURL  : process.env.callbackURL||'http://localhost:5000/auth/google/callback'
+    };
+
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+    function findCurrentUser(req,res) {
+        var params = req.params;
+        var query = req.query;
+        if(query.password && query.username) {
+            findUserByCredentials(req, res);
+        } else if(query.username) {
+            findUserByUsername(req, res);
+        } else {
+            res.json(req.user);
+        }
+    }
+
+    function googleStrategy(token, refreshToken, profile, done) {
+        model.userModel
+            .findUserByGoogleId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            gender: profile.gender,
+                            url:profile.photos[0].value,
+                            google: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        return model.userModel.createUser(newGoogleUser)
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+
+
+
+    function logout(req,res) {
+        req.logOut();
+        res.send(200);
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function checkLogin(req,res) {
+        res.send(req.isAuthenticated()?req.user:'0');
+    }
+
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        model.userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+
+
+    function localStrategy(username,password,done) {
+        model.userModel.findUserByCredentials(username,password)
+            .then(
+                function (user) {
+                    if(user){
+                        return done(null,user);
+                        //res.send(body)
+                    }else{
+                        return done(null,false);
+                        //res.sendStatus(404).send('0');
+                    }
+                },
+                function (error) {
+                    if (error) { return done(error); }
+                }
+            );
+    }
+
+
 
     function allUser(req,res) {
         model.userModel.getAllUser()
@@ -204,7 +354,7 @@ module.exports = function (app,model) {
     }
 
     function findUserByCredentials(req,res){
-        var user  = req.body;
+       /* var user  = req.body;
         var username = user.username;
         var password = user.password;
         model.userModel.findUserByCredentials(username,password)
@@ -221,7 +371,9 @@ module.exports = function (app,model) {
                     console.log(error);
                     res.sendStatus(400).send(error);
                 }
-            );
+            );*/
+            var user = req.user;
+            res.json(user);
     }
 
     function findUserByUsername(req, res) {

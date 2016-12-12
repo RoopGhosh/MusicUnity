@@ -140,7 +140,7 @@ function nextAutoPlay(event,fromDM) {
             .done(
                 function (response) {
                     console.log("done updating thumbnail")
-                    if(videoArray[count]=='youtube') {
+                    if(videoArray[count].type=='youtube') {
                         var recent = {
                             title: response.items[0].snippet.title,
                             url: response.items[0].snippet.thumbnails.default.url,

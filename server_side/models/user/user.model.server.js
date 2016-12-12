@@ -12,9 +12,16 @@ module.exports = function () {
         getUserQueue:getUserQueue,
         updateSongQueue:updateSongQueue,
         addsong2Recent:addsong2Recent,
-        getAllUser:getAllUser
+        getAllUser:getAllUser,
+        findUserByGoogleId:findUserByGoogleId
     };
     return api;
+
+
+    function findUserByGoogleId(googleId) {
+        return UserModel.findOne({'google.id': googleId});
+
+    }
 
     function getAllUser() {
         return UserModel.find({}).select("username url");
@@ -45,7 +52,6 @@ module.exports = function () {
     }
 
     function createUser(user) {
-        user.url="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png";
          return UserModel.create(user);
     }
 

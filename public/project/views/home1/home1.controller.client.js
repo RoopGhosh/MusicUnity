@@ -6,7 +6,7 @@
     function Home1Controller($routeParams,UserService,LikeService,$http,$location,CommentService) {
         var vm = this;
         vm.userid = $routeParams['uid'];
-         vm.FollowerStatus=[];//{username,comment,imageSrc}
+        vm.FollowerStatus=[];//{username,comment,imageSrc}
         vm.search = search;
         vm.followUser=followUser;
         vm.unfollowUser=unfollowUser;
@@ -51,7 +51,7 @@
         }
 
         function followUser(followUser,index) {  //userId i need
-           // followUser.following=false;
+            // followUser.following=false;
             var follow='#follow'+ index;
             $(follow).attr('class','hide followIconHeight');
             var follow1='#follow1'+ index;
@@ -79,13 +79,13 @@
         }
 
         function unfollowUser (followUser,index) {
-           // followUser.following=true;
+            // followUser.following=true;
             var follow1='#follow1'+ index;
             $(follow1).attr('class','show followIconHeight');
             var follow='#follow'+ index;
             $(follow).attr('class','show followIconHeight');
             var unfollow='#unfollow'+index;
-             $(unfollow).attr('class','hide followIconHeight');
+            $(unfollow).attr('class','hide followIconHeight');
             var unfollow1='#unfollow1'+index
             $(unfollow1).attr('class','hide followIconHeight')
             var found = vm.user.following.indexOf(vm.user._id);
@@ -140,44 +140,39 @@
             return usersWithFollowing;
         }
 
-       function getFollowerCommentsAndRecentSongList(){
+        function getFollowerCommentsAndRecentSongList(){
             UserService.findUserById(vm.userid)
                 .success(function (user) {
                     vm.user = user;
                     vm.FollowingUser = user.following;
                     vm.FollowingUser.push(user._id); //for retriving a users own comments;
-                    for(item in user.following){
-                        CommentService.findCommentByUser(user.following[item])
+                    for(var i in user.following){
+                        UserService.findUserById(user.following[i])
                             .success(
-                                function (comments) {
-                                    var statusArray = createStatusArray(comments.splice(0,10),user.username,user.url); //top 10 comments from followers
-                                    vm.FollowerStatus = vm.FollowerStatus.concat(statusArray);
-                                     vm.FollowerStatus= shuffle(vm.FollowerStatus);
+                                function (followingUser) {
+                                    var recentSongArray = createRecentSongArray(followingUser.recent.reverse().splice(0,10),followingUser.username);
+                                    vm.FollowerrecentSong= vm.FollowerrecentSong.concat(recentSongArray); //splicing to show last 10 only
+                                    vm.FollowerrecentSong  = shuffle(vm.FollowerrecentSong );
                                     //this is bad shuffle placement..
+
+                                    CommentService.findCommentByUser(followingUser._id)
+                                        .success(
+                                            function (comments) {
+                                                var statusArray = createStatusArray(comments.splice(0,10),followingUser.username,followingUser.url); //top 10 comments from followers
+                                                vm.FollowerStatus = vm.FollowerStatus.concat(statusArray);
+                                                vm.FollowerStatus= shuffle(vm.FollowerStatus);
+                                                //this is bad shuffle placement..
+                                            }
+                                        )
                                 }
                             )
                             .error(
                                 function (error) {
-                                    console.error("error while adding comments to array");
+                                    console.error("error while adding recentsong to array");
                                 }
                             )
                     }
-                    for(i in user.following){
-                        UserService.findUserById(user.following[i])
-                            .success(
-                                    function (followingUser) {
-                                        var recentSongArray = createRecentSongArray(followingUser.recent.reverse().splice(0,10),followingUser.username);
-                                        vm.FollowerrecentSong= vm.FollowerrecentSong.concat(recentSongArray); //splicing to show last 10 only
-                                        vm.FollowerrecentSong  = shuffle(vm.FollowerrecentSong );
-                                        //this is bad shuffle placement..
-                                    }
-                                )
-                                    .error(
-                                        function (error) {
-                                            console.error("error while adding recentsong to array");
-                                        }
-                                    )
-                    }
+
                 })
                 .error(
                     function (error) {
@@ -201,7 +196,7 @@
         }
 
         function createRecentSongArray(songArray, username){
-           var songArr = [];
+            var songArr = [];
             for(i in songArray){
                 var item = {
                     username:username,

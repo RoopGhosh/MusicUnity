@@ -9,7 +9,7 @@
         .module("MusicUnity")
         .controller("MainPageController",MainPageController )
 
-    function MainPageController($location,UserService) {
+    function MainPageController($location,UserService,$rootScope) {
         var vm=this;
         vm.signup=signup;
         vm.login=login;
@@ -44,9 +44,29 @@
         }
 
         function login (returningUser) {
-            console.log()
+                var user  = {username:returningUser.loginUserName,password:returningUser.loginPassword};
+                UserService
+                    .login(user)
+                    .then(
+                        function(response) {
+                            var user = response.data;
+                            if(user!='0'){
+                                $("div").remove(".modal-backdrop");
+                                $("#backButtonParentDiv").css("display","block");
+                                $rootScope.currentUser = user;
+                                $location.url("/user/"+user._id+"/home1");
 
-            UserService.findUserByCredentials(returningUser.loginUserName,returningUser.loginPassword)
+                            }
+                            else{
+
+                                shakeModal();
+                            }
+                        },
+                        function (error) {
+                            console.log("something bad happened while loging you in.")
+                        }
+                    );
+            /*UserService.findUserByCredentials(returningUser.loginUserName,returningUser.loginPassword)
                 .success(function (user) {
                     if(user!='0'){
                         $("div").remove(".modal-backdrop");
@@ -62,7 +82,7 @@
                 })
                 .error(function (error) {
                     console.log("error in login controller")
-                })
+                })*/
 
 
         }

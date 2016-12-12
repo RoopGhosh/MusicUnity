@@ -23,13 +23,35 @@
             addSong2Recent:addSong2Recent,
             deleteSongFromQueue:deleteSongFromQueue,
             updateUserQueue:updateUserQueue,
-            allUser:allUser
+            allUser:allUser,
+            findCurrentUser:findCurrentUser,
+            login:login,
+            logout:logout,
+            checkLogin:checkLogin
         }
         return api;
 
 
+        function findCurrentUser() {
+            var url = "/api/user";
+            return $http.get(url);
+        }
+
+        function login(user) {
+            return $http.post("/api/login", user);
+        }
+
+        function logout() {
+            return $http.post("/api/logout");
+        }
+
+        function checkLogin() {
+            return $http.post("/api/checkLogin");
+        }
+
+
         function allUser() {
-            return $http.get("/api/user");
+            return $http.get("/api/alluser");
         }
 
         function updateUserQueue(uid,queue) {

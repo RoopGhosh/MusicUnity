@@ -27,7 +27,10 @@
             .when("/user/:uid/profile", {
             templateUrl: "/project/views/profile/profile.view.client.html",
             controller:"ProfileController",
-            controllerAs :"model"
+            controllerAs :"model",
+            resolve:{
+                checkLogin:checkLogin
+            }
             })
             .when("/user/:uid/home2", {
                 templateUrl: "/project/views/home2/home2.html",
@@ -39,9 +42,50 @@
                 controller:"Home1Controller",
                 controllerAs :"model"
             })
+            .when("/user/redirect", {
+                resolve:{
+                    checkLogin:checkLogin
+                }
+            })
+
             .otherwise({
                 redirectTo: "/home"
             })
 
+        function redirectHome1(UserService,$location) {
+            //var deferred = $q.defer($q,UserService,$location);
+            UserService
+                .checkLogin()
+                .success(
+                    function (user) {
+                        if(user!=0){
+                            $location.url("/user/"+user._id+"/home1");
+                        }else{
+
+                            $location.url("/login");
+                        }
+                    }
+                );
+            return deferred.promise;
+        }
+
+
+        function checkLogin($q,UserService,$location) {
+            var deferred = $q.defer();
+            UserService
+                .checkLogin()
+                .success(
+                    function (user) {
+                        if(user!=0){
+                            deferred.resolve();
+                            $location.url("/user/"+user._id+"/home1");
+                        }else{
+                            deferred.reject();
+                            $location.url("/login");
+                        }
+                    }
+                );
+            return deferred.promise;
+        }
     }
 })();
