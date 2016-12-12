@@ -44,6 +44,9 @@ function ytPrevSong() {
 }
 
 function pausePlayer() {
+    if(youtube==null){
+        return;
+    }
     /*if(videoArray[count].type=='youtube'){
         youtube.pauseVideo();
     }else{
@@ -123,6 +126,7 @@ function onPlayerStateChange(event,fromDM) {
 // when video ends`
 function nextAutoPlay(event,fromDM) {
     if((fromDM==true|| event.data === 0 || forced ||nextButton|| previous)&&(previous||count<videoArray.length)){
+        resetLikes();
         if (videoArray[count].type == 'dailymotion') {
             //playnext song at dailymotion
             console.log("I was here in on player stat for dailymotion");
@@ -164,6 +168,12 @@ function nextAutoPlay(event,fromDM) {
         if(count<videoArray.length-1) {
             updateNextThumbnails(count + 1);
         }
+    }
+
+
+    function resetLikes() {
+        $('#like').attr('class','fa fa-thumbs-o-up whiteColor');
+        $('#dislike').attr('class','fa fa-thumbs-o-down whiteColor');
     }
 }
 
@@ -274,4 +284,5 @@ function updateNextThumbnails(count) {
             );
         return;
     }
+
 }

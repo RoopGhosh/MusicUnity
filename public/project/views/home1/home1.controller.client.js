@@ -101,6 +101,7 @@
         function init() {
             $("body").removeClass("modal-open");
             $("#backButtonParentDiv").css("display","block");
+            pausePlayer();
             getFollowerCommentsAndRecentSongList();
             getUserList();
 

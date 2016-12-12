@@ -19,7 +19,7 @@
         }
 
         function searchResult(searchText) {
-            var url = "https://api.dailymotion.com/videos?fields=id,thumbnail_url,title,&search=SEARCHTEXT&limit=50";
+            var url = "https://api.dailymotion.com/videos?fields=id,thumbnail_url,title,&search=SEARCHTEXT&limit=45";
             url = url.replace("SEARCHTEXT",searchText);
             return $http.get(url);
         }

@@ -18,7 +18,7 @@
         vm.replaceQwithPls=replaceQwithPls
         vm.followingProfile=followingProfile;
         function followingProfile(followingUser) {
-            $location.url("/user/"+vm._id+"/profile?followerProfile="+followingUser);
+            $location.url("/user/"+vm._id+"/profile?followingProfile="+followingUser);
         }
         function replaceQwithPls(pid) {
             PlaylistService.findPlaylistbyId(userid,pid)
@@ -27,6 +27,7 @@
                                 UserService.updateUserQueue(userid,playlist.songs)
                                     .success(
                                         function (response) {
+                                            count =0;
                                             $location.url("/user/"+userid+"/home2");
                                         }
                                     )
@@ -46,6 +47,7 @@
                 })
         }
         function init() {
+            pausePlayer();
             $("#backButtonParentDiv").css("display","block");
             vm.guest = false;
             if($routeParams.followingProfile!=null){
