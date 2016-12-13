@@ -1622,3 +1622,12 @@ li.active a, li.active a:hover {
 
     width: 95px;
 }
+.lock{
+    margin-top: 108px;
+    margin-right: 22px;
+}
+.fa.fa-lock.color{
+        font-size: 40px;
+        color: deepskyblue;
+        padding: 10px;
+}

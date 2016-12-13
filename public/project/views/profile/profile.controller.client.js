@@ -76,6 +76,8 @@
                 $("#home2Redirect").hide();
                 $("#peopleIFollow").hide();
                 $(".fa-trash ").hide();
+                $("#lock").attr('class','center pull-right hidden-xs lock');
+                $('#PIF').hide();
             }else{
                 UserService.findUserById(userid)
                     .success(

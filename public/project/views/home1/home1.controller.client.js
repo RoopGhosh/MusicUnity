@@ -20,7 +20,7 @@
         vm.createMyComment = createMyComment;
 
         function followingProfile(followingUser) {
-            $location.url("/user/"+vm.userid+"/profile?followerProfile="+followingUser);
+            $location.url("/user/"+vm.userid+"/profile?followingProfile="+followingUser);
         }
 
         function createMyComment (text) {

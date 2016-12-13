@@ -92,7 +92,10 @@
                             <img class=" img-circle heightFollowImage " src={{status.url}}>
                         </div>
                         <div class="col-xs-10 col-sm-10">
-                            <p class="whiteColor text-justify size21px"><b class="blueColor">@{{status.username}}</b> <i>says</i> {{status.status}}</p>
+                            <p class="whiteColor text-justify size21px">
+                                <a href="" ng-click="model.followingProfile(status.username)">
+                                    <b class="blueColor">@{{status.username}}</b>
+                                </a> <i>says</i> {{status.status}}</p>
                         </div>
                     </div>
 
@@ -132,7 +135,9 @@
                                     <img class=" img-circle heightFollowImage" src={{user.user.url}}>
                                 </li>
                                 <li>
-                                    <h4 class="whiteColor ">{{user.user.username}}</h4>
+                                    <a href="" ng-click="model.followingProfile(user.user.username)">
+
+                                    <h4 class="blueColor ">{{user.user.username}}</h4></a>
                                 </li>
                             </ul>
                         </div>
@@ -186,7 +191,9 @@
                             <img class=" img-circle heightFollowImage " src="{{song.song.url}}">
                         </div>
                         <div class="col-xs-10 col-sm-10">
-                            <p class="whiteColor text-justify size21px"><b class="blueColor">@{{song.username}}</b> <i>listened to</i> {{song.song.title}}</p>
+                            <p class="whiteColor text-justify size21px">
+                                <a href=""  ng-click="model.followingProfile(song.username)"><b class="blueColor">@{{song.username}}</b></a>
+                                <i>listened to</i> {{song.song.title}}</p>
                         </div>
                     </div>
 
