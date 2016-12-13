@@ -99,6 +99,7 @@
                         hideAnimation: 'slideUp'});
                 return;
             }
+            $('#play').attr('class','fa fa-pause whiteColor');
             ytNextSong();
         }
 
@@ -112,6 +113,7 @@
                         hideAnimation: 'slideUp'});
                 return;
             }
+            $('#play').attr('class','fa fa-pause whiteColor');
             ytPrevSong();
         }
 

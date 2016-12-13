@@ -225,10 +225,14 @@
                         <div class="col-xs-6">
                             <div>
                                 <p class="whiteColor">
-                                    <a href="" ng-click="model.replaceQwithPls(playObj._id)">
+                                    <div ng-if="!model.guest" ng-click="model.replaceQwithPls(playObj._id)">
                                         <i class="fa fa-play blueColor color " aria-hidden="true"></i>
                                         <i class="size40px whiteColor">{{playObj.name}}</i>
-                                    </a>
+                                    </div>
+                                    <div ng-if="playObj.private && model.guest">
+                                        <i class="fa fa-lock blueColor color " aria-hidden="true"></i>
+                                        <i class="size40px whiteColor">{{playObj.name}}</i>
+                                    </div>
                                 </p>
                             </div>
                         </div>

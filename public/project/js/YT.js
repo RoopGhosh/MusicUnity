@@ -44,7 +44,7 @@ function ytPrevSong() {
 }
 
 function pausePlayer() {
-    if(youtube==null){
+    if(youtube==null || youtube.pauseVideo==null){
         return;
     }
     /*if(videoArray[count].type=='youtube'){
