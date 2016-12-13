@@ -93,6 +93,10 @@
                                 <input id="emailRegister" ng-model="model.user.email" class="form-control" type="text" placeholder="Email" name="email">
                                 <input id="firstName" ng-model="model.user.firstName" class="form-control" type="text" placeholder="FirstName" name="email">
                                 <input id="lastName" ng-model="model.user.lastName" class="form-control" type="text" placeholder="LastName" name="email">
+                                <!--<select ng-model="model.user.gender" name="Gender" class="form-control" value="Gender" placeholder="Gender">-->
+                                    <!--<option value="male" select="selected">Male</option>-->
+                                    <!--<option value="female">Famale</option>-->
+                                <!--</select>-->
                                 <input id="passwordRegister" ng-model="model.user.password" class="form-control" type="password" placeholder="Password" name="password">
                                 <input id="password_confirmation" ng-model="model.user.verifyPassword"class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
                                 <input class="btn btn-default btn-register" type="button" value="Create account" ng-click="model.register(model.user)">
@@ -117,19 +121,6 @@
 </div>
 
 
-<!-- About -->
-<!--<section id="about" class="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-                <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
-            </div>
-        </div>
-        <!-- /.row -->
-<!-- </div>
- <!-- /.container -->
-<!--</section>
 
 <!-- Services -->
 <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
@@ -146,9 +137,12 @@
         <div class="row text-center">
             <div class="col-lg-10 col-lg-offset-1">
                 <h2>What Is Music Unity</h2>
-                <hr class="small">
-               <p style="text-justify: auto">
-                   Music unity tries
+                <hr class="small text-justify">
+               <p class="sixe19px text-justify">
+                   We all have been using unified email boxes since ever now and this has made our lives really simpler.
+                   But even today if I want to listen to the music I like there are so many options which is awesome but with so many options come too much chaos and switching sites loging in registering and more. Here at
+                   Music Unity we want to remedy this by creating a universal Search and player for MUSIC.
+                    Currently we support YouTube and DalilyMotion with SoundCloud being added really soon. Make your own universal playlists, Socialize with frends, discover what the people you follow have been listening to all at one place. Hence we call this MUSIC UNITY because Music has to be UNIFIED.
                    <!-- /.row (nested) -->
                 </div>
                 <!-- /.col-lg-10 -->
@@ -164,33 +158,41 @@
                 <h2>Streaming Services</h2>
                 <hr class="small">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6">
+                    <!--<div class="col-md-4 col-sm-6">-->
+                        <!--<div class="service-item">-->
+                             <!--&lt;!&ndash;<span class="fa-stack fa-5x">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<i class="fa fa-circle fa-stack-2x"></i>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<i class="fa fa-youtube fa-stack-1x text-primary"></i>&ndash;&gt;-->
+                             <!--&lt;!&ndash;&ndash;&gt;-->
+                                 <!--&lt;!&ndash;<br>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<h4>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<strong>YouTube</strong>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</h4>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<p>YouTube is an American video-sharing website headquartered in San Bruno, California, United States. </p>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="http://youtube.com/" target="_blank" class="btn btn-light">Learn More</a>&ndash;&gt;-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="col-md-6 col-sm-6">
                         <div class="service-item">
-                                <img src="http://blog.ncce.org/wp-content/uploads/2013/12/iTunesArtwork@2x-1.png" class="dailymotionImageSize">
+                            <a href="http://youtube.com/" target="_blank">
+                                <span class="fa-stack fa-4x" >
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-youtube fa-stack-1x text-primary"></i>
+                            </span>
+                            </a>
                             <h4>
-                                <strong>YouTube</strong>
+                                <strong>Youtube</strong>
                             </h4>
                             <p>YouTube is an American video-sharing website headquartered in San Bruno, California, United States. </p>
                             <a href="http://youtube.com/" target="_blank" class="btn btn-light">Learn More</a>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-6">
-                        <!--<div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-soundcloud fa-stack-1x text-primary"></i>
-                            </span>
-                            <h4>
-                                <strong>SoundCloud</strong>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <a href="#" class="btn btn-light">Learn More</a>
-                        </div>-->
-                    </div>
 
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-6 col-sm-6">
                         <div class="service-item">
-                                <img src="https://cdn.evbuc.com/eventlogos/49926042/logodailymotion.png" class="dailymotionImageSize">
+                            <span class="fa-stack fa-4x" >
+                                <img src="https://cdn.evbuc.com/eventlogos/49926042/logodailymotion.png" class="dailyMotionLanding img-circle">
+                                </span>
                             <h4>
                                 <strong>Dailymotion</strong>
                             </h4>
@@ -209,87 +211,7 @@
         <!-- /.container -->
 </section>
 
-<!-- Signin/Signup
-<section id="portfolio" class="portfolio">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 text-center">
-                <h2>Join The Fun</h2>
-                <hr class="small">
-                <div class="row">
-                    <div class="container-fluid">
-                    <div class="col-sm-6 " style="text-align: center">
-                        <div class="container-fluid ">
-                            <h3 class="section-subheading text-muted">Already a Member? Welcome Back !!!! </h3>
-                            <div ng-show="model.errorLogin" class="alert alert-danger" role ="alert">
-                                {{model.errorLogin}}
-                            </div>
-                            <br>
-                            <br>
-                            <input type="text"
-                                   ng-model="model.user.loginUserName"
-                                   class="form-control  "
-                                   placeholder="username"/>
-                            <br>
 
-                            <input type="password"
-                                   ng-model="model.user.loginPassword"
-                                   class="form-control  "
-                                   placeholder="password"/>
-                            <br>
-
-
-                            <a ng-click="model.login(model.user)" class="btn btn-success btn-block"
-                               href="">Login</a>
-                        </div>
-                    </div>
-                        <div class="col-sm-6">
-
-                            <div class="container-fluid">
-                                <div ng-show="model.errorRegister" class="alert alert-danger" role ="alert">
-                                    {{model.errorRegister}}
-                                </div>
-                                <h3 class=" section-subheading text-muted">Never Too Late to Start !!!</h3>
-                                <input type="text"
-                                       ng-model="model.user.username"
-                                       class="form-control  "
-                                       placeholder="username"/>
-                                <br>
-                                <input type="text"
-                                       ng-model="model.user.firstName"
-                                       class="form-control  "
-                                       placeholder="firstName"/>
-                                <br>
-                                <input type="text"
-                                       ng-model="model.user.lastName"
-                                       class="form-control  "
-                                       placeholder="lastName"/>
-                                <br>
-                                <input type="email"
-                                       ng-model="model.user.email"
-                                       class="form-control  "
-                                       placeholder="Email"/>
-                                <br>
-                                <input type="password"
-                                       ng-model="model.user.password"
-                                       class="form-control  "
-                                       placeholder="password"/>
-                                <br>
-                                <input type="password"
-                                       ng-model="model.user.verifyPassword"
-                                       class="form-control"
-                                       placeholder="Verify Password"/>
-                                <br>
-
-                                <a ng-click="model.register(model.user)" class="btn btn-success btn-block "
-                                   href="">Register</a>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-
-
-                <!-- /.row (nested) -->
 
             </div>
             <!-- /.col-lg-10 -->
@@ -300,19 +222,13 @@
     <!-- /.container -->
 </section>
 
-<!-- Callout
- <aside class="callout">
-     <div class="text-vertical-center">
-         <h1>Vertically Centered Text</h1>
-     </div>
- </aside>-->
+
 <!-- Team Section -->
 <section id="team" class="bg-light-gray">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Our Amazing Team</h2>
-                <!--<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
             </div>
         </div>
         <div class="row">
@@ -347,75 +263,11 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-                </div>
-            </div>
+
         </div>
 </section>
 
 
 
-<!-- Call to Action -->
-<!--<aside class="call-to-action bg-primary">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h3>The buttons below are impossible to resist.</h3>
-                <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-                <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
-            </div>
-        </div>
-    </div>
-</aside>-->
 
- Map
-<section id="contact" class="map">
-    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-    <br />
-    <small>
-        <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-    </small>
-    </iframe>
-</section>
-
-<!-- Footer-->
-<footer>
-    <div class="container" style="background-color: whitesmoke">
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 text-center">
-                <h4><strong>Start Bootstrap</strong>
-                </h4>
-                <p>3481 Melrose Place
-                    <br>Beverly Hills, CA 90210</p>
-                <ul class="list-unstyled">
-                    <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                    <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
-                    </li>
-                </ul>
-                <br>
-                <ul class="list-inline">
-                    <li>
-                        <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                    </li>
-                </ul>
-                <hr class="small">
-                <p class="text-muted">Copyright &copy; Your Website 2014</p>
-            </div>
-        </div>
-    </div>
-    <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
-</footer>
-
-
-
-
-<!-- Custom Theme JavaScript -->
 

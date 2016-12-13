@@ -523,7 +523,7 @@ header {
     color: white;
 }
 header .intro-text {
-    padding-top: 100px;
+    padding-top: 65px;
     padding-bottom: 50px;
 }
 header .intro-text .intro-lead-in {
@@ -543,7 +543,7 @@ header .intro-text .intro-heading {
 }
 @media (min-width: 768px) {
     header .intro-text {
-        padding-top: 300px;
+        padding-top: 200px;
         padding-bottom: 200px;
     }
     header .intro-text .intro-lead-in {
@@ -1353,7 +1353,7 @@ li.active a, li.active a:hover {
 
 
 .big-guest{
-    background-color: #ffc816;
+    background-color: orange;
     color: rgba(34, 34, 34, 0.95);
     border-radius: 7px;
     border-width: 2px;
@@ -1366,7 +1366,7 @@ li.active a, li.active a:hover {
 }
 
 .big-guest:hover{
-    background-color: #22ff52;
+    background-color: #00A4E4;
     color: rgba(255, 255, 255, 0.95);
 }
 
@@ -1613,4 +1613,12 @@ li.active a, li.active a:hover {
 .peopleIfillow{
     height: 59px;
     width: 441px;
+}
+.sixe19px{
+    font-size: 19px;
+}
+.dailyMotionLanding{
+    HEIGHT: 92PX;
+
+    width: 95px;
 }

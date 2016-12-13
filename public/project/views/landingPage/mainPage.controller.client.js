@@ -27,6 +27,13 @@
                         vm.errorRegister="Username already taken";
                         console.log("User taken");
                     }else{
+                        // if(newUser.gender==='female'){
+                        //     newUser.url="http://texturemedia.s3.amazonaws.com/user_images/profile_images/_default-medium.jpg"
+                        // }
+                        // if(newUser.gender==='male'){
+                            newUser.url="http://img.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg?size=338&ext=jpg"
+                      //  }
+                        newUser.url="http://sermones-biblicos.org/sermones/static/images/user.gif"
                         UserService.createUser(newUser)
                             .success(function (addedUser) {
                                 $location.url("/user/"+addedUser+"/profile");
