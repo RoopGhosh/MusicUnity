@@ -74,9 +74,9 @@ module.exports = function (app,model) {
     };
 
     var githubConfig = {
-        clientID: "f7e8722a314d7b02bb91",
-        clientSecret: 'cab68fddbf2537d042c8d5d02a5adaaba8355af1',
-        callbackURL: "http://localhost:5000/auth/github/callback"
+        clientID: process.env.clientIDGITHUB ||"f7e8722a314d7b02bb91",
+        clientSecret: process.env.clientSecretGITHUB ||'cab68fddbf2537d042c8d5d02a5adaaba8355af1',
+        callbackURL: process.env.callbackURLGITHUB ||"http://localhost:5000/auth/github/callback"
     };
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));

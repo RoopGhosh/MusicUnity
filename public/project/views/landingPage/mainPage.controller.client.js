@@ -16,6 +16,7 @@
         vm.register=register;
 
         function init(){
+            pausePlayer();
             $("#backButtonParentDiv").css("display","none");
         }
         init();
