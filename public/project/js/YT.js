@@ -15,7 +15,7 @@ function initYT(userId) {
 }
 function reloadFunc(type,videoId,userId) {
    // videoID[1]= 'N21u1bMhHyQ';
-    videoArray.push({type:type,id:videoId});
+    videoArray.unshift({type:type,id:videoId});
     forced = true;
     pausePlayer();
     onPlayerStateChange('onStateChange');
@@ -115,7 +115,7 @@ function onPlayerStateChange(event,fromDM) {
         }
 
         if(forced){
-            count = videoArray.length-1;
+            count = 0;
         }
             nextAutoPlay(event,fromDM);
 }
