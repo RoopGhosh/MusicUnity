@@ -48,6 +48,7 @@
         }
         function init() {
             pausePlayer();
+            vm.searchText=null;
             $("#backButtonParentDiv").css("display","block");
             vm.guest = false;
             if($routeParams.followingProfile!=null){

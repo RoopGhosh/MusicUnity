@@ -17,6 +17,7 @@
 
         function init(){
             pausePlayer();
+            vm.searchText=null;
             $("#backButtonParentDiv").css("display","none");
         }
         init();
