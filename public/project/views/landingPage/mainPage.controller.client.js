@@ -28,11 +28,11 @@
         }
         init();
         function register(newUser) {
-            if(newUser==null|| newUser.username == null || returningUser.username=="" ||
-                returningUser.firstName==null || returningUser.firstName=="" ||
-                returningUser.verifyPassword==null || returningUser.verifyPassword=="" ||
-                returningUser.password==null || returningUser.password=="" ||
-                returningUser.verifyPassword != returningUser.password){
+            if(newUser==null|| newUser.username == null || newUser.username=="" ||
+                newUser.firstName==null || newUser.firstName=="" ||
+                newUser.verifyPassword==null || newUser.verifyPassword=="" ||
+                newUser.password==null || newUser.password=="" ||
+                newUser.verifyPassword != newUser.password){
                 vm.error = "Errors found in the form";
                 vm.user=null;
                 return;

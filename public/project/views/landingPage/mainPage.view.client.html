@@ -93,32 +93,32 @@
                         </div>
                         <form name="loginForm" novalidate>
                         <div class="form">
-                                <input id="usernameRegister" ng-model="model.user.username" class="form-control" type="text" placeholder="Username" name="email">
+                                <input required id="usernameRegister" ng-model="model.user.username" class="form-control" type="text" placeholder="Username" name="email">
                                 <input id="emailRegister" ng-model="model.user.email" class="form-control" type="text" placeholder="Email" name="email">
-                                <input id="firstName" ng-model="model.user.firstName" class="form-control" type="text" placeholder="FirstName" name="email">
+                                <input required id="firstName" ng-model="model.user.firstName" class="form-control" type="text" placeholder="FirstName" name="email">
                                 <input id="lastName" ng-model="model.user.lastName" class="form-control" type="text" placeholder="LastName" name="email">
                                 <!--<select ng-model="model.user.gender" name="Gender" class="form-control" value="Gender" placeholder="Gender">-->
                                     <!--<option value="male" select="selected">Male</option>-->
                                     <!--<option value="female">Famale</option>-->
                                 <!--</select>-->
-                                <input id="passwordRegister" ng-model="model.user.password" class="form-control" type="password" placeholder="Password" name="password">
-                                <input id="password_confirmation" ng-model="model.user.verifyPassword"class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                                <input required id="passwordRegister" ng-model="model.user.password" class="form-control" type="password" placeholder="Password" name="password">
+                                <input required id="password_confirmation" ng-model="model.user.verifyPassword"class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
                             <button type="submit" class="btn btn-default btn-login" ng-click="model.register(model.user)">Register</button>
                             </div>
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="forgot login-footer">
+                <div class="modal-footer">
+                    <div class="forgot login-footer">
                             <span>Looking to
                                  <a href="javascript: showRegisterForm();">create an account</a>
                             ?</span>
+                    </div>
+                    <div class="forgot register-footer" style="display:none">
+                        <span>Already have an account?</span>
+                        <a href="javascript: showLoginForm();">Login</a>
+                    </div>
                 </div>
-                <div class="forgot register-footer" style="display:none">
-                    <span>Already have an account?</span>
-                    <a href="javascript: showLoginForm();">Login</a>
                 </div>
             </div>
         </div>
