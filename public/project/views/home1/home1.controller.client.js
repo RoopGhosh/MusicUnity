@@ -18,7 +18,17 @@
         //merge mystatus and followers status
 
         vm.createMyComment = createMyComment;
-
+        vm.logout=logout;
+        function logout() {
+            UserService.logout()
+            // .success(function(){
+            //     $location.url("/home");
+            // });
+                .then(function (response) {
+                    $rootScope.currentUser=null;
+                    $location.url("/home");
+                })
+        }
         function followingProfile(followingUser) {
             $location.url("/user/"+vm.userid+"/profile?followingProfile="+followingUser);
         }

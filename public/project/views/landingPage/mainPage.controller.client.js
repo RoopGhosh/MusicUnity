@@ -63,6 +63,7 @@
                                 $("div").remove(".modal-backdrop");
                                 $("#backButtonParentDiv").css("display","block");
                                 $rootScope.currentUser = user;
+                                searchTextInHistory="";
                                 $location.url("/user/"+user._id+"/home1");
 
                             }

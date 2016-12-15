@@ -7,7 +7,7 @@
         .controller("ProfileController", ProfileController)
         .controller("ProfileEditController", ProfileEditController)
 
-    function ProfileController($routeParams,$http,UserService,PlaylistService,CommentService,LikeService,$location) {
+    function ProfileController($routeParams,$http,UserService,PlaylistService,CommentService,LikeService,$location,$rootScope) {
         $('body').attr('class',"");
         $('.modal-backdrop').attr('class',"");
         var userid = $routeParams['uid'];
@@ -17,6 +17,17 @@
         vm.deletePlayList = deletePlayList;
         vm.replaceQwithPls=replaceQwithPls
         vm.followingProfile=followingProfile;
+        vm.logout=logout;
+        function logout() {
+            UserService.logout()
+                // .success(function(){
+                //     $location.url("/home");
+                // });
+                .then(function (response) {
+                    $rootScope.currentUser=null;
+                    $location.url("/home");
+                })
+        }
         function followingProfile(followingUser) {
             $location.url("/user/"+vm._id+"/profile?followingProfile="+followingUser);
         }

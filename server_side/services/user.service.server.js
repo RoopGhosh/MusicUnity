@@ -32,7 +32,7 @@ module.exports = function (app,model) {
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-
+    app.post('/api/logout', logout);
     app.get("/api/user/:uid",findUserById);
     app.post("/api/user",findUser);
     app.put("/api/user",updateUser);
@@ -83,7 +83,10 @@ module.exports = function (app,model) {
 
     passport.use(new GithubStrategy(githubConfig,githubStrategy));
 
-
+    function logout(req, res) {
+        req.logout();
+        res.send(200);
+    }
     function findCurrentUser(req,res) {
         var params = req.params;
         var query = req.query;
@@ -176,7 +179,7 @@ module.exports = function (app,model) {
 
 
     function logout(req,res) {
-        req.logOut();
+        req.logout();
         res.send(200);
     }
 

@@ -28,8 +28,18 @@
         vm.getVideoIdforDetail=getVideoIdforDetail;
         var getQueueLoadedStatus = false;
         vm.deleteSongQueue= deleteSongQueue
+        vm.logout=logout;
 
-
+        function logout() {
+            UserService.logout()
+            // .success(function(){
+            //     $location.url("/home");
+            // });
+                .then(function (response) {
+                    $rootScope.currentUser=null;
+                    $location.url("/home");
+                })
+        }
         function deleteSongQueue(videoId) {
                UserService.deleteSongFromQueue(vm.userId,videoId)
                    .success(
