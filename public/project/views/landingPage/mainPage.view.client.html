@@ -35,8 +35,8 @@
 
             <div class="intro-lead-in">All Your Music at One Place</div>
             <div class="intro-heading">Because Music has been UNIFIED</div>
-            <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a>
-            <a class="btn big-register" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a>
+            <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" ng-click = "model.resetErrors()" onclick="openLoginModal();">Log in</a>
+            <a class="btn big-register" data-toggle="modal" href="javascript:void(0)"  ng-click = "model.resetErrors()" onclick="openRegisterModal();">Register</a>
             <a class="btn big-guest" href="#/user/guest/home2">Continue as guest?</a></div>
     </div>
         </div>
@@ -72,20 +72,27 @@
                             <span>or</span>
                             <div class="line r"></div>
                         </div>
-                        <div class="error">{{vm.errorLogin}}</div>
-                        <div class="form loginBox">
-                            <form >
-                                <input id="username_login" ng-model="model.user.loginUserName" class="form-control" type="text" placeholder="Username" name="email">
-                                <input id="password_login" ng-model="model.user.loginPassword" class="form-control" type="password" placeholder="Password" name="password">
-                                <input class="btn btn-default btn-login" type="button" value="Login" ng-click="model.login(model.user)"  >
-                            </form>
+                        <div ng-show="model.errorLogin" class="alert alert-danger division" role="alert">
+                            {{model.errorLogin}}
                         </div>
+                        <form name="loginForm" novalidate>
+                        <div class="form loginBox">
+                                <input required id="username_login" ng-model="model.user.loginUserName" class="form-control" type="text" placeholder="Username" name="email">
+                            <div ng-show="loginForm.email.$invalid && loginForm.$submitted" class="error">Username is required</div>
+                                <input required id="password_login" ng-model="model.user.loginPassword" class="form-control" type="password" placeholder="Password" name="password">
+                            <div ng-show="loginForm.password.$invalid && loginForm.$submitted" class="error">Password is required</div>
+                                <button type="submit" class="btn btn-default btn-login"  ng-click="model.login(model.user)"  >Login</button>
+                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="box">
                     <div class="content registerBox" style="display:none;">
+                        <div ng-show="model.error" class="alert alert-danger division" role="alert">
+                            {{model.error}}
+                        </div>
+                        <form name="loginForm" novalidate>
                         <div class="form">
-                            <form >
                                 <input id="usernameRegister" ng-model="model.user.username" class="form-control" type="text" placeholder="Username" name="email">
                                 <input id="emailRegister" ng-model="model.user.email" class="form-control" type="text" placeholder="Email" name="email">
                                 <input id="firstName" ng-model="model.user.firstName" class="form-control" type="text" placeholder="FirstName" name="email">
@@ -96,7 +103,8 @@
                                 <!--</select>-->
                                 <input id="passwordRegister" ng-model="model.user.password" class="form-control" type="password" placeholder="Password" name="password">
                                 <input id="password_confirmation" ng-model="model.user.verifyPassword"class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
-                                <input class="btn btn-default btn-register" type="button" value="Create account" ng-click="model.register(model.user)">
+                            <button type="submit" class="btn btn-default btn-login" ng-click="model.register(model.user)">Register</button>
+                            </div>
                             </form>
                         </div>
                     </div>
@@ -261,6 +269,7 @@
             </div>
 
 
+        </div>
         </div>
 </section>
 

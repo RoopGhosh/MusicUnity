@@ -14,6 +14,12 @@
         vm.signup=signup;
         vm.login=login;
         vm.register=register;
+        vm.resetErrors = resetErrors;
+
+        function resetErrors() {
+            vm.error = '';
+            vm.errorLogin='';
+        }
 
         function init(){
             pausePlayer();
@@ -22,11 +28,20 @@
         }
         init();
         function register(newUser) {
+            if(newUser==null|| newUser.username == null || returningUser.username=="" ||
+                returningUser.firstName==null || returningUser.firstName=="" ||
+                returningUser.verifyPassword==null || returningUser.verifyPassword=="" ||
+                returningUser.password==null || returningUser.password=="" ||
+                returningUser.verifyPassword != returningUser.password){
+                vm.error = "Errors found in the form";
+                vm.user=null;
+                return;
+            }
             var usernameAlreadyPresent=UserService.findUserByUsername(newUser.username);
             usernameAlreadyPresent
                 .success(function (user) {
                     if(user!='0'){
-                        vm.errorRegister="Username already taken";
+                        vm.error="Username already taken";
                         console.log("User taken");
                     }else{
                         // if(newUser.gender==='female'){
@@ -35,7 +50,7 @@
                         // if(newUser.gender==='male'){
                             newUser.url="http://img.freepik.com/free-icon/male-user-close-up-shape-for-facebook_318-37635.jpg?size=338&ext=jpg"
                       //  }
-                        newUser.url="http://sermones-biblicos.org/sermones/static/images/user.gif"
+                        newUser.url="img/default.png"
                         UserService.createUser(newUser)
                             .success(function (addedUser) {
                                 $location.url("/user/"+addedUser+"/profile");
@@ -46,13 +61,18 @@
                             })
                     }
                 })
-
         }
         function signup () {
             $location.url("/signup");
         }
 
         function login (returningUser) {
+            if(returningUser==null|| returningUser.loginUserName == null || returningUser.loginUserName=="" ||
+                returningUser.loginPassword==null || returningUser.loginPassword=="" ){
+                vm.errorLogin = "Please fill required fields";
+                vm.user=null;
+                return;
+            }
                 var user  = {username:returningUser.loginUserName,password:returningUser.loginPassword};
                 UserService
                     .login(user)
