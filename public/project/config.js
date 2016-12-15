@@ -28,25 +28,25 @@
             templateUrl: "/project/views/profile/profile.view.client.html",
             controller:"ProfileController",
             controllerAs :"model",
-                resolve:{
-                    checkLogin:checkLoginProfile
-                }
+                // resolve:{
+                //     checkLogin:checkLoginProfile
+                // }
             })
             .when("/user/:uid/home2", {
                 templateUrl: "/project/views/home2/home2.html",
                 controller:"Home2Controller",
                 controllerAs :"model",
-                resolve:{
-                    checkLogin:checkLoginhome2
-                }
+                // resolve:{
+                //     checkLogin:checkLoginhome2
+                // }
             })
             .when("/user/:uid/home1", {
                 templateUrl: "/project/views/home1/home1.view.client.html",
                 controller:"Home1Controller",
                 controllerAs :"model",
-                resolve:{
-                    checkLogin:checkLogin
-                }
+                // resolve:{
+                //     checkLogin:checkLogin
+                // }
             })
             .when("/user/redirect", {
                 resolve:{
@@ -110,22 +110,6 @@
                 );
             return deferred.promise;
         }
-        function checkLoginhome2($q,UserService,$location) {
-            var deferred = $q.defer();
-            UserService
-                .checkLogin()
-                .success(
-                    function (user) {
-                        if(user!=0){
-                            deferred.resolve();
-                            $location.url("/user/"+user._id+"/profile");
-                        }else{
-                            deferred.reject();
-                            $location.url("/home");
-                        }
-                    }
-                );
-            return deferred.promise;
-        }
+
     }
 })();

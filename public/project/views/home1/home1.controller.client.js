@@ -25,7 +25,7 @@
             //     $location.url("/home");
             // });
                 .then(function (response) {
-                    $rootScope.currentUser=null;
+                  //  $rootScope.currentUser=null;
                     $location.url("/home");
                 })
         }
