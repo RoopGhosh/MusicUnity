@@ -11,8 +11,8 @@ app.use(express.static(__dirname + '/public/'));
 //require ("./test/app.js")(app);
 
 require ("./app")(app);
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP||'localhost';
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 5000;
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP||'0.0.0.0';
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 app.listen(port, ipaddress);
 console.log(ipaddress);
